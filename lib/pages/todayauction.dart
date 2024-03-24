@@ -1,0 +1,162 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:liveauction/pages/todayauction_controller.dart';
+
+class Todayauction extends StatefulWidget {
+  const Todayauction({super.key});
+
+  @override
+  State<Todayauction> createState() => _TodayauctionState();
+}
+
+class _TodayauctionState extends State<Todayauction> {
+  @override
+  Widget build(BuildContext context) {
+    return GetBuilder<Todayauctioncontroller>(builder: (ctrl){
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Today's Auctions"),
+      ),
+      body: ListView(
+                      children: ctrl.todayproduct.map((cardData) {
+                        return InkWell(
+                          onTap: () {
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //     builder: (context) => itempage(selectpid:cardData.pid),
+                            //   ),
+                            // );
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(8, 4, 8, 4),
+                            child: Card(
+                              color: Colors.white,
+                              surfaceTintColor: Colors.transparent,
+                              shadowColor: Colors.white,
+                              elevation: 0,
+                              child: Row(
+                                children: [
+                                  Container(
+                                    width: 125,
+                                    height: 125,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10.0), // Set border radius here
+                                      image: DecorationImage(
+                                        image: NetworkImage(cardData.pimage), // Replace with your image URL
+                                        fit: BoxFit.cover, // Adjust image fit as needed
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(width: 10),
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          cardData.pname,
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 18,
+                                          ),
+                                        ),
+                                        SizedBox(height: 5),
+                                        Text('Rs.'+cardData.pprice),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                      }).toList(),
+                    ),
+    );
+    });
+  }
+}
+// import 'package:flutter/material.dart';
+// import 'package:get/get.dart';
+// import 'package:liveauction/pages/todayauction_controller.dart';
+
+// class Todayauction extends StatefulWidget {
+//   const Todayauction({Key? key}) : super(key: key);
+
+//   @override
+//   State<Todayauction> createState() => _TodayauctionState();
+// }
+
+// class _TodayauctionState extends State<Todayauction> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return GetBuilder<Todayauctioncontroller>(builder: (ctrl) {
+//       if (ctrl.todayproduct.isEmpty) {
+//         return Scaffold(
+//           appBar: AppBar(
+//             title: Text("Today's Auctions"),
+//           ),
+//           body: Center(
+//             child: CircularProgressIndicator(),
+//           ),
+//         );
+//       } else {
+//         return Scaffold(
+//           appBar: AppBar(
+//             title: Text("Today's Auctions"),
+//           ),
+//           body: ListView.builder(
+//             itemCount: ctrl.todayproduct.length,
+//             itemBuilder: (context, index) {
+//               return InkWell(
+//                 onTap: () {},
+//                 child: Padding(
+//                   padding: const EdgeInsets.fromLTRB(8, 4, 8, 4),
+//                   child: Card(
+//                     color: Colors.white,
+//                     surfaceTintColor: Colors.transparent,
+//                     shadowColor: Colors.white,
+//                     elevation: 0,
+//                     child: Row(
+//                       children: [
+//                         Container(
+//                           width: 125,
+//                           height: 125,
+//                           decoration: BoxDecoration(
+//                             borderRadius: BorderRadius.circular(10.0),
+//                             image: DecorationImage(
+//                               image: NetworkImage(ctrl.todayproduct[index].pimage ?? ''),
+//                               fit: BoxFit.cover,
+//                             ),
+//                           ),
+//                         ),
+//                         SizedBox(width: 10),
+//                         Expanded(
+//                           child: Column(
+//                             crossAxisAlignment: CrossAxisAlignment.start,
+//                             children: [
+//                               Text(
+//                                 ctrl.todayproduct[index].pname ?? '',
+//                                 style: TextStyle(
+//                                   fontWeight: FontWeight.bold,
+//                                   fontSize: 18,
+//                                 ),
+//                               ),
+//                               SizedBox(height: 5),
+//                               Text('Rs.${ctrl.todayproduct[index].pprice ?? ''}'),
+//                             ],
+//                           ),
+//                         ),
+//                       ],
+//                     ),
+//                   ),
+//                 ),
+//               );
+//             },
+//           ),
+//         );
+//       }
+//     });
+//   }
+// }

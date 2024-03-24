@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "244669270812",
+    "project_id": "firstp-9068d",
+    "storage_bucket": "firstp-9068d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:244669270812:android:73c7dfb08f9f6c50ac08d9",
+        "android_client_info": {
+          "package_name": "com.example.firstp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtOiOB3UP2CESmV9OeT9GxKjJEyB5I25o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:244669270812:android:d856079250d9de11ac08d9",
+        "android_client_info": {
+          "package_name": "com.example.liveauction"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtOiOB3UP2CESmV9OeT9GxKjJEyB5I25o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
