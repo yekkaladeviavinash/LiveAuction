@@ -2,12 +2,12 @@
 // import 'package:get/get.dart';
 // import 'package:liveauction/pages/todayauction_controller.dart';
 
-// class Todayauction extends StatefulWidget {
-//   const Todayauction({super.key});
+// // class Todayauction extends StatefulWidget {
+// //   const Todayauction({super.key});
 
-//   @override
-//   State<Todayauction> createState() => _TodayauctionState();
-// }
+// //   @override
+// //   State<Todayauction> createState() => _TodayauctionState();
+// // }
 
 // class _TodayauctionState extends State<Todayauction> {
 //   @override
@@ -88,6 +88,9 @@
 //     });
 //   }
 // }
+
+
+
 
 // import 'package:flutter/material.dart';
 // import 'package:get/get.dart';
@@ -176,6 +179,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:liveauction/pages/bidding.dart';
 import 'package:liveauction/pages/todayauction_controller.dart';
 
 class Todayauction extends StatefulWidget {
@@ -256,7 +260,13 @@ class _TodayauctionState extends State<Todayauction> {
                       if (isTimeToShowButton && isCurrentUserRegistered)
                         ElevatedButton(
                           onPressed: () {
-                            // Handle button press
+                            // Handle button p
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => bidding(selectpid:cardData.pid,selectimage: cardData.pimage, selectcategory: cardData.pcategory, selectname: cardData.pname, selectprice: cardData.pprice, selectdate: cardData.dateAdded, selectdesc: cardData.pdesc,),
+                              ),
+                            );
                           },
                           child: Text('Enter'),
                         ),

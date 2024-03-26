@@ -33,7 +33,7 @@ class _SellerHistoryPageState extends State<SellerHistoryPage> {
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10.0), // Set border radius here
                                       image: DecorationImage(
-                                        image: NetworkImage(ctrl.sellerwishlist[index].pimage,), // Replace with your image URL
+                                        image: NetworkImage(ctrl.sellerProducts[index].pimage,), // Replace with your image URL
                                         fit: BoxFit.cover, // Adjust image fit as needed
                                       ),
                                     ),

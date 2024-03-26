@@ -58,7 +58,7 @@ class Todayauctioncontroller extends GetxController {
     if (n == 2) return 20;
     if (n == 3) return 20;
     if (n == 4) {
-      return 20;
+      return 19;
     } else {
       return 0;
     }
