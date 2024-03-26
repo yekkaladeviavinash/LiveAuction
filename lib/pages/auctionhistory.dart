@@ -10,6 +10,7 @@ class AuctionHistoryPage extends StatefulWidget {
 }
 
 class _AuctionHistoryPageState extends State<AuctionHistoryPage> {
+  // Profilecontroller ctrl =Profilecontroller();
   @override
   Widget build(BuildContext context) {
     return GetBuilder<Profilecontroller>(builder: (ctrl){
