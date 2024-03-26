@@ -22,7 +22,7 @@ class _TodayauctionState extends State<Todayauction> {
       itemBuilder: (context, index) {
     final cardData = ctrl.todayproduct[index];
     final currentTime = DateTime.now().toUtc().add(const Duration(hours: 5, minutes: 30)); // Convert UTC to IST
-    final isTimeToShowButton = currentTime.hour ==16  && currentTime.minute >= 0 && currentTime.minute <= 29;
+    final isTimeToShowButton = currentTime.hour == ctrl.getProductIndexandtime(cardData.pid) && currentTime.minute >= 0 && currentTime.minute <= 29;
 
     return InkWell(
       onTap: () {
