@@ -1,4 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/widgets.dart';
+import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 class bidding extends StatefulWidget {
     final String? selectpid;
@@ -16,12 +21,78 @@ class bidding extends StatefulWidget {
 
 class _biddingState extends State<bidding> {
   // final int base_price = 23623478;
-  int highest_bid = 25678776;
-  String highest_bidder = 'Gojo Satoru';
-  String timer = '45 min :00 sec';
+  // int highest_bid = 25678776;
+  // String highest_bidder = 'Gojo Satoru';
+  // String timer = '45 min :00 sec';
   // String item_name = 'Six Eyes';
-  final TextEditingController place_bid = TextEditingController();
+  TextEditingController place_bid = TextEditingController();
   // String description = widget.selectdesc!;
+
+  IO.Socket? socket;
+  int? num;
+  String? user;
+  int? countdown;
+
+String? nameofuser;
+
+  @override
+  void initState() {
+    super.initState();
+    connect();
+    getUserdetail();
+    // startTimer();
+  }
+@override
+
+void connect() {
+  // socket = IO.io('http://10.0.2.2:3000', <String, dynamic>{
+  socket = IO.io('http://10.81.65.74:3000', <String, dynamic>{
+    "transports": ["websocket"],
+    "autoconnect": false,
+  });
+  socket!.connect();
+  socket!.onConnect((_) {
+    print('connected with frontend');
+    socket!.on("timer", (timer) {
+      print(timer);
+      setState(() {
+        countdown = timer;
+      });
+    });
+    socket!.on("sendMsgServer", (message) {
+        print(message);
+        setState(() {
+          num = message['value'];
+          user = message['user'];
+          print(user);
+        });
+      });
+  });
+}
+
+
+  void sendMessage(int message) {
+    socket!.emit('sendMessage', {
+      'value': message,
+      'user': nameofuser!,
+    });
+  }
+
+
+
+
+
+    void getUserdetail() async {
+    DocumentSnapshot snap = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .get();
+
+    setState(() {
+      nameofuser = (snap.data() as Map<String, dynamic>)['username'];
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +136,7 @@ class _biddingState extends State<bidding> {
                                 height: 40.0,
                               ),
                               Text(
-                                'Rs.$highest_bid',
+                                'Rs.'+num.toString(),
                                 style: TextStyle(fontSize: 16.0),
                               ),
                               const SizedBox(
@@ -98,7 +169,7 @@ class _biddingState extends State<bidding> {
                                 height: 5.0,
                               ),
                               Text(
-                                highest_bidder,
+                                user.toString(),
                                 style: TextStyle(fontSize: 25.0),
                               ),
                             ],
@@ -108,7 +179,7 @@ class _biddingState extends State<bidding> {
                       const SizedBox(
                         height: 10.0,
                       ),
-                      Text('Ends in: $timer'),
+                      Text('Ends in: ${countdown ?? 'loading...'}'),
                     ],
                   ),
                 ),
@@ -172,7 +243,10 @@ class _biddingState extends State<bidding> {
               ),
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                sendMessage(int.parse(place_bid.text));
+                place_bid.clear();
+              },
               icon: Icon(
                 Icons.send,
               ),

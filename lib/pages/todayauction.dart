@@ -206,7 +206,7 @@ class _TodayauctionState extends State<Todayauction> {
             final isTimeToShowButton =
                 currentTime.hour == ctrl.getProductIndexandtime(cardData.pid) &&
                     currentTime.minute >= 0 &&
-                    currentTime.minute <= 29;
+                    currentTime.minute <= 59;
             final currentUserUID = FirebaseAuth.instance.currentUser!.uid;
             final isCurrentUserRegistered =
                 cardData.registeredusers.contains(currentUserUID);
@@ -270,6 +270,7 @@ class _TodayauctionState extends State<Todayauction> {
                           },
                           child: Text('Enter'),
                         ),
+                      
                     ],
                   ),
                 ),

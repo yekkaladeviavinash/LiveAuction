@@ -14,7 +14,7 @@ import 'package:get/get.dart';
 import 'package:liveauction/models/productmodel.dart';
 import 'package:intl/intl.dart';
 
-import '../models/datemodel.dart';
+// import '../models/datemodel.dart';
 
 class Sellercontroller extends GetxController {
   final curruser = FirebaseAuth.instance.currentUser;
@@ -211,7 +211,9 @@ class Sellercontroller extends GetxController {
     base_price.clear();
     item_image.clear();
     item_category = 'collectibles';
-    datechosen = DateFormat("yyyy-MM-dd").format(DateTime.now()) as DateTime?;
+    // datechosen = DateFormat("yyyy-MM-dd").format(DateTime.now()) as DateTime?;
+    String formattedDate = DateFormat("yyyy-MM-dd").format(DateTime.now());
+     datechosen = DateTime.tryParse(formattedDate);
     update();
   }
 }
