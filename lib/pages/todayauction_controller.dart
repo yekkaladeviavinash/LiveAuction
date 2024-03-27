@@ -53,12 +53,12 @@ class Todayauctioncontroller extends GetxController {
   }
 
   int getProducttime(int n) {
-    if (n == 0) return 9;
-    if (n == 1) return 10;
-    if (n == 2) return 12;
-    if (n == 3) return 15;
+    if (n == 0) return 19;
+    if (n == 1) return 19;
+    if (n == 2) return 19;
+    if (n == 3) return 20;
     if (n == 4) {
-      return 16;
+      return 17;
     } else {
       return 0;
     }

@@ -207,6 +207,10 @@ class _TodayauctionState extends State<Todayauction> {
                 currentTime.hour == ctrl.getProductIndexandtime(cardData.pid) &&
                     currentTime.minute >= 0 &&
                     currentTime.minute <= 59;
+            final auctionCompleted =
+                currentTime.hour > ctrl.getProductIndexandtime(cardData.pid);
+            final auctionInFuture =
+                currentTime.hour < ctrl.getProductIndexandtime(cardData.pid);
             final currentUserUID = FirebaseAuth.instance.currentUser!.uid;
             final isCurrentUserRegistered =
                 cardData.registeredusers.contains(currentUserUID);
@@ -271,6 +275,12 @@ class _TodayauctionState extends State<Todayauction> {
                           child: Text('Enter'),
                         ),
                       
+                      if (auctionCompleted)
+                        Text("Auction Completed"),
+                        
+
+                      if (auctionInFuture && isCurrentUserRegistered)
+                        Text("Already Registered"),
                     ],
                   ),
                 ),
