@@ -3,16 +3,15 @@ import 'package:json_annotation/json_annotation.dart';
 part 'usermodel.g.dart';
 
 @JsonSerializable()
-class usermodel{
+class usermodel {
   final String username;
   final String uid;
   final String phone;
   final String email;
   final String profileimagelink;
-  final List auctionhistory;
-  final List sellerhistory;
-  final List wishlist;
-
+  final List? auctionhistory;
+  final List? sellerhistory;
+  final List? wishlist;
 
   const usermodel({
     required this.username,
@@ -25,15 +24,16 @@ class usermodel{
     required this.wishlist,
   });
 
-  factory usermodel.fromJson(Map<String,dynamic>json)=>_$usermodelFromJson(json);
-  Map<String,dynamic>toJson()=>{
-    'username':username,
-    'uid':uid,
-    'email':email,
-    'phone':phone,
-    'profileimagelink':profileimagelink,
-    'auctionhistory':auctionhistory,
-    'sellerhistory':sellerhistory,
-    'wishlist':wishlist,
-  };
+  factory usermodel.fromJson(Map<String, dynamic> json) =>
+      _$usermodelFromJson(json);
+  Map<String, dynamic> toJson() => {
+        'username': username,
+        'uid': uid,
+        'email': email,
+        'phone': phone,
+        'profileimagelink': profileimagelink,
+        'auctionhistory': auctionhistory,
+        'sellerhistory': sellerhistory,
+        'wishlist': wishlist,
+      };
 }

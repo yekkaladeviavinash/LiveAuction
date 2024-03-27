@@ -36,7 +36,7 @@ class _AuctionHistoryPageState extends State<AuctionHistoryPage> {
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10.0), // Set border radius here
                                       image: DecorationImage(
-                                        image: NetworkImage(ctrl.sellerwishlist[index].pimage,), // Replace with your image URL
+                                        image: NetworkImage(ctrl.sellerAuctionHistory[index].pimage,), // Replace with your image URL
                                         fit: BoxFit.cover, // Adjust image fit as needed
                                       ),
                                     ),

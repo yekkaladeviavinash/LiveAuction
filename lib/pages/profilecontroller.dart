@@ -19,9 +19,9 @@ class Profilecontroller extends GetxController {
   List<dynamic> sellerhis = [];
   List<dynamic> wishlt = [];
   List<dynamic> aucthis = [];
-  List<productmodel> sellerProducts=[];
-  List<productmodel> sellerwishlist=[];
-  List<productmodel> sellerAuctionHistory=[];
+  List<productmodel> sellerProducts = [];
+  List<productmodel> sellerwishlist = [];
+  List<productmodel> sellerAuctionHistory = [];
 
   List<usermodel> userslist = [];
 
@@ -41,11 +41,17 @@ class Profilecontroller extends GetxController {
           .toList();
       cameproducts.clear();
       cameproducts.assignAll(retrievedproducts);
-
       QuerySnapshot usersnapshot = await usercollection.get();
-      final List<usermodel> retrievedusers = usersnapshot.docs
-          .map((doc) => usermodel.fromJson(doc.data() as Map<String, dynamic>))
-          .toList();
+
+      final List<usermodel> retrievedusers = usersnapshot.docs.map((doc) {
+        final userData = doc.data();
+        if (userData != null) {
+          return usermodel.fromJson(userData as Map<String, dynamic>);
+        } else {
+          throw Exception('Document data is null');
+        }
+      }).toList();
+
       userslist.clear();
       userslist.assignAll(retrievedusers);
       update();
@@ -55,14 +61,15 @@ class Profilecontroller extends GetxController {
 
     Iterable<usermodel> curruser = userslist
         .where((user) => user.uid == FirebaseAuth.instance.currentUser!.uid);
-    sellerhis = curruser.first.sellerhistory;
-    wishlt = curruser.first.wishlist;
-    aucthis = curruser.first.auctionhistory;
 
-    // sellerproductslist = cameproducts
-    //     .where(
-    //         (product) => product.sid == FirebaseAuth.instance.currentUser!.uid)
-    //     .toList();
+    sellerhis = curruser.first.sellerhistory!;
+    wishlt = curruser.first.wishlist!;
+    aucthis = curruser.first.auctionhistory!;
+
+    sellerproductslist = cameproducts
+        .where(
+            (product) => product.sid == FirebaseAuth.instance.currentUser!.uid)
+        .toList();
 
     List<String> sellerHistory = sellerhis.cast<String>();
     List<String> WishList = wishlt.cast<String>();
@@ -70,7 +77,7 @@ class Profilecontroller extends GetxController {
     sellerProducts = cameproducts
         .where((product) => sellerHistory.contains(product.pid))
         .toList();
-     sellerwishlist = cameproducts
+    sellerwishlist = cameproducts
         .where((product) => WishList.contains(product.pid))
         .toList();
     sellerAuctionHistory = cameproducts
