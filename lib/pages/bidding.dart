@@ -3,17 +3,27 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
+import 'package:uuid/uuid.dart';
 
 class bidding extends StatefulWidget {
-    final String? selectpid;
+  final String? selectpid;
   final String? selectimage;
   final String? selectcategory;
   final String? selectname;
   final String? selectprice;
   final String? selectdate;
   final String? selectdesc;
-  const bidding({super.key,required this.selectpid,required this.selectimage,required this.selectcategory,required this.selectname,required this.selectprice,required this.selectdate,required this.selectdesc});
+  const bidding(
+      {super.key,
+      required this.selectpid,
+      required this.selectimage,
+      required this.selectcategory,
+      required this.selectname,
+      required this.selectprice,
+      required this.selectdate,
+      required this.selectdesc});
 
   @override
   State<bidding> createState() => _biddingState();
@@ -32,34 +42,36 @@ class _biddingState extends State<bidding> {
   int? num;
   String? user;
   int? countdown;
+  var uuidofuser = Uuid().v1();
 
-String? nameofuser;
+  String? nameofuser;
+  String winner = "";
+  String highestprice = "";
 
   @override
   void initState() {
     super.initState();
     connect();
     getUserdetail();
-    // startTimer();
   }
-@override
 
-void connect() {
-  // socket = IO.io('http://10.0.2.2:3000', <String, dynamic>{
-  socket = IO.io('http://10.81.65.74:3000', <String, dynamic>{
-    "transports": ["websocket"],
-    "autoconnect": false,
-  });
-  socket!.connect();
-  socket!.onConnect((_) {
-    print('connected with frontend');
-    socket!.on("timer", (timer) {
-      print(timer);
-      setState(() {
-        countdown = timer;
-      });
+  @override
+  void connect() {
+    // socket = IO.io('http://10.0.2.2:3000', <String, dynamic>{
+    socket = IO.io('http://10.74.7.8:3000', <String, dynamic>{
+      "transports": ["websocket"],
+      "autoconnect": false,
     });
-    socket!.on("sendMsgServer", (message) {
+    socket!.connect();
+    socket!.onConnect((_) {
+      print('connected with frontend');
+      socket!.on("timer", (timer) {
+        print(timer);
+        setState(() {
+          countdown = timer;
+        });
+      });
+      socket!.on("sendMsgServer", (message) {
         print(message);
         setState(() {
           num = message['value'];
@@ -67,22 +79,47 @@ void connect() {
           print(user);
         });
       });
-  });
-}
-
+      socket!.on("auctionover", (message) {
+        winner = message['user'];
+        highestprice = message['value'].toString();
+        if (message['userid'] == uuidofuser) {
+          Navigator.pop(context);
+          showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: Text("Congratulations..."),
+                  content: Text("You are the winner of the Auction and the details fo the item seller will be sent to you shortly."),
+                );
+              });
+        } else {
+          Navigator.pop(context);
+          showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: Text("Auction Completed!!!"),
+                  content: Text("Auction winner is " +
+                      winner.toString() +
+                      " and the highest bid is Rs." +
+                      highestprice +
+                      "."),
+                );
+              });
+        }
+      });
+    });
+  }
 
   void sendMessage(int message) {
     socket!.emit('sendMessage', {
       'value': message,
       'user': nameofuser!,
+      'userid': uuidofuser,
     });
   }
 
-
-
-
-
-    void getUserdetail() async {
+  void getUserdetail() async {
     DocumentSnapshot snap = await FirebaseFirestore.instance
         .collection('users')
         .doc(FirebaseAuth.instance.currentUser!.uid)
@@ -92,7 +129,6 @@ void connect() {
       nameofuser = (snap.data() as Map<String, dynamic>)['username'];
     });
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -107,12 +143,12 @@ void connect() {
                 height: 400.0,
                 width: 560.0,
                 child: Image.network(
-                widget.selectimage!,
-                fit: BoxFit.cover,
-                scale: 1,
-                height: 400,
-                width: 500,
-              ),
+                  widget.selectimage!,
+                  fit: BoxFit.cover,
+                  scale: 1,
+                  height: 400,
+                  width: 500,
+                ),
               ),
               SizedBox(
                 height: 30.0,
@@ -136,7 +172,7 @@ void connect() {
                                 height: 40.0,
                               ),
                               Text(
-                                'Rs.'+num.toString(),
+                                'Rs.' + num.toString(),
                                 style: TextStyle(fontSize: 16.0),
                               ),
                               const SizedBox(
