@@ -58,7 +58,7 @@ class _biddingState extends State<bidding> {
   @override
   void connect() {
     // socket = IO.io('http://10.0.2.2:3000', <String, dynamic>{
-    socket = IO.io('http://10.74.7.8:3000', <String, dynamic>{
+    socket = IO.io('http://10.81.65.74:3000', <String, dynamic>{
       "transports": ["websocket"],
       "autoconnect": false,
     });
@@ -99,13 +99,9 @@ class _biddingState extends State<bidding> {
               builder: (BuildContext context) {
                 return AlertDialog(
                   title: Text("Auction Completed!!!"),
-                  content: Text("Auction winner is " +
-                      winner.toString() +
-                      " and the highest bid is Rs." +
-                      highestprice +
-                      "."),
+                  content: Text("Auction winner is " +winner.toString() +" and the highest bid is Rs." +highestprice +"."),
                 );
-              });
+          });
         }
       });
     });
