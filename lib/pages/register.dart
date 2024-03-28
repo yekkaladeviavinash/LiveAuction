@@ -31,7 +31,6 @@ class _RegisterPageState extends State<RegisterPage> {
     _contactController.dispose();
     _passwordController.dispose();
     _confirmpasswordController.dispose();
-    _passwordController.dispose();
     super.dispose();
   }
 

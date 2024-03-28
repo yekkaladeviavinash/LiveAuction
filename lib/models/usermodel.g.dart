@@ -12,9 +12,9 @@ usermodel _$usermodelFromJson(Map<String, dynamic> json) => usermodel(
       phone: json['phone'] as String,
       email: json['email'] as String,
       profileimagelink: json['profileimagelink'] as String,
-      auctionhistory: json['auctionhistory'] as List<dynamic>,
-      sellerhistory: json['sellerhistory'] as List<dynamic>,
-      wishlist: json['wishlist'] as List<dynamic>,
+      auctionhistory: json['auctionhistory'] as List<dynamic>?,
+      sellerhistory: json['sellerhistory'] as List<dynamic>?,
+      wishlist: json['wishlist'] as List<dynamic>?,
     );
 
 Map<String, dynamic> _$usermodelToJson(usermodel instance) => <String, dynamic>{

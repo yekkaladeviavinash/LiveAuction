@@ -42,10 +42,10 @@ class Profilecontroller extends GetxController {
       cameproducts.clear();
       cameproducts.assignAll(retrievedproducts);
       QuerySnapshot usersnapshot = await usercollection.get();
-
       final List<usermodel> retrievedusers = usersnapshot.docs.map((doc) {
         final userData = doc.data();
         if (userData != null) {
+      print(userData as Map<String, dynamic>);
           return usermodel.fromJson(userData as Map<String, dynamic>);
         } else {
           throw Exception('Document data is null');
