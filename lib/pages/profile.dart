@@ -308,8 +308,8 @@ class _ProfilePageState extends State<ProfilePage> {
                               color: Colors.white,
                             ),
                           ),
-                          onTap: () {
-                            ctrl.getsellerproducts();
+                          onTap: ()async {
+                            await ctrl.getsellerproducts();
                             Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -335,8 +335,8 @@ class _ProfilePageState extends State<ProfilePage> {
                               color: Colors.white,
                             ),
                           ),
-                          onTap: () {
-                            ctrl.getsellerproducts();
+                          onTap: ()async  {
+                            await ctrl.getsellerproducts();
                             Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -362,8 +362,8 @@ class _ProfilePageState extends State<ProfilePage> {
                               color: Colors.white,
                             ),
                           ),
-                          onTap: () {
-                            ctrl.getsellerproducts();
+                          onTap: () async {
+                            await ctrl.getsellerproducts();
                             Navigator.push(
                               context,
                               MaterialPageRoute(

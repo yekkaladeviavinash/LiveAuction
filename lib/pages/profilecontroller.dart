@@ -45,7 +45,7 @@ class Profilecontroller extends GetxController {
       final List<usermodel> retrievedusers = usersnapshot.docs.map((doc) {
         final userData = doc.data();
         if (userData != null) {
-      print(userData as Map<String, dynamic>);
+          // print(userData as Map<String, dynamic>);
           return usermodel.fromJson(userData as Map<String, dynamic>);
         } else {
           throw Exception('Document data is null');
@@ -58,30 +58,44 @@ class Profilecontroller extends GetxController {
     } catch (e) {
       print("Error shown in seller controller ${e}");
     }
+    
+    if (FirebaseAuth.instance.currentUser != null) {
+      print(FirebaseAuth.instance.currentUser.toString());
+      Iterable<usermodel> curruser = userslist
+          .where((user) => user.uid == FirebaseAuth.instance.currentUser!.uid);
+      // sellerhis = curruser.first.sellerhistory!;
+      sellerhis = curruser.firstOrNull?.sellerhistory ?? [];
 
-    Iterable<usermodel> curruser = userslist
-        .where((user) => user.uid == FirebaseAuth.instance.currentUser!.uid);
+      // wishlt = curruser.first.wishlist!;
+      wishlt = curruser.firstOrNull?.wishlist?? [];
 
-    sellerhis = curruser.first.sellerhistory!;
-    wishlt = curruser.first.wishlist!;
-    aucthis = curruser.first.auctionhistory!;
+      // aucthis = curruser.first.auctionhistory!;
+      
+      aucthis = curruser.firstOrNull?.auctionhistory ?? [];
 
-    sellerproductslist = cameproducts
-        .where(
-            (product) => product.sid == FirebaseAuth.instance.currentUser!.uid)
-        .toList();
+      sellerproductslist = cameproducts
+          .where((product) =>
+              product.sid == FirebaseAuth.instance.currentUser!.uid)
+          .toList();
 
-    List<String> sellerHistory = sellerhis.cast<String>();
-    List<String> WishList = wishlt.cast<String>();
-    List<String> auctionHistory = aucthis.cast<String>();
-    sellerProducts = cameproducts
-        .where((product) => sellerHistory.contains(product.pid))
-        .toList();
-    sellerwishlist = cameproducts
-        .where((product) => WishList.contains(product.pid))
-        .toList();
-    sellerAuctionHistory = cameproducts
-        .where((product) => auctionHistory.contains(product.pid))
-        .toList();
+      List<String> sellerHistory = sellerhis.cast<String>();
+      List<String> WishList = wishlt.cast<String>();
+      List<String> auctionHistory = aucthis.cast<String>();
+      sellerProducts = cameproducts
+          .where((product) => sellerHistory.contains(product.pid))
+          .toList();
+      sellerwishlist = cameproducts
+          .where((product) => WishList.contains(product.pid))
+          .toList();
+      sellerAuctionHistory = cameproducts
+          .where((product) => auctionHistory.contains(product.pid))
+          .toList();
+    } else {
+      // Handle the case when the user is not logged in
+      print("User is not logged in");
+    }
+
+    // Iterable<usermodel> curruser = userslist
+    //     .where((user) => user.uid == FirebaseAuth.instance.currentUser!.uid);
   }
 }
