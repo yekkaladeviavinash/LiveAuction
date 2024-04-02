@@ -5,7 +5,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'productmodel.g.dart';
 
 @JsonSerializable()
-class productmodel{
+class productmodel {
   final String pname;
   final String pprice;
   final String pdesc;
@@ -16,6 +16,8 @@ class productmodel{
   final bool status;
   final List registeredusers;
   final String dateAdded;
+  final String location;
+  final int ptime;
 
   const productmodel({
     required this.pname,
@@ -28,19 +30,24 @@ class productmodel{
     required this.status,
     required this.registeredusers,
     required this.dateAdded,
+    required this.location,
+    required this.ptime,
   });
 
-  factory productmodel.fromJson(Map<String,dynamic>json)=>_$productmodelFromJson(json);
-  Map<String,dynamic>toJson()=>{
-    'pname':pname,
-    'pprice':pprice,
-    'pdesc':pdesc,
-    'pid':pid,
-    'sid':sid,
-    'pimage':pimage,
-    'pcategory':pcategory,
-    'status':status,
-    'registeredusers':registeredusers,
-    'dateAdded':dateAdded,
-  };
+  factory productmodel.fromJson(Map<String, dynamic> json) =>
+      _$productmodelFromJson(json);
+  Map<String, dynamic> toJson() => {
+        'pname': pname,
+        'pprice': pprice,
+        'pdesc': pdesc,
+        'pid': pid,
+        'sid': sid,
+        'pimage': pimage,
+        'pcategory': pcategory,
+        'status': status,
+        'registeredusers': registeredusers,
+        'dateAdded': dateAdded,
+        'location': location,
+        'ptime': ptime,
+      };
 }

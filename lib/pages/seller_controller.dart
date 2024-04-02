@@ -24,6 +24,7 @@ class Sellercontroller extends GetxController {
   final item_image = TextEditingController();
   String item_category = '';
   DateTime? datechosen;
+  final locationchosen = TextEditingController();
   FirebaseFirestore fstore = FirebaseFirestore.instance;
   late CollectionReference productcollection;
   late CollectionReference usercollection;
@@ -64,7 +65,11 @@ class Sellercontroller extends GetxController {
           pcategory: item_category,
           status: false,
           registeredusers: [],
-          dateAdded: datechosen.toString().substring(0, 10));
+          dateAdded: datechosen.toString().substring(0, 10),
+          location: locationchosen.text.trim(),
+          ptime: 0,
+          );
+
       final myproductjson = myproduct.toJson();
       doc.set(myproductjson);
       try {
@@ -213,7 +218,7 @@ class Sellercontroller extends GetxController {
     item_category = 'collectibles';
     // datechosen = DateFormat("yyyy-MM-dd").format(DateTime.now()) as DateTime?;
     String formattedDate = DateFormat("yyyy-MM-dd").format(DateTime.now());
-     datechosen = DateTime.tryParse(formattedDate);
+    datechosen = DateTime.tryParse(formattedDate);
     update();
   }
 }

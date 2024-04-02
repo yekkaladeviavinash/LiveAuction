@@ -17,6 +17,8 @@ productmodel _$productmodelFromJson(Map<String, dynamic> json) => productmodel(
       status: json['status'] as bool,
       registeredusers: json['registeredusers'] as List<dynamic>,
       dateAdded: json['dateAdded'] as String,
+      location: json['location'] as String,
+      ptime: json['ptime'] as int,
     );
 
 Map<String, dynamic> _$productmodelToJson(productmodel instance) =>
@@ -31,4 +33,6 @@ Map<String, dynamic> _$productmodelToJson(productmodel instance) =>
       'status': instance.status,
       'registeredusers': instance.registeredusers,
       'dateAdded': instance.dateAdded,
+      'location': instance.location,
+      'ptime': instance.ptime,
     };

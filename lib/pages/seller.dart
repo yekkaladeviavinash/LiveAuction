@@ -104,6 +104,18 @@ class _SellerState extends State<Seller> {
                 height: 10.0,
               ),
               TextFormField(
+                controller: ctrl.locationchosen,
+                decoration: const InputDecoration(
+                  labelText: 'Location',
+                  focusedBorder: OutlineInputBorder(
+                      borderSide:
+                          BorderSide(color: Color.fromARGB(255, 216, 97, 29))),
+                ),
+              ),
+               const SizedBox(
+                height: 10.0,
+              ),
+              TextFormField(
                 controller: ctrl.item_image,
                 decoration: const InputDecoration(
                   labelText: 'Image Url',
