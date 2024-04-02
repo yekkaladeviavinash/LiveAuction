@@ -42,6 +42,8 @@ class _biddingState extends State<bidding> {
   int? num;
   String? user;
   int? countdown;
+  int? countinmin;
+  int? countinsec;
   var uuidofuser = Uuid().v1();
 
   String? nameofuser;
@@ -69,6 +71,8 @@ class _biddingState extends State<bidding> {
         print(timer);
         setState(() {
           countdown = timer;
+          countinmin=(countdown!/60).toInt();
+          countinsec=countdown!%60;
         });
       });
       socket!.on("sendMsgServer", (message) {
@@ -216,7 +220,7 @@ class _biddingState extends State<bidding> {
                       const SizedBox(
                         height: 10.0,
                       ),
-                      Text('Ends in: ${countdown ?? 'loading...'}'),
+                      Text('Ends in: ${countinmin ?? ''}'+'min,'+'${countinsec}'+'sec'),
                     ],
                   ),
                 ),
