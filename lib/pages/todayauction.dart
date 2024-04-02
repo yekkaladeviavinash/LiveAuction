@@ -201,8 +201,7 @@ class _TodayauctionState extends State<Todayauction> {
           itemCount: ctrl.todayproduct.length,
           itemBuilder: (context, index) {
             final cardData = ctrl.todayproduct[index];
-            final currentTime = DateTime.now().toUtc().add(
-                const Duration(hours: 5, minutes: 30)); // Convert UTC to IST
+            final currentTime = DateTime.now().toUtc().add(const Duration(hours: 5, minutes: 30)); // Convert UTC to IST
             final isTimeToShowButton =
                 currentTime.hour == ctrl.getProductIndexandtime(cardData.pid) &&
                     currentTime.minute >= 0 &&

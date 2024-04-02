@@ -863,7 +863,7 @@ class _DiscoverState extends State<Discover>
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => itempage(selectpid:cardData.pid,selectimage: cardData.pimage, selectcategory: cardData.pcategory, selectname: cardData.pname, selectprice: cardData.pprice, selectdate: cardData.dateAdded, selectdesc: cardData.pdesc,),
+                                builder: (context) => itempage(selectpid:cardData.pid,selectimage: cardData.pimage, selectcategory: cardData.pcategory, selectname: cardData.pname, selectprice: cardData.pprice, selectdate: cardData.dateAdded, selectdesc: cardData.pdesc,selectptime: cardData.ptime,selectlocation: cardData.location,),
                               ),
                             );
                           },
@@ -921,7 +921,7 @@ class _DiscoverState extends State<Discover>
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => itempage(selectpid:cardData.pid,selectimage: cardData.pimage, selectcategory: cardData.pcategory, selectname: cardData.pname, selectprice: cardData.pprice, selectdate: cardData.dateAdded, selectdesc: cardData.pdesc,),
+                                builder: (context) => itempage(selectpid:cardData.pid,selectimage: cardData.pimage, selectcategory: cardData.pcategory, selectname: cardData.pname, selectprice: cardData.pprice, selectdate: cardData.dateAdded, selectdesc: cardData.pdesc,selectptime: cardData.ptime,selectlocation: cardData.location,),
                               ),
                             );
                           },
@@ -979,7 +979,7 @@ class _DiscoverState extends State<Discover>
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => itempage(selectpid:cardData.pid,selectimage: cardData.pimage, selectcategory: cardData.pcategory, selectname: cardData.pname, selectprice: cardData.pprice, selectdate: cardData.dateAdded, selectdesc: cardData.pdesc,),
+                                builder: (context) => itempage(selectpid:cardData.pid,selectimage: cardData.pimage, selectcategory: cardData.pcategory, selectname: cardData.pname, selectprice: cardData.pprice, selectdate: cardData.dateAdded, selectdesc: cardData.pdesc,selectptime: cardData.ptime,selectlocation: cardData.location,),
                               ),
                             );
                           },
@@ -1037,7 +1037,7 @@ class _DiscoverState extends State<Discover>
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => itempage(selectpid:cardData.pid,selectimage: cardData.pimage, selectcategory: cardData.pcategory, selectname: cardData.pname, selectprice: cardData.pprice, selectdate: cardData.dateAdded, selectdesc: cardData.pdesc,),
+                                builder: (context) => itempage(selectpid:cardData.pid,selectimage: cardData.pimage, selectcategory: cardData.pcategory, selectname: cardData.pname, selectprice: cardData.pprice, selectdate: cardData.dateAdded, selectdesc: cardData.pdesc,selectptime: cardData.ptime,selectlocation: cardData.location,),
                               ),
                             );
                           },
@@ -1095,7 +1095,7 @@ class _DiscoverState extends State<Discover>
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => itempage(selectpid:cardData.pid,selectimage: cardData.pimage, selectcategory: cardData.pcategory, selectname: cardData.pname, selectprice: cardData.pprice, selectdate: cardData.dateAdded, selectdesc: cardData.pdesc,),
+                                builder: (context) => itempage(selectpid:cardData.pid,selectimage: cardData.pimage, selectcategory: cardData.pcategory, selectname: cardData.pname, selectprice: cardData.pprice, selectdate: cardData.dateAdded, selectdesc: cardData.pdesc,selectptime: cardData.ptime,selectlocation: cardData.location,),
                               ),
                             );
                           },
@@ -1153,7 +1153,7 @@ class _DiscoverState extends State<Discover>
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => itempage(selectpid:cardData.pid,selectimage: cardData.pimage, selectcategory: cardData.pcategory, selectname: cardData.pname, selectprice: cardData.pprice, selectdate: cardData.dateAdded, selectdesc: cardData.pdesc,),
+                                builder: (context) => itempage(selectpid:cardData.pid,selectimage: cardData.pimage, selectcategory: cardData.pcategory, selectname: cardData.pname, selectprice: cardData.pprice, selectdate: cardData.dateAdded, selectdesc: cardData.pdesc,selectptime: cardData.ptime,selectlocation: cardData.location,),
                               ),
                             );
                           },
@@ -1211,7 +1211,7 @@ class _DiscoverState extends State<Discover>
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => itempage(selectpid:cardData.pid,selectimage: cardData.pimage, selectcategory: cardData.pcategory, selectname: cardData.pname, selectprice: cardData.pprice, selectdate: cardData.dateAdded, selectdesc: cardData.pdesc,),
+                                builder: (context) => itempage(selectpid:cardData.pid,selectimage: cardData.pimage, selectcategory: cardData.pcategory, selectname: cardData.pname, selectprice: cardData.pprice, selectdate: cardData.dateAdded, selectdesc: cardData.pdesc,selectptime: cardData.ptime,selectlocation: cardData.location,),
                               ),
                             );
                           },
