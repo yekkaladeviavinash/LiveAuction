@@ -29,8 +29,14 @@ class HomePageState extends State<HomePage> {
     });
   }
   
+  
   @override
   Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
+    double W = screenSize.width;
+    double H = screenSize.height;
+    print(W);
+    print(H);
     Size screenSize = MediaQuery.of(context).size;
     double W = screenSize.width;
     double H = screenSize.height;
@@ -44,7 +50,10 @@ class HomePageState extends State<HomePage> {
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.black,
         elevation: 0,
+        backgroundColor: Colors.black,
+        elevation: 0,
         showUnselectedLabels: true,
+        iconSize: W*0.05,selectedFontSize: W*0.03125,
         iconSize: W*0.05,selectedFontSize: W*0.03125,
         type: BottomNavigationBarType.fixed,
         items: const <BottomNavigationBarItem>[
