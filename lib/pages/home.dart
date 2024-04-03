@@ -28,18 +28,24 @@ class HomePageState extends State<HomePage> {
       _selectedIndex = index;
     });
   }
-   
+  
   @override
   Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
+    double W = screenSize.width;
+    double H = screenSize.height;
+    print(W);
+    print(H);
     return Scaffold(
       body: Center(
         child: _pages.elementAt(_selectedIndex),
         // child: Navigator.push(context, ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.black,
+        elevation: 0,
         showUnselectedLabels: true,
-        iconSize: 26,selectedFontSize: 12,
+        iconSize: W*0.05,selectedFontSize: W*0.03125,
         type: BottomNavigationBarType.fixed,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -65,8 +71,9 @@ class HomePageState extends State<HomePage> {
             backgroundColor: Colors.black,
           ),
         ],
-        unselectedItemColor: Colors.black,
-        unselectedFontSize: 11.0,
+        unselectedItemColor: Colors.white,
+        // unselectedFontSize: 13.0,
+        unselectedFontSize: W*0.0290,
         currentIndex: _selectedIndex,
         selectedItemColor: Color.fromARGB(255, 243, 108, 31),
         onTap: _onItemTapped,

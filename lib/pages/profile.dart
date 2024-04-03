@@ -219,6 +219,9 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
+    double W = screenSize.width;
+    double H = screenSize.height;
     return GetBuilder<Profilecontroller>(builder: (ctrl) {
       return Scaffold(
         backgroundColor: Colors.white,
@@ -228,84 +231,178 @@ class _ProfilePageState extends State<ProfilePage> {
           automaticallyImplyLeading: false,
           title: Text(
             'Profile Page',
-            style: TextStyle(color: Colors.black),
+            
+            style: TextStyle(color: Colors.black,
+            fontSize: 24*(W/448),
+            ),
           ),
         ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Divider(
-              height: 1.0,
+              height: W*0.00223214285714,
               color: Colors.black,
-              thickness: 0.5,
+              thickness: 0.5*(H/973.4),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 20*(H/973.4)),
             Container(
               child: Column(
                 children: [
                   InkWell(
                     onTap: () {
-                      // Implement logic to allow user to edit profile image
+                      
                     },
                     child: CircleAvatar(
-                      radius: 70,
+                      radius: 75*(H/973.4),
                       backgroundImage: AssetImage(
                           'assets/profile.jpg'), // Assuming profileImage is a URL
                     ),
                   ),
-                  // SizedBox(height: ),
-                  Text(
-                    ' $nameofuser',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
+                  SizedBox(height: 10*(H/973.4)),
+                  Center(
+                    child: Text(
+                      // ' $nameofuser',
+                      'Harsha Majji',
+                      style: TextStyle(
+                        fontSize: 30.4*(W/448),
+                        letterSpacing: (0.1)*(W/448),
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black,
+                      ),
                     ),
                   ),
                   SizedBox(height: 0),
-                  Text(
-                    '$emailofuser',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.black,
+                  Center(
+                    child: Text(
+                      '$numberofuser',
+                      style: TextStyle(
+                        fontSize: 16*(W/448),
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black,
+                      ),
                     ),
                   ),
-                  SizedBox(height: 0),
-                  Text(
-                    '$numberofuser',
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.black,
+                  Center(
+                    child: Text(
+                      '$emailofuser',
+                      style: TextStyle(
+                        fontSize: 16*(W/448),
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black,
+                      ),
                     ),
+                  ),
+                  SizedBox(height: 10*(H/973.4)),
+                ],
+              ),
+            ),
+            SizedBox(height: 10*(H/973.4)),
+            // SizedBox(height: 10*(H/973.4)),
+            Container(
+              // color: Colors.amber,
+              width: 9*(W)/10,
+              height: H/15,
+              decoration: BoxDecoration(
+                color: Color.fromARGB(255, 215, 213, 213),
+                borderRadius: BorderRadius.circular(10),
+              border: Border.all(
+                color: Colors.black, // You can specify border color here
+                width: 0.1, // You can specify border width here
+              ),
+            ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('3',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500
+                      ),
+                      ),
+                      Text('Auctions Won',
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w400
+                      ),),
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('10',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500
+                      ),
+                      ),
+                      Text('Auctions Participated',
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w400
+                      ),),                      
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('1',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500
+                      ),
+                      ),
+                      Text('Items Auctioned ',
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w400
+                      ),),
+                    ],
                   ),
                 ],
               ),
             ),
-            SizedBox(height: 40),
+            // Divider(
+            //   height: 2*(H/973.4),
+            //   color: Colors.black,
+            //   thickness: 2*(H/973.4),
+            //   indent: 100*(W/448),
+            //   endIndent: 100*(W/448),
+            // ),
+
+            // Divider(
+            //   height: 1*W*0.00223214285714,
+            //   color: Colors.black,
+            //   thickness: 0.5*(H/973.4),
+            // ),
             Divider(
-              height: 1.0,
+              height: 1*(H/973.4),
               color: Colors.black,
-              thickness: 2,
-              indent: 100,
-              endIndent: 100,
+              thickness: 2*(H/973.4),
+              indent: 100*(W/448),
+              endIndent: 100*(W/448),
             ),
-            SizedBox(height: 20),
             Expanded(
               child: Container(
                 color: Colors.white,
                 child: ListView(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(17, 10, 17, 5),
+                      padding:  EdgeInsets.fromLTRB(17*(W/448), 10*(H/973.4), 17*(W/448), 5*(H/973.4)),
                       child: Card(
-                        color: Colors.black,
+                        surfaceTintColor: Colors.transparent,
+                color: const Color.fromARGB(255, 183, 182, 182),
+                        // color: Colors.grey,
                         child: ListTile(
-                          iconColor: Colors.white,
+                          iconColor: Colors.black,
                           leading: Icon(Icons.history),
                           title: Text(
                             'My Auction History',
                             style: TextStyle(
-                              color: Colors.white,
+                              color: Colors.black,
                             ),
                           ),
                           onTap: ()async {
@@ -321,18 +418,21 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(17, 0, 17, 5),
+                      padding:  EdgeInsets.fromLTRB(17*(W/448), 0, 17*(W/448), 5*(H/973.4)),
                       child: Card(
-                        color: Colors.black,
+                        surfaceTintColor: Colors.transparent,
+
+                color: const Color.fromARGB(255, 183, 182, 182),
+                        // color: Colors.grey,
                         child: ListTile(
-                          iconColor: Colors.white,
+                          iconColor: Colors.black,
                           leading: Icon(
                             Icons.shop_2,
                           ),
                           title: Text(
                             'My Selling History',
                             style: TextStyle(
-                              color: Colors.white,
+                              color: Colors.black,
                             ),
                           ),
                           onTap: ()async  {
@@ -348,18 +448,21 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(17, 0, 17, 5),
+                      padding:  EdgeInsets.fromLTRB(17*(W/448), 0, 17*(W/448), 5*(H/973.4)),
                       child: Card(
-                        color: Colors.black,
+                        surfaceTintColor: Colors.transparent,
+
+                color: const Color.fromARGB(255, 183, 182, 182),
+                        // color: Colors.grey,
                         child: ListTile(
-                          iconColor: Colors.white,
+                          iconColor: Colors.black,
                           leading: Icon(
-                            Icons.shop_2,
+                            Icons.hail_rounded,
                           ),
                           title: Text(
                             'My WishList',
                             style: TextStyle(
-                              color: Colors.white,
+                              color: Colors.black,
                             ),
                           ),
                           onTap: () async {
@@ -375,8 +478,9 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(100, 70, 100, 0),
+                      padding:  EdgeInsets.fromLTRB(150*(W/448), 165*(H/973.4), 150*(W/448) , 0),
                       child: Card(
+                        surfaceTintColor: Colors.transparent,
                         color: Colors.red,
                         child: ListTile(
                           // shape: CircleBorder.,
