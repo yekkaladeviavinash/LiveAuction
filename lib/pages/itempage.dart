@@ -215,6 +215,8 @@ class itempage extends StatefulWidget {
   final String? selectprice;
   final String? selectdate;
   final String? selectdesc;
+  final int? selectptime;
+  final String? selectlocation;
 
   const itempage(
       {Key? key,
@@ -224,19 +226,29 @@ class itempage extends StatefulWidget {
       required this.selectname,
       required this.selectprice,
       required this.selectdate,
-      required this.selectdesc})
+      required this.selectdesc,
+      required this.selectptime,
+      required this.selectlocation,
+      })
       : super(key: key);
 
   @override
   State<itempage> createState() => _itempageState();
 }
-
+class StringComparer {
+  static bool lessThan(String s1, String s2) {
+    return s1.compareTo(s2) < 0;
+  }
+}
 class _itempageState extends State<itempage> {
   String? todaydate = DateFormat("yyyy-MM-dd").format(DateTime.now());
+  final currentTime = DateTime.now().toUtc().add(const Duration(hours: 5, minutes: 30));
+  bool check=true;
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ItemController>(builder: (ctrl) {
+      int result = todaydate!.compareTo(widget.selectdate!);
       return Scaffold(
         appBar: AppBar(),
         body: SingleChildScrollView(
@@ -309,11 +321,27 @@ class _itempageState extends State<itempage> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Text(
+                            'Auction Time --',
+                            style: TextStyle(fontSize: 15, color: Colors.black),
+                          ),
+                          Text(
+                            widget.selectptime.toString()+":00 to "+(widget.selectptime!+1).toString()+":00",
+                            style: TextStyle(color: Colors.red, fontSize: 16),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
                             'Location --',
                             style: TextStyle(fontSize: 15, color: Colors.black),
                           ),
                           Icon(Icons.location_on, size: 20),
-                          Text('Vishakapatanam', style: TextStyle(fontSize: 15)),
+                          Text(widget.selectlocation!, style: TextStyle(fontSize: 15)),
                         ],
                       )
                     ],
@@ -347,7 +375,8 @@ class _itempageState extends State<itempage> {
             ),
           ),
         ),
-        bottomNavigationBar: todaydate == widget.selectdate
+        bottomNavigationBar: ((result<=0) &&((currentTime.hour)<(widget.selectptime!)))
+       
             ? BottomAppBar(
                 height: 70,
                 padding: EdgeInsets.fromLTRB(16, 4, 24, 4),
@@ -426,8 +455,10 @@ class _itempageState extends State<itempage> {
                   ],
                 ),
               )
-            : null,
+            : Text("Auction Completed....."),
       );
     });
   }
 }
+
+
