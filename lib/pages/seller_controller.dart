@@ -106,31 +106,31 @@ class Sellercontroller extends GetxController {
     }
     productsshowinui1 = cameproducts
         .where((product) =>
-            product.pcategory == 'collectibles' && product.status == true)
+            product.pcategory == 'Articrafts' && product.status == true)
         .toList();
     productsshowinui2 = cameproducts
         .where((product) =>
-            product.pcategory == 'antiques' && product.status == true)
+            product.pcategory == 'Antiques' && product.status == true)
         .toList();
     productsshowinui3 = cameproducts
         .where(
-            (product) => product.pcategory == 'art' && product.status == true)
+            (product) => product.pcategory == 'Books' && product.status == true)
         .toList();
     productsshowinui4 = cameproducts
         .where((product) =>
-            product.pcategory == 'electronics' && product.status == true)
+            product.pcategory == 'Collectibles' && product.status == true)
         .toList();
     productsshowinui5 = cameproducts
         .where(
-            (product) => product.pcategory == 'books' && product.status == true)
+            (product) => product.pcategory == 'Electronics' && product.status == true)
         .toList();
     productsshowinui6 = cameproducts
         .where(
-            (product) => product.pcategory == 'sport' && product.status == true)
+            (product) => product.pcategory == 'Sports' && product.status == true)
         .toList();
     productsshowinui7 = cameproducts
         .where((product) =>
-            product.pcategory == 'others' && product.status == true)
+            product.pcategory == 'Others' && product.status == true)
         .toList();
   }
 

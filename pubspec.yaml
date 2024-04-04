@@ -85,7 +85,13 @@ flutter:
   fonts:
     - family: roboto
       fonts:
+        - asset: fonts/Roboto-Regular.ttf
+    - family: robotom
+      fonts:
         - asset: fonts/Roboto-Medium.ttf
+    - family: robotol
+      fonts:
+        - asset: fonts/Roboto-Light.ttf
     - family: short
       fonts:
         - asset: fonts/OpenSans-Medium.ttf

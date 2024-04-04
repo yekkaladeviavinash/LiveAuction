@@ -570,11 +570,11 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
     return GetBuilder<Sellercontroller>(builder: (ctrl) {
       TabController _tabcontroller = TabController(length: 7, vsync: this);
       return Scaffold(
+        resizeToAvoidBottomInset: false,
         body: SafeArea(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-             
               SearchBar(),
               Container(
                 decoration: BoxDecoration(
@@ -593,42 +593,44 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
                     splashFactory:
                         InkSparkle.constantTurbulenceSeedSplashFactory,
                     labelPadding: EdgeInsets.fromLTRB(8, 0, 8, 0),
-                    unselectedLabelColor: Colors.white,
+                    unselectedLabelColor: Colors.grey.shade600,
                     controller: _tabcontroller,
                     isScrollable: true,
-
-                    indicatorColor: Color.fromARGB(255, 240, 165, 0),
-                    dividerColor: Colors.white,
+                    indicatorColor: Colors.black,
+                    dividerColor: Colors.grey.shade600,
                     dividerHeight: 0,
-                    indicatorPadding: EdgeInsets.fromLTRB(20, 20, 20, 0),
-                    labelColor: Color.fromARGB(255, 237, 176, 71),
+                    indicatorPadding: EdgeInsets.fromLTRB(8, 20, 8, 0),
+                    labelColor: Colors.black87,
                     tabAlignment: TabAlignment.start,
                     tabs: [
                       Tab(
-                        height: 47,
+                        child: Container(
+                          // margin: EdgeInsets.all(0),
+                          decoration: BoxDecoration(),
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(4, 0, 4, 0),
+                            child: Row(
+                              children: [
+                                Text(
+                                  'Articrafts',
+                                  style: TextStyle(fontSize: 14),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      Tab(
                         child: Container(
                           margin: EdgeInsets.all(0),
-                          decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 38, 42, 86),
-                            borderRadius: BorderRadius.circular(40),
-                            border: Border.all(
-                              color: Color.fromARGB(
-                                  58, 56, 55, 55), // Set border color here
-                              // color: Colors.black, // Set border color here
-                              width: 2.0, // Set border width here
-                            ),
-                          ),
+                          decoration: BoxDecoration(),
                           child: Padding(
                             padding: const EdgeInsets.fromLTRB(4, 0, 8, 0),
                             child: Row(
                               children: [
-                                Icon(
-                                  Icons.search,
-                                  size: 33,
-                                ),
                                 Text(
-                                  'COLLECTIBLES',
-                                  style: TextStyle(fontSize: 17),
+                                  'Antiques',
+                                  style: TextStyle(fontSize: 14),
                                 ),
                               ],
                             ),
@@ -636,29 +638,16 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
                         ),
                       ),
                       Tab(
-                        height: 40,
                         child: Container(
-                          decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 38, 42, 86),
-                            borderRadius: BorderRadius.circular(40),
-                            border: Border.all(
-                              color: Color.fromARGB(
-                                  58, 56, 55, 55), // Set border color here
-                              // color: Colors.black, // Set border color here
-                              width: 2.0, // Set border width here
-                            ),
-                          ),
+                          margin: EdgeInsets.all(0),
+                          decoration: BoxDecoration(),
                           child: Padding(
                             padding: const EdgeInsets.fromLTRB(4, 0, 8, 0),
                             child: Row(
                               children: [
-                                Icon(
-                                  Icons.search,
-                                  size: 33,
-                                ),
                                 Text(
-                                  'ANTIQUES',
-                                  style: TextStyle(fontSize: 17),
+                                  'Books',
+                                  style: TextStyle(fontSize: 14),
                                 ),
                               ],
                             ),
@@ -666,33 +655,16 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
                         ),
                       ),
                       Tab(
-                        //text: 'ART',
-                        //icon: Icon(s),
-                        height: 45,
-                        iconMargin: EdgeInsets.all(0),
                         child: Container(
-                          decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 38, 42, 86),
-                            borderRadius: BorderRadius.circular(40),
-                            border: Border.all(
-                              color: Color.fromARGB(
-                                  58, 56, 55, 55), // Set border color here
-                              width: 2.0, // Set border width here
-                            ),
-                          ),
+                          margin: EdgeInsets.all(0),
+                          decoration: BoxDecoration(),
                           child: Padding(
                             padding: const EdgeInsets.fromLTRB(4, 0, 8, 0),
                             child: Row(
                               children: [
-                                Icon(
-                                  Icons.search,
-                                  size: 33,
-                                ),
                                 Text(
-                                  'ART',
-                                  style: TextStyle(
-                                    fontSize: 17,
-                                  ),
+                                  'Collectibles',
+                                  style: TextStyle(fontSize: 14,),
                                 ),
                               ],
                             ),
@@ -700,29 +672,16 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
                         ),
                       ),
                       Tab(
-                        height: 40,
                         child: Container(
-                          decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 38, 42, 86),
-                            borderRadius: BorderRadius.circular(40),
-                            border: Border.all(
-                              color: Color.fromARGB(
-                                  58, 56, 55, 55), // Set border color here
-                              // color: Colors.black, // Set border color here
-                              width: 2.0, // Set border width here
-                            ),
-                          ),
+                          margin: EdgeInsets.all(0),
+                          decoration: BoxDecoration(),
                           child: Padding(
                             padding: const EdgeInsets.fromLTRB(4, 0, 8, 0),
                             child: Row(
                               children: [
-                                Icon(
-                                  Icons.search,
-                                  size: 33,
-                                ),
                                 Text(
-                                  'ELECTRONICS',
-                                  style: TextStyle(fontSize: 17),
+                                  'Electronics',
+                                  style: TextStyle(fontSize: 14),
                                 ),
                               ],
                             ),
@@ -730,29 +689,16 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
                         ),
                       ),
                       Tab(
-                        height: 40,
                         child: Container(
-                          decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 38, 42, 86),
-                            borderRadius: BorderRadius.circular(40),
-                            border: Border.all(
-                              color: Color.fromARGB(
-                                  58, 56, 55, 55), // Set border color here
-                              // color: Colors.black, // Set border color here
-                              width: 2.0, // Set border width here
-                            ),
-                          ),
+                          margin: EdgeInsets.all(0),
+                          decoration: BoxDecoration(),
                           child: Padding(
                             padding: const EdgeInsets.fromLTRB(4, 0, 8, 0),
                             child: Row(
                               children: [
-                                Icon(
-                                  Icons.search,
-                                  size: 33,
-                                ),
                                 Text(
-                                  'BOOKS',
-                                  style: TextStyle(fontSize: 17),
+                                  'Sports',
+                                  style: TextStyle(fontSize: 14),
                                 ),
                               ],
                             ),
@@ -760,63 +706,16 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
                         ),
                       ),
                       Tab(
-                        //text: 'ART',
-                        //icon: Icon(s),
-                        height: 40,
                         child: Container(
-                          decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 38, 42, 86),
-                            borderRadius: BorderRadius.circular(40),
-                            border: Border.all(
-                              color: Color.fromARGB(
-                                  58, 56, 55, 55), // Set border color here
-                              // color: Colors.black, // Set border color here
-                              width: 2.0, // Set border width here
-                            ),
-                          ),
+                          margin: EdgeInsets.all(0),
+                          decoration: BoxDecoration(),
                           child: Padding(
                             padding: const EdgeInsets.fromLTRB(4, 0, 8, 0),
                             child: Row(
                               children: [
-                                Icon(
-                                  Icons.search,
-                                  size: 33,
-                                ),
                                 Text(
-                                  'SPORT EQUIPMENT',
-                                  style: TextStyle(fontSize: 17),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      Tab(
-                        //text: 'ART',
-                        //icon: Icon(s),
-                        height: 40,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 38, 42, 86),
-                            borderRadius: BorderRadius.circular(40),
-                            border: Border.all(
-                              color: Color.fromARGB(
-                                  58, 56, 55, 55), // Set border color here
-                              // color: Colors.black, // Set border color here
-                              width: 2.0, // Set border width here
-                            ),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.fromLTRB(4, 0, 8, 0),
-                            child: Row(
-                              children: [
-                                Icon(
-                                  Icons.search,
-                                  size: 33,
-                                ),
-                                Text(
-                                  'OTHERS',
-                                  style: TextStyle(fontSize: 17),
+                                  'Others',
+                                  style: TextStyle(fontSize: 14),
                                 ),
                               ],
                             ),
@@ -838,6 +737,7 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
                   child: TabBarView(
                     controller: _tabcontroller,
                     children: [
+
                       ListView(
                         children: ctrl.productsshowinui1.map((cardData) {
                           return InkWell(
@@ -910,6 +810,8 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
                           );
                         }).toList(),
                       ),
+
+
                       ListView(
                         children: ctrl.productsshowinui2.map((cardData) {
                           return InkWell(
@@ -982,6 +884,9 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
                           );
                         }).toList(),
                       ),
+
+
+
                       ListView(
                         children: ctrl.productsshowinui3.map((cardData) {
                           return InkWell(
@@ -1054,6 +959,9 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
                           );
                         }).toList(),
                       ),
+
+
+
                       ListView(
                         children: ctrl.productsshowinui4.map((cardData) {
                           return InkWell(
@@ -1126,6 +1034,9 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
                           );
                         }).toList(),
                       ),
+
+
+
                       ListView(
                         children: ctrl.productsshowinui5.map((cardData) {
                           return InkWell(
@@ -1198,6 +1109,9 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
                           );
                         }).toList(),
                       ),
+
+
+
                       ListView(
                         children: ctrl.productsshowinui6.map((cardData) {
                           return InkWell(
@@ -1405,13 +1319,13 @@ class _SearchBarState extends State<SearchBar> {
       padding: EdgeInsets.fromLTRB(16, 16, 16, 8),
       child: TextField(
         onChanged: onQueryChanged,
-        cursorColor: Color.fromARGB(255, 216, 97, 29),
+        cursorColor: Colors.black,
         decoration: InputDecoration(
           contentPadding: EdgeInsets.symmetric(vertical: 10.0),
           labelText: 'Search',
           labelStyle: TextStyle(color: Color.fromARGB(255, 30, 28, 27)),
           focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Color.fromARGB(255, 216, 97, 29)),
+            borderSide: BorderSide(color: Colors.black),
           ),
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(50)),
           prefixIcon: Icon(Icons.search),

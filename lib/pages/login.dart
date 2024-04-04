@@ -38,6 +38,9 @@ class _loginState extends State<login> {
   @override
   Widget build(BuildContext context) {
     // Set status bar color to white
+    Size screenSize = MediaQuery.of(context).size;
+    double W = screenSize.width;
+    double H = screenSize.height;
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: Color.fromARGB(255, 255, 255, 255), // Make status bar transparent
       statusBarIconBrightness: Brightness.dark, // Ensure status bar icons are visible
@@ -46,55 +49,65 @@ class _loginState extends State<login> {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 254, 254, 255),
       extendBodyBehindAppBar: true, // Allow contents to enter status bar area
+        resizeToAvoidBottomInset: false,
+
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.fromLTRB(20, 0, 20, 0), // Add padding to top
+          padding: EdgeInsets.fromLTRB(20*(W/448), 0, 20*(W/448), 0), // Add padding to top
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Center(
                   child: Image.asset(
-                    'assets/login.jpg',
-                    // height: 380.0,
-                    scale: 1.2,
+                    'assets/login1.jpg',
+                    height: 400*(H/974.3),
+                    width: 400*(W/448),
+                    scale: 1,
                     fit: BoxFit.fill,
                   ),
                 ),
-                const Text(
-                  'Log-in',
+                 Text(
+                  'Login',
                   style: TextStyle(
                     fontFamily: 'roboto',
-                    fontSize: 35,
+                    fontSize: 30.4*(W/411),
                   ),
                 ),
-                SizedBox(height: 8.0),
+                SizedBox(height: 8*(H/890.2)),
                 TextField(
                   controller: _emailController,
                   cursorColor: Color.fromARGB(255, 216, 97, 29),
+                  
                   decoration: InputDecoration(
                     labelText: 'Email',
-                    labelStyle: TextStyle(color: Color.fromARGB(255, 30, 28, 27)),
+                    labelStyle: TextStyle(color: Color.fromARGB(255, 30, 28, 27),
+                    fontSize: 16*(W/411.3),
+                    fontWeight: FontWeight.w100
+                    ),
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Color.fromARGB(255, 216, 97, 29)),
                     ),
                   ),
                 ),
-                SizedBox(height: 20.0),
+                SizedBox(height: 20*(H/890.2)),
                 TextField(
                   controller: _passwordController,
                   cursorColor: Color.fromARGB(255, 216, 97, 29),
                   decoration: InputDecoration(
                     labelText: 'Password',
                     hintText: 'Make sure there is no one behind 🧐',
-                    labelStyle: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                    labelStyle: TextStyle(color: Color.fromARGB(255, 0, 0, 0),
+                    fontSize: 16*(W/411.3),
+                    fontWeight: FontWeight.w100
+                    ),
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Color.fromARGB(255, 216, 97, 29)),
                     ),
                   ),
                   obscureText: true,
                 ),
-                SizedBox(height:2.0),
+                SizedBox(height:2*(H/890.2)),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -111,18 +124,18 @@ class _loginState extends State<login> {
                           );
                       },
                       child: Container(
-                        padding: EdgeInsets.all(4.0),
+                        padding: EdgeInsets.all(4*(W/411)),
                         decoration: BoxDecoration(
                           color: Colors.white,
-                          borderRadius: BorderRadius.circular(8.0),
+                          borderRadius: BorderRadius.circular(8*(W/411)),
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 0, 4, 0),
+                          padding:  EdgeInsets.fromLTRB(0, 0, 4*(W/411), 0),
                           child: Text(
-                            'forgot password ?',
+                            'Forgot password ?',
                             style: TextStyle(
                               color: Color.fromARGB(255, 243, 108, 31),
-                              fontSize: 13.0,
+                              fontSize: 14*(W/411),
                             ),
                           ),
                         ),
@@ -130,7 +143,7 @@ class _loginState extends State<login> {
                     ),
                   ],
                 ),
-                SizedBox(height:12.0),
+                SizedBox(height:12*(H/890.2)),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color.fromARGB(255, 30, 28, 27),
@@ -141,18 +154,19 @@ class _loginState extends State<login> {
                   },
                   child: Center(
                     child: Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                      padding:  EdgeInsets.fromLTRB(0, 10*(H/890.2), 0, 10*(H/890.2)),
                       child: Text(
                         'Login',
                         style: TextStyle(
                           color: Color.fromARGB(255, 255, 255, 255),
-                          fontSize: 22.0,
+                          fontSize: 22*(W/411),
+                          // fontWeight: FontWeight.w200
                         ),
                       ),
                     ),
                   ),
                 ),
-                SizedBox(height: 10.0),
+                SizedBox(height: 10*(H/890.2)),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -160,16 +174,16 @@ class _loginState extends State<login> {
                     GestureDetector(
                       onTap:widget.showregisterpage,
                       child: Container(
-                        padding: EdgeInsets.all(4.0),
+                        padding: EdgeInsets.all(4*(W/411)),
                         decoration: BoxDecoration(
                           color: Colors.white,
-                          borderRadius: BorderRadius.circular(8.0),
+                          borderRadius: BorderRadius.circular(8*(W/411)),
                         ),
                         child: Text(
                           'Register',
                           style: TextStyle(
                             color: Color.fromARGB(255, 243, 108, 31),
-                            fontSize: 16.0,
+                            fontSize: 16*(W/411),
                           ),
                         ),
                       ),

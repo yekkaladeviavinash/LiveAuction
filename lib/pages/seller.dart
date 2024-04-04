@@ -11,10 +11,10 @@ import 'package:liveauction/utils.dart';
 const List<String> list = [
   'Collectibles',
   'Antiques',
-  'Art & Craft',
+  'Articrafts',
   'Electronics',
   'Books',
-  'Sport',
+  'Sports',
   'Others',
 ];
 

@@ -24,7 +24,6 @@
 
 //   @override
 
-
 //   Widget build(BuildContext context) {
 //     return GetBuilder<ItemController>(builder: (ctrl){
 //     return Scaffold(
@@ -85,7 +84,7 @@
 //                     ),
 //                     SizedBox(height: 5,),
 //                     Row(
-                      
+
 //                       mainAxisAlignment: MainAxisAlignment.start,
 //                       children: [
 //                         Text('Location --',style: TextStyle(fontSize: 15,color: Colors.black),),
@@ -111,7 +110,7 @@
 //                           'itempage Details',
 //                           style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20.8,letterSpacing: 0.3),
 //                         ),
-                       
+
 //                       ],
 //                     ),
 //                     Text(widget.selectdesc!
@@ -123,7 +122,7 @@
 //           ),
 //         ),
 //       ),
-      
+
 //       bottomNavigationBar: BottomAppBar(
 //         height: 70,
 //         padding: EdgeInsets.fromLTRB(16, 4, 24, 4),
@@ -133,9 +132,9 @@
 //             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 //             children: <Widget>[
 //               TextButton(
-                
+
 //                 style: ButtonStyle(
-                  
+
 //                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
 //                     RoundedRectangleBorder(
 //                       borderRadius: BorderRadius.circular(7.0), // Set border radius here
@@ -194,14 +193,9 @@
 //   }
 // }
 
-
-
-
-
-
-
-
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import '../models/datemodel.dart';
@@ -218,247 +212,500 @@ class itempage extends StatefulWidget {
   final int? selectptime;
   final String? selectlocation;
 
-  const itempage(
-      {Key? key,
-      required this.selectpid,
-      required this.selectimage,
-      required this.selectcategory,
-      required this.selectname,
-      required this.selectprice,
-      required this.selectdate,
-      required this.selectdesc,
-      required this.selectptime,
-      required this.selectlocation,
-      })
-      : super(key: key);
+  const itempage({
+    Key? key,
+    required this.selectpid,
+    required this.selectimage,
+    required this.selectcategory,
+    required this.selectname,
+    required this.selectprice,
+    required this.selectdate,
+    required this.selectdesc,
+    required this.selectptime,
+    required this.selectlocation,
+  }) : super(key: key);
 
   @override
   State<itempage> createState() => _itempageState();
 }
+
 class StringComparer {
   static bool lessThan(String s1, String s2) {
     return s1.compareTo(s2) < 0;
   }
 }
+
 class _itempageState extends State<itempage> {
   String? todaydate = DateFormat("yyyy-MM-dd").format(DateTime.now());
-  final currentTime = DateTime.now().toUtc().add(const Duration(hours: 5, minutes: 30));
-  bool check=true;
+  final currentTime =
+      DateTime.now().toUtc().add(const Duration(hours: 5, minutes: 30));
+  bool check = true;
 
   @override
   Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
+    double W = screenSize.width;
+    double H = screenSize.height;
+    print(W);
+    print(H);
     return GetBuilder<ItemController>(builder: (ctrl) {
       int result = todaydate!.compareTo(widget.selectdate!);
       return Scaffold(
-        appBar: AppBar(),
-        body: SingleChildScrollView(
-          child: Container(
-            color: Color.fromARGB(255, 241, 245, 248),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Image.network(
-                  widget.selectimage!,
-                  fit: BoxFit.cover,
-                  scale: 1,
-                  height: 400,
-                  width: 500,
-                ),
-                Container(
-                  padding: EdgeInsets.fromLTRB(16, 8, 16, 15),
-                  color: Colors.white,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        widget.selectcategory!,
-                        style: TextStyle(
-                          fontSize: 20.8,
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromARGB(255, 85, 85, 85),
+        resizeToAvoidBottomInset: false,
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          surfaceTintColor: Colors.transparent,
+        ),
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child: Container(
+              color: Color.fromARGB(255, 241, 245, 248),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Image.network(
+                    widget.selectimage!,
+                    fit: BoxFit.cover,
+                    scale: 1,
+                    height: 400 * (H / 974.3),
+                    width: W,
+                  ),
+                  SizedBox(
+                    height: 2*(H/936),
+                  ),
+                  Container(
+                    width: W,
+                    padding: EdgeInsets.fromLTRB(10*(W/432), 8*(H/936), 8*(W/432), 16*(H/936)),
+                    color: Colors.white,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              flex: 41,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Dattu's Beautiful painting ",
+                                    style: TextStyle(
+                                      fontFamily: 'robotom',
+                                      fontSize: 24*(W/432),
+                                    ),
+                                  ),
+                                  Text(
+                                    'which Category',
+                                    style: TextStyle(
+                                      fontFamily: 'robotol',
+                                      fontSize: 14*(W/432),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Expanded(
+                              flex: 16,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  IconButton(
+                                    onPressed: () => {},
+                                    icon: Icon(
+                                      Icons.share,
+                                      size: 30*(W/432),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: (1)*(W/432),
+                                  ),
+                                  IconButton(
+                                    onPressed: () => {},
+                                    icon: Icon(
+                                      Icons.bookmark_add_outlined,
+                                      size: 30*(W/432),
+                                      color: Colors.black87,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            )
+                          ],
+                        ), //first row
+
+                        SizedBox(
+                          height: 20*(H/936),
                         ),
-                      ),
-                      Text(widget.selectname!,
-                          style: TextStyle(
-                            fontSize: 17,
-                            color: Color.fromARGB(255, 91, 91, 91),
-                          )),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            'Base price   -- ',
-                            style: TextStyle(fontSize: 15, color: Colors.black),
-                          ),
-                          Text(
-                            "Rs." + widget.selectprice!,
-                            style: TextStyle(
-                                color: Color.fromARGB(255, 15, 106, 41),
-                                fontWeight: FontWeight.bold,
-                                fontSize: 22),
-                          )
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Auction Date --',
-                            style: TextStyle(fontSize: 15, color: Colors.black),
-                          ),
-                          Text(
-                            widget.selectdate!,
-                            style: TextStyle(color: Colors.red, fontSize: 16),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Auction Time --',
-                            style: TextStyle(fontSize: 15, color: Colors.black),
-                          ),
-                          Text(
-                            widget.selectptime.toString()+":00 to "+(widget.selectptime!+1).toString()+":00",
-                            style: TextStyle(color: Colors.red, fontSize: 16),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Location --',
-                            style: TextStyle(fontSize: 15, color: Colors.black),
-                          ),
-                          Icon(Icons.location_on, size: 20),
-                          Text(widget.selectlocation!, style: TextStyle(fontSize: 15)),
-                        ],
-                      )
-                    ],
+
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              flex: 12,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Column(
+                                        children: [
+                                          Icon(
+                                            Icons.timer_outlined,
+                                            size: 25*(W/432),
+                                            color: Colors.grey[700],
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        width: 10*(W/432),
+                                      ),
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            'Auction Date:',
+                                            style: TextStyle(
+                                                fontSize: 17*(W/432),
+                                                fontFamily: 'roboto',
+                                                fontWeight: FontWeight.w900),
+                                          ), //in Aug,12,2023 form
+                                          Text(
+                                            'Aug, 12, 2023',
+                                            style: TextStyle(
+                                                fontSize: 16*(W/432),
+                                                color: Colors.grey[600],
+                                                fontFamily: 'robotol',
+                                                fontWeight: FontWeight.bold
+                                                // ,letterSpacing: 1
+                                                ),
+                                          ) //in this form
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 10*(H/936),
+                                  ),
+                                  Row(
+                                    children: [
+                                      Column(
+                                        children: [
+                                          Icon(Icons.access_time_filled,
+                                              size: 25*(W/432),
+                                              color: Colors.grey[700]),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        width: 10*(W/432),
+                                      ),
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            'Auction Time:',
+                                            style: TextStyle(
+                                                fontSize: 17*(W/432),
+                                                fontFamily: 'roboto',
+                                                fontWeight: FontWeight.w900),
+                                          ), //in 8d:20hrs form
+                                          Text(
+                                            '8d:20hrs',
+                                            style: TextStyle(
+                                                fontSize: 16*(W/432),
+                                                color: Colors.grey[600],
+                                                fontFamily: 'robotol',
+                                                fontWeight: FontWeight.bold
+                                                // ,letterSpacing: 1
+                                                ),
+                                          ) //in this form
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Expanded(
+                              flex: 8,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Column(
+                                        children: [
+                                          Icon(Icons.currency_exchange_rounded,
+                                              size: 25*(W/432),
+                                              color: Colors.grey[700]),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        width: 10*(W/432),
+                                      ),
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            'Base Price:',
+                                            style: TextStyle(
+                                                fontSize: 17*(W/432),
+                                                fontFamily: 'roboto',
+                                                fontWeight: FontWeight.w900),
+                                          ), //in  form
+                                          Text(
+                                            '2,000 Rupees',
+                                            style: TextStyle(
+                                                fontSize: 16*(W/432),
+                                                color: Color.fromARGB(
+                                                    255, 13, 159, 18),
+                                                fontFamily: 'robotol',
+                                                fontWeight: FontWeight.bold
+                                                // ,letterSpacing: 1
+                                                ),
+                                          ) //in this form
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 10*(H/936),
+                                  ),
+                                  Row(
+                                    children: [
+                                      Column(
+                                        children: [
+                                          Icon(Icons.location_pin,
+                                              size: 25*(W/432),
+                                              color: Colors.grey[700]),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        width: 10*(W/432),
+                                      ),
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            'Location:',
+                                            style: TextStyle(
+                                                fontSize: 17*(W/432),
+                                                fontFamily: 'roboto',
+                                                fontWeight: FontWeight.w900),
+                                          ), //in  form
+                                          Text(
+                                            'Roorkee',
+                                            style: TextStyle(
+                                                fontSize: 16*(W/432),
+                                                color: Colors.grey[600],
+                                                fontFamily: 'robotol',
+                                                fontWeight: FontWeight.bold
+                                                // ,letterSpacing: 1
+                                                ),
+                                          ) //in this form
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height: 7,
-                ),
-                Container(
-                  padding: EdgeInsets.fromLTRB(16, 8, 16, 15),
-                  color: Colors.white,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Text(
-                            'itempage Details',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20.8,
-                                letterSpacing: 0.3),
-                          ),
-                        ],
-                      ),
-                      Text(widget.selectdesc!, style: TextStyle(fontSize: 16)) 
-                    ],
+                  SizedBox(
+                    height: 2*(H/936),
                   ),
-                )
-              ],
+                  Container(
+                    padding: EdgeInsets.fromLTRB(16*(W/432), 8, 16*(W/432), 8),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(0)),
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            Text(
+                              'Users Registered:',
+                              style: TextStyle(
+                                  fontSize: 17*(W/432),
+                                  fontFamily: 'roboto',
+                                  fontWeight: FontWeight.w900),
+                            ),
+                            SizedBox(
+                              width: 5*(W/432),
+                            ),
+                            Text(
+                              '20 Users only',
+                              style: TextStyle(
+                                  fontSize: 16*(W/432),
+                                  color: Color.fromARGB(
+                                                    255, 13, 159, 18),
+                                  fontFamily: 'robotol',
+                                  fontWeight: FontWeight.bold
+                                  // ,letterSpacing: 1
+                                  ),
+                            )
+                          ],
+                        ),
+                        SizedBox(
+                          height: 5*(H/936),
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              'Registration Status:',
+                              style: TextStyle(
+                                fontSize: 17*(W/432),
+                                fontFamily: 'roboto',
+                              ),
+                            ),
+                            SizedBox(
+                              width: 5*(W/432),
+                            ),
+                            (1<0)? Text(   //here registered condition
+                              'Registered',
+                              style: TextStyle(
+                                  fontSize: 16*(W/432),
+                                  color: Color.fromARGB(
+                                                    255, 13, 159, 18),
+                                  fontFamily: 'robotol',
+                                  fontWeight: FontWeight.bold
+                                  // ,letterSpacing: 1
+                                  ),
+                            ) :Text(
+                              'Not Registered Yet',
+                              style: TextStyle(
+                                  fontSize: 16*(W/432),
+                                  color: Color.fromARGB(255, 241, 2, 2),
+                                  fontFamily: 'robotol',
+                                  fontWeight: FontWeight.bold
+                                  // ,letterSpacing: 1
+                                  ),
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 2*(H/936),
+                  ),
+                  Container(
+                    padding: EdgeInsets.fromLTRB(16*(W/432), 8*(H/936), 16*(W/432), 15*(H/936)),
+                    color: Colors.white,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Text(
+                              'Item Details',
+                              style: TextStyle(
+                                // fontWeight: FontWeight.bold,
+                                fontSize: 18*(W/432),
+                                fontFamily: 'roboto',
+                              ),
+                            ),
+                          ],
+                        ),
+                        Text(
+                            'The artwork is signed on the back and on the front. The certificate of authenticity will include the name of the owner who purchased the piece of artwork. The certificate is signed by Leonid Afremov Studio. If you are buying this painting as a gift, please provide us the name of the gift recipient for the certificate. We can also ship to the address of the recipient of your gift.',
+                            style: TextStyle(
+                                fontSize: 15*(W/432),
+                                color: Colors.grey[600],
+                                fontFamily: 'robotol',
+                                fontWeight: FontWeight.bold))
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ),
-        bottomNavigationBar: ((result<=0) &&((currentTime.hour)<(widget.selectptime!)))
-       
-            ? BottomAppBar(
-                height: 70,
-                padding: EdgeInsets.fromLTRB(16, 4, 24, 4),
-                surfaceTintColor: Colors.transparent,
-                color: Colors.white,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    TextButton(
-                      style: ButtonStyle(
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(7.0),
-                            side: BorderSide(width: 2.0),
-                          ),
-                        ),
-                        backgroundColor:
-                            MaterialStateColor.resolveWith((states) =>
-                                Color.fromARGB(255, 32, 32, 32)),
-                      ),
-                      onPressed: () {
-                        ctrl.addtowishlist(widget.selectpid!);
-                        print('First Button Pressed');
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: Row(
-                          children: [
-                            Icon(Icons.bookmark_add_outlined,
-                                color: Colors.white),
-                            SizedBox(width: 5),
-                            Text(
-                              'Add to Wishlist',
-                              style:
-                                  TextStyle(fontSize: 16, color: Colors.white),
-                            ),
-                          ],
-                        ),
-                      ),
+        bottomNavigationBar: BottomAppBar(
+          height: 60 * (H / 974.3),
+          padding: EdgeInsets.fromLTRB(
+              16 * (W / 448), 1 * (H / 974.3), 16 * (W / 448), 1 * (H / 974.3)),
+          surfaceTintColor: Colors.transparent,
+          elevation: 0,
+          color: Colors.white,
+          shadowColor: Colors.black,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              TextButton(
+                style: ButtonStyle(
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(7),
+                      side: BorderSide(width: 2.0),
                     ),
-                    SizedBox(width: 20),
-                    TextButton(
-                      style: ButtonStyle(
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(7.0),
-                            side: BorderSide(width: 2.0),
-                          ),
-                        ),
-                        backgroundColor:
-                            MaterialStateColor.resolveWith((states) =>
-                                Color.fromARGB(255, 32, 32, 32)),
-                      ),
-                      onPressed: () {
-                        ctrl.registerUser(widget.selectpid!);
-                        print('Second Button Pressed');
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: Row(
-                          children: [
-                            Icon(Icons.account_circle_outlined,
-                                color: Colors.white),
-                            SizedBox(width: 5),
-                            Text(
-                              'Register for auction',
-                              style:
-                                  TextStyle(fontSize: 16, color: Colors.white),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
+                  ),
+                  backgroundColor: MaterialStateColor.resolveWith(
+                      (states) => Color.fromARGB(255, 32, 32, 32)),
                 ),
-              )
-            : Text("Auction Completed....."),
+                onPressed: () {
+                  ctrl.addtowishlist(widget.selectpid!);
+                  print('First Button Pressed');
+                },
+                child: Padding(
+                  padding: EdgeInsets.all(4 * (H / 974.3)),
+                  child: Row(
+                    children: [
+                      Icon(Icons.bookmark_add_outlined, color: Colors.white),
+                      SizedBox(width: 5 * (W / 448)),
+                      Text(
+                        'Add to Wishlist',
+                        style: TextStyle(
+                            fontSize: 16 * (W / 448), color: Colors.white),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(width: 19 * (W / 448)),
+              TextButton(
+                style: ButtonStyle(
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(7.0),
+                      side: BorderSide(width: 2.0),
+                    ),
+                  ),
+                  backgroundColor: MaterialStateColor.resolveWith(
+                      (states) => Color.fromARGB(255, 32, 32, 32)),
+                ),
+                onPressed: () {
+                  ctrl.registerUser(widget.selectpid!);
+                  print('Second Button Pressed');
+                },
+                child: Padding(
+                  padding: EdgeInsets.all(4 * (W / 448)),
+                  child: Row(
+                    children: [
+                      Icon(Icons.account_circle_outlined, color: Colors.white),
+                      SizedBox(width: 5 * (W / 448)),
+                      Text(
+                        'Register for auction',
+                        style: TextStyle(
+                            fontSize: 16 * (W / 448), color: Colors.white),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
       );
     });
   }
 }
-
-
