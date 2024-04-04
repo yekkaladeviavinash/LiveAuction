@@ -9,6 +9,7 @@ import 'package:liveauction/pages/seller_controller.dart';
 import 'package:liveauction/utils.dart';
 
 const List<String> list = [
+  'Category',
   'Collectibles',
   'Antiques',
   'Articrafts',
