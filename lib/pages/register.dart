@@ -17,6 +17,7 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  final _formKey = GlobalKey<FormState>();
   final _usernameController = TextEditingController();
   final _emailController = TextEditingController();
   final _contactController = TextEditingController();
@@ -60,13 +61,13 @@ class _RegisterPageState extends State<RegisterPage> {
         _confirmpasswordController.text.trim()) {
       //Authentication using email and password
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
-      UserCredential cred= await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: _emailController.text.trim(),
-          password: _passwordController.text.trim());
+      UserCredential cred = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
+              email: _emailController.text.trim(),
+              password: _passwordController.text.trim());
 
       //Adding user details
       // adduser(_usernameController.text.trim(), _contactController.text.trim(), _emailController.text.trim());
-
 
       //commented this
       // await FirebaseFirestore.instance.collection('users').add({
@@ -77,11 +78,19 @@ class _RegisterPageState extends State<RegisterPage> {
       //   'sellerhistory':[],
       // });
 
-
-
-      usermodel myuser=usermodel(username: _usernameController.text.trim(),uid: cred.user!.uid, phone: _contactController.text.trim(), email: _emailController.text.trim(), auctionhistory: [], sellerhistory: [],profileimagelink: '',wishlist: []);
-      await FirebaseFirestore.instance.collection('users').doc(cred.user!.uid).set(myuser.toJson());
-
+      usermodel myuser = usermodel(
+          username: _usernameController.text.trim(),
+          uid: cred.user!.uid,
+          phone: _contactController.text.trim(),
+          email: _emailController.text.trim(),
+          auctionhistory: [],
+          sellerhistory: [],
+          profileimagelink: '',
+          wishlist: []);
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(cred.user!.uid)
+          .set(myuser.toJson());
     } else {
       ScaffoldMessenger.of(context).showSnackBar(passwordnotmatching);
     }
@@ -116,97 +125,158 @@ class _RegisterPageState extends State<RegisterPage> {
               SizedBox(
                 height: 20.0,
               ),
-              TextFormField(
-                controller: _usernameController,
-                decoration: const InputDecoration(
-                  labelText: 'Username',
-                  focusedBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Color.fromARGB(255, 216, 97, 29))),
-                ),
-              ),
-              const SizedBox(height: 20.0),
-              TextFormField(
-                controller: _emailController,
-                decoration: const InputDecoration(
-                  labelText: 'Email',
-                  focusedBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Color.fromARGB(255, 216, 97, 29))),
-                ),
-              ),
-              const SizedBox(height: 20.0),
-              TextFormField(
-                controller: _contactController,
-                obscureText: false,
-                decoration: const InputDecoration(
-                  labelText: 'Contact no.',
-                  focusedBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Color.fromARGB(255, 216, 97, 29))),
-                ),
-              ),
-              const SizedBox(height: 20.0),
-              TextFormField(
-                controller: _passwordController,
-                obscureText: _obscureText,
-                decoration: InputDecoration(
-                  labelText: 'Password',
-                  focusedBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Color.fromARGB(255, 216, 97, 29))),
-                  suffixIcon: IconButton(
-                    icon: Icon(
-                        _obscureText ? Icons.visibility : Icons.visibility_off),
-                    onPressed: () {
-                      setState(() {
-                        _obscureText = !_obscureText;
-                      });
-                    },
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 20.0,
-              ),
-              TextFormField(
-                controller: _confirmpasswordController,
-                obscureText: _obscureText,
-                decoration: InputDecoration(
-                  labelText: 'Confirm Password',
-                  focusedBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Color.fromARGB(255, 216, 97, 29))),
-                  suffixIcon: IconButton(
-                    icon: Icon(
-                        _obscureText ? Icons.visibility : Icons.visibility_off),
-                    onPressed: () {
-                      setState(() {
-                        _obscureText = !_obscureText;
-                      });
-                    },
-                  ),
-                ),
-              ),
-              const SizedBox(height: 20.0),
-              Center(
-                child: SizedBox(
-                  width: 400.0,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromARGB(255, 30, 28, 27),
+              Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    TextFormField(
+                      controller: _usernameController,
+                      cursorColor: Color.fromARGB(255, 216, 97, 29),
+                      decoration: const InputDecoration(
+                        labelText: 'Username',
+                        labelStyle:
+                            TextStyle(color: Color.fromARGB(255, 30, 28, 27)),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Color.fromARGB(255, 216, 97, 29))),
+                      ),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Please enter your username';
+                        }
+                        return null;
+                      },
                     ),
-                    onPressed: () {
-                      // Handle registration logic here
-                      signup();
-                    },
-                    child: const Text(
-                      'Register',
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 255, 255, 255),
+                    const SizedBox(height: 20.0),
+                    TextFormField(
+                      controller: _emailController,
+                      cursorColor: Color.fromARGB(255, 216, 97, 29),
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: const InputDecoration(
+                        labelText: 'Email',
+                        labelStyle:
+                            TextStyle(color: Color.fromARGB(255, 30, 28, 27)),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Color.fromARGB(255, 216, 97, 29))),
+                      ),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Please enter your email';
+                        }
+                        return null;
+                      },
+                    ),
+                    const SizedBox(height: 20.0),
+                    TextFormField(
+                      controller: _contactController,
+                      cursorColor: Color.fromARGB(255, 216, 97, 29),
+                      keyboardType: TextInputType.number,
+                      obscureText: false,
+                      decoration: const InputDecoration(
+                        labelText: 'Contact no.',
+                        labelStyle:
+                            TextStyle(color: Color.fromARGB(255, 30, 28, 27)),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Color.fromARGB(255, 216, 97, 29))),
+                      ),
+                      validator: (value) {
+                        if (value!.length != 10) {
+                          return 'Please enter your contact no.';
+                        }
+                        return null;
+                      },
+                    ),
+                    const SizedBox(height: 20.0),
+                    TextFormField(
+                      controller: _passwordController,
+                      cursorColor: Color.fromARGB(255, 216, 97, 29),
+                      obscureText: _obscureText,
+                      decoration: InputDecoration(
+                        labelText: 'Password',
+                        labelStyle:
+                            TextStyle(color: Color.fromARGB(255, 30, 28, 27)),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Color.fromARGB(255, 216, 97, 29))),
+                        suffixIcon: IconButton(
+                          icon: Icon(_obscureText
+                              ? Icons.visibility
+                              : Icons.visibility_off),
+                          onPressed: () {
+                            setState(() {
+                              _obscureText = !_obscureText;
+                            });
+                          },
+                        ),
+                      ),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Please enter a password';
+                        }
+                        // Add password validation if needed
+                        return null;
+                      },
+                    ),
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    TextFormField(
+                        controller: _confirmpasswordController,
+                        obscureText: _obscureText,
+                        cursorColor: Color.fromARGB(255, 216, 97, 29),
+                        decoration: InputDecoration(
+                          labelText: 'Confirm Password',
+                          labelStyle:
+                              TextStyle(color: Color.fromARGB(255, 30, 28, 27)),
+                          focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Color.fromARGB(255, 216, 97, 29))),
+                          suffixIcon: IconButton(
+                            icon: Icon(_obscureText
+                                ? Icons.visibility
+                                : Icons.visibility_off),
+                            onPressed: () {
+                              setState(() {
+                                _obscureText = !_obscureText;
+                              });
+                            },
+                          ),
+                        ),
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Please confirm your password';
+                          }
+                          if (value != _passwordController.text) {
+                            return 'Passwords do not match';
+                          }
+                          return null;
+                        }),
+                    const SizedBox(height: 20.0),
+                    Center(
+                      child: SizedBox(
+                        width: 400.0,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Color.fromARGB(255, 30, 28, 27),
+                          ),
+                          onPressed: () {
+                            // Handle registration logic here
+                            if (_formKey.currentState!.validate()) {
+                              signup();
+                            }
+                          },
+                          child: const Text(
+                            'Register',
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 255, 255, 255),
+                            ),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
+                  ],
                 ),
               ),
               SizedBox(height: 10.0),

@@ -128,6 +128,9 @@ class _SellerState extends State<Seller> {
                   ),
                 SizedBox(height: 16.0),
                 ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color.fromARGB(255, 30, 28, 27),
+                  ),
                   onPressed: () async {
                     // Show date picker and wait for user selection
                     final DateTime? pickedDate = await showDatePicker(
@@ -147,7 +150,10 @@ class _SellerState extends State<Seller> {
                       });
                     }
                   },
-                  child: Text('Choose Date'),
+                  child: Text(
+                    'Choose Date',
+                    style: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+                  ),
                 ),
 
                 SizedBox(height: 16.0),
