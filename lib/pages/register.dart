@@ -106,6 +106,9 @@ class _RegisterPageState extends State<RegisterPage> {
 
   @override
   Widget build(BuildContext context) {
+    var screenSize = MediaQuery.of(context).size;
+    double W = screenSize.width / 448.0;
+    double H = screenSize.height / 973.33;
     return Scaffold(
       appBar: AppBar(),
       body: Padding(
@@ -123,7 +126,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
               ),
               SizedBox(
-                height: 20.0,
+                height: 20.0 * H,
               ),
               Form(
                 key: _formKey,
@@ -147,7 +150,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         return null;
                       },
                     ),
-                    const SizedBox(height: 20.0),
+                    SizedBox(height: 20.0 * H),
                     TextFormField(
                       controller: _emailController,
                       cursorColor: Color.fromARGB(255, 216, 97, 29),
@@ -167,7 +170,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         return null;
                       },
                     ),
-                    const SizedBox(height: 20.0),
+                    SizedBox(height: 20.0 * H),
                     TextFormField(
                       controller: _contactController,
                       cursorColor: Color.fromARGB(255, 216, 97, 29),
@@ -188,7 +191,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         return null;
                       },
                     ),
-                    const SizedBox(height: 20.0),
+                    SizedBox(height: 20.0 * H),
                     TextFormField(
                       controller: _passwordController,
                       cursorColor: Color.fromARGB(255, 216, 97, 29),
@@ -220,7 +223,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       },
                     ),
                     SizedBox(
-                      height: 20.0,
+                      height: 20.0 * H,
                     ),
                     TextFormField(
                         controller: _confirmpasswordController,
@@ -253,10 +256,10 @@ class _RegisterPageState extends State<RegisterPage> {
                           }
                           return null;
                         }),
-                    const SizedBox(height: 20.0),
+                    SizedBox(height: 20.0 * H),
                     Center(
                       child: SizedBox(
-                        width: 400.0,
+                        width: 400.0 * W,
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Color.fromARGB(255, 30, 28, 27),
@@ -279,7 +282,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ],
                 ),
               ),
-              SizedBox(height: 10.0),
+              SizedBox(height: 10.0 * H),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

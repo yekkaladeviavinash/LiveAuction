@@ -38,6 +38,9 @@ class _SellerState extends State<Seller> {
 
   @override
   Widget build(BuildContext context) {
+    var screenSize = MediaQuery.of(context).size;
+    double W = screenSize.width / 448.0;
+    double H = screenSize.height / 973.33;
     return GetBuilder<Sellercontroller>(builder: (ctrl) {
       return Scaffold(
         appBar: AppBar(
@@ -48,7 +51,8 @@ class _SellerState extends State<Seller> {
         ),
         body: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
+            padding:
+                EdgeInsets.fromLTRB(20.0 * W, 20.0 * H, 20.0 * W, 20.0 * H),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -60,7 +64,7 @@ class _SellerState extends State<Seller> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(height: 30.0),
+                SizedBox(height: 30.0 * H),
                 TextFormField(
                   controller: ctrl.item_name,
                   decoration: const InputDecoration(
@@ -70,7 +74,7 @@ class _SellerState extends State<Seller> {
                             color: Color.fromARGB(255, 216, 97, 29))),
                   ),
                 ),
-                const SizedBox(height: 30.0),
+                SizedBox(height: 30.0 * H),
                 TextFormField(
                   controller: ctrl.description,
                   minLines: 1,
@@ -96,8 +100,8 @@ class _SellerState extends State<Seller> {
                             color: Color.fromARGB(255, 216, 97, 29))),
                   ),
                 ),
-                const SizedBox(
-                  height: 10.0,
+                SizedBox(
+                  height: 10.0 * H,
                 ),
                 TextFormField(
                   controller: ctrl.locationchosen,
@@ -108,8 +112,8 @@ class _SellerState extends State<Seller> {
                             color: Color.fromARGB(255, 216, 97, 29))),
                   ),
                 ),
-                const SizedBox(
-                  height: 10.0,
+                SizedBox(
+                  height: 10.0 * H,
                 ),
                 TextFormField(
                   controller: ctrl.item_image,
@@ -120,13 +124,13 @@ class _SellerState extends State<Seller> {
                             color: Color.fromARGB(255, 216, 97, 29))),
                   ),
                 ),
-                SizedBox(height: 16.0),
+                SizedBox(height: 16.0 * H),
                 if (chosenDate != null)
                   Text(
                     'Chosen Date: ${chosenDate!.day}/${chosenDate!.month}/${chosenDate!.year}',
                     style: TextStyle(fontSize: 16.0),
                   ),
-                SizedBox(height: 16.0),
+                SizedBox(height: 16.0 * H),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color.fromARGB(255, 30, 28, 27),
@@ -156,7 +160,7 @@ class _SellerState extends State<Seller> {
                   ),
                 ),
 
-                SizedBox(height: 16.0),
+                SizedBox(height: 16.0 * H),
 
                 // Show the chosen date if it's not null
 
@@ -200,8 +204,8 @@ class _SellerState extends State<Seller> {
                   ),
                 ),
 
-                const SizedBox(
-                  height: 10.0,
+                SizedBox(
+                  height: 10.0 * H,
                 ),
                 Center(
                     child: ElevatedButton(
@@ -228,11 +232,14 @@ class _SellerState extends State<Seller> {
     showDialog(
         context: context,
         builder: (context) {
+          var screenSize = MediaQuery.of(context).size;
+          double W = screenSize.width / 448.0;
+          double H = screenSize.height / 973.33;
           return Dialog(
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20.0)),
             child: Container(
-              height: 425.0,
+              height: 425.0 * H,
               padding: const EdgeInsets.all(10.0),
               // child: TableCalendar(
               //   focusedDay: _focusedDay,
