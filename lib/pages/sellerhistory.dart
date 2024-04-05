@@ -19,6 +19,15 @@ class _SellerHistoryPageState extends State<SellerHistoryPage> {
           backgroundColor: Colors.black87,
           // surfaceTintColor: Colors.transparent,
           title: Text('Seller History',style: TextStyle(color: Colors.white),),
+           leading: IconButton(
+    icon: Icon(
+      Icons.arrow_back,
+      color: Colors.white, // Set color to red
+    ),
+    onPressed: () {
+      Navigator.of(context).pop();
+    },
+  ),
         ),
          body: RefreshIndicator(
           onRefresh: () async {

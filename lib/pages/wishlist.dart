@@ -1,102 +1,8 @@
-// // import 'dart:ffi';
 
-// import 'package:flutter/material.dart';
-// import 'package:get/get.dart';
-// import 'package:liveauction/pages/profilecontroller.dart';
-
-// class WishlistPage extends StatefulWidget {
-//   @override
-//   State<WishlistPage> createState() => _WishlistPageState();
-// }
-
-// class _WishlistPageState extends State<WishlistPage> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return GetBuilder<Profilecontroller>(builder: (ctrl) {
-//       return Scaffold(
-//         appBar: AppBar(
-//           title: Text('WishList'),
-//         ),
-//         body: ListView.builder(
-//           itemCount: ctrl.sellerwishlist.length,
-//           itemBuilder: (context, index) {
-//             return GestureDetector(
-//               onTap: () {
-//                 // Navigate to item details page
-//               },
-//               child: Card(
-//                 margin: EdgeInsets.all(8.0),
-//                 child: Row(
-//                   crossAxisAlignment: CrossAxisAlignment.start,
-//                   children: [
-                    
-//                     Container(
-//                                     width: 125,
-//                                     height: 125,
-//                                     decoration: BoxDecoration(
-//                                       borderRadius: BorderRadius.circular(10.0), // Set border radius here
-//                                       image: DecorationImage(
-//                                         image: NetworkImage(ctrl.sellerwishlist[index].pimage,), // Replace with your image URL
-//                                         fit: BoxFit.cover, // Adjust image fit as needed
-//                                       ),
-//                                     ),
-//                                   ),
-//                     Expanded(
-//                       child: Padding(
-//                         padding: EdgeInsets.all(8.0),
-//                         child: Column(
-//                           crossAxisAlignment: CrossAxisAlignment.start,
-//                           children: [
-//                             Text(
-//                               ctrl.sellerwishlist[index].pname,
-//                               style: TextStyle(
-//                                   fontSize: 20.0, fontWeight: FontWeight.bold),
-//                             ),
-//                             SizedBox(height: 8.0),
-//                             Text(
-//                               ctrl.sellerwishlist[index].pdesc,
-//                               style: TextStyle(fontSize: 16.0),
-//                             ),
-//                             SizedBox(height: 8.0),
-//                             Text(
-//                               ctrl.sellerwishlist[index].pprice,
-//                               style: TextStyle(
-//                                   fontSize: 16.0, fontWeight: FontWeight.bold),
-//                             ),
-//                             Text(
-//                               ctrl.sellerwishlist[index].dateAdded,
-//                               style: TextStyle(
-//                                   fontSize: 20.0, fontWeight: FontWeight.bold),
-//                             ),
-//                             SizedBox(height: 8.0),
-//                             // Text(
-//                             //   auctionItems[index].Status,
-//                             //   style: TextStyle(
-//                             //       fontSize: 20.0, fontWeight: FontWeight.bold),
-//                             // ),
-//                             // SizedBox(height: 8.0),
-//                           ],
-//                         ),
-//                       ),
-//                     ),
-//                   ],
-//                 ),
-//               ),
-//             );
-//           },
-//         ),
-//       );
-//     });
-//   }
-// }
-
-
-
-// import 'dart:ffi';
-
-import 'package:flutter/material.dart';
+    import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:liveauction/pages/profilecontroller.dart';
+import 'package:liveauction/pages/itempage.dart'; // Import itempage if not already imported
 
 class WishlistPage extends StatefulWidget {
   @override
@@ -112,33 +18,60 @@ class _WishlistPageState extends State<WishlistPage> {
     return GetBuilder<Profilecontroller>(builder: (ctrl) {
       return Scaffold(
         appBar: AppBar(
-          title: Text('WishList'),
+          backgroundColor: Colors.black87,
+          title: Text('WishList',style: TextStyle(color: Colors.white),),
+          leading: IconButton(
+    icon: Icon(
+      Icons.arrow_back,
+      color: Colors.white, // Set color to red
+    ),
+    onPressed: () {
+      Navigator.of(context).pop();
+    },
+  ),
         ),
         body: RefreshIndicator(
           onRefresh: () async {
             await ctrl.refreshPage();
           },
           child: Container(
-            
             color: Colors.white,
             padding: EdgeInsets.all(16.0),
             child: ListView.builder(
               itemCount: ctrl.sellerwishlist.length,
               itemBuilder: (context, index) {
                 var item = ctrl.sellerwishlist[index];
-                return AdminCard(
-                  title: ctrl.sellerwishlist[index].pname ?? '',
-                  bidPrice: ctrl.sellerwishlist[index].pprice ?? '',
-                  auctionDate: ctrl.sellerwishlist[index].dateAdded ?? '',
-                  category: ctrl.sellerwishlist[index].pcategory ?? '',
-                  imageUrl: ctrl.sellerwishlist[index].pimage ?? '',
-                  // bool: ctrl.sellerwishlist[index].status.toString() ?? '',
-                  screenWidth: screenWidth,
-                  screenHeight: screenHeight,
-                  onPressedDelete: () {
-                    ctrl.deleteProductfromwishlist(
-                        ctrl.sellerwishlist[index].pid ?? '');
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => itempage(
+                          selectpid: item.pid,
+                          selectimage: item.pimage,
+                          selectcategory: item.pcategory,
+                          selectname: item.pname,
+                          selectprice: item.pprice,
+                          selectdate: item.dateAdded,
+                          selectdesc: item.pdesc,
+                          selectptime: item.ptime,
+                          selectlocation: item.location,
+                        ),
+                      ),
+                    );
                   },
+                  child: AdminCard(
+                    title: item.pname ?? '',
+                    bidPrice: item.pprice ?? '',
+                    auctionDate: item.dateAdded ?? '',
+                    category: item.pcategory ?? '',
+                    imageUrl: item.pimage ?? '',
+                    screenWidth: screenWidth,
+                    screenHeight: screenHeight,
+                    onPressedDelete: () {
+                      ctrl.deleteProductfromwishlist(item.pid ?? '');
+                    },
+                  ),
                 );
               },
             ),
@@ -155,9 +88,7 @@ class AdminCard extends StatelessWidget {
   final String auctionDate;
   final String category;
   final String imageUrl;
-  // final String bool;
   final VoidCallback onPressedDelete;
-  // final VoidCallback onPressedAccept;
   final double screenWidth;
   final double screenHeight;
 
@@ -167,9 +98,7 @@ class AdminCard extends StatelessWidget {
     required this.auctionDate,
     required this.category,
     required this.imageUrl,
-    // required this.bool,
     required this.onPressedDelete,
-    // required this.onPressedAccept,
     required this.screenWidth,
     required this.screenHeight,
   });
@@ -232,19 +161,12 @@ class AdminCard extends StatelessWidget {
                       color: Colors.black,
                     ),
                   ),
-                  // Text(
-                  //   'Status: ${bool == 'true' ? 'Accepted' : 'Not Accepted yet'}',
-                  //   style: TextStyle(
-                  //     fontSize: screenWidth * 0.03,
-                  //     color: bool == 'true' ? Colors.green : Colors.red,
-                  //   ),
-                  // ),
-                  SizedBox(height: 16.0),
+                  SizedBox(height: 6.0),
                   Row(
                     children: [
                       ElevatedButton(
                         onPressed: onPressedDelete,
-                        child: const Text('Delete',
+                        child: const Text('   Remove from wishlist   ',
                             style: TextStyle(color: Colors.white)),
                         style: ElevatedButton.styleFrom(
                           padding: EdgeInsets.symmetric(vertical: 12.0),
@@ -265,4 +187,3 @@ class AdminCard extends StatelessWidget {
     );
   }
 }
-    

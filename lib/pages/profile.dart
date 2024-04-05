@@ -337,7 +337,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          '10',
+                          ctrl.sellerAuctionHistory.length.toString(),
                           style: TextStyle(
                               fontSize: 20 * (W / 411.5),
                               fontWeight: FontWeight.w500),
@@ -354,7 +354,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          '1',
+                          ctrl.sellerProducts.length.toString(),
                           style: TextStyle(
                               fontSize: 20 * (W / 411.5),
                               fontWeight: FontWeight.w500),
