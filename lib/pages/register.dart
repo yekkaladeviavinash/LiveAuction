@@ -35,32 +35,32 @@ class _RegisterPageState extends State<RegisterPage> {
     super.dispose();
   }
 
-  final snackBar = SnackBar(
-    content: const Text('You are registered successfully!'),
-    backgroundColor: Colors.greenAccent,
-    action: SnackBarAction(
-      label: '',
-      onPressed: () {
-        // Some code to undo the change.
-      },
-    ),
-  );
+  // final snackBar = SnackBar(
+  //   content: const Text('You are registered successfully!'),
+  //   backgroundColor: Colors.greenAccent,
+  //   action: SnackBarAction(
+  //     label: '',
+  //     onPressed: () {
+  //       // Some code to undo the change.
+  //     },
+  //   ),
+  // );
 
-  final passwordnotmatching = SnackBar(
-    content: Text("Both passwords are not matching !!!"),
-    backgroundColor: Colors.red[900],
-    action: SnackBarAction(
-      label: '',
-      onPressed: () {
-        // Some code to undo the change.
-      },
-    ),
-  );
+  // final passwordnotmatching = SnackBar(
+  //   content: Text("Both passwords are not matching !!!"),
+  //   backgroundColor: Colors.red[900],
+  //   action: SnackBarAction(
+  //     label: '',
+  //     onPressed: () {
+  //       // Some code to undo the change.
+  //     },
+  //   ),
+  // );
   Future signup() async {
     if (_passwordController.text.trim() ==
         _confirmpasswordController.text.trim()) {
       //Authentication using email and password
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      // ScaffoldMessenger.of(context).showSnackBar(snackBar);
       UserCredential cred = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(
               email: _emailController.text.trim(),
@@ -92,7 +92,7 @@ class _RegisterPageState extends State<RegisterPage> {
           .doc(cred.user!.uid)
           .set(myuser.toJson());
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(passwordnotmatching);
+      // ScaffoldMessenger.of(context).showSnackBar(passwordnotmatching);
     }
   }
 
@@ -217,6 +217,8 @@ class _RegisterPageState extends State<RegisterPage> {
                       validator: (value) {
                         if (value!.isEmpty) {
                           return 'Please enter a password';
+                        } else if (value.length < 8) {
+                          return 'password should be atleast 8 characters';
                         }
                         // Add password validation if needed
                         return null;
@@ -249,7 +251,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                         validator: (value) {
                           if (value!.isEmpty) {
-                            return 'Please confirm your password';
+                            return 'Please enter your password again';
                           }
                           if (value != _passwordController.text) {
                             return 'Passwords do not match';

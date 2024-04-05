@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
-// import 'package:table_calendar/table_calendar.dart';
-import 'dart:io';
 import 'dart:typed_data';
 import 'package:liveauction/pages/seller_controller.dart';
 import 'package:liveauction/utils.dart';
@@ -12,7 +9,11 @@ const List<String> list = [
   'Category',
   'Collectibles',
   'Antiques',
+<<<<<<< Updated upstream
   'Articrafts',
+=======
+  'ArtiCrafts',
+>>>>>>> Stashed changes
   'Electronics',
   'Books',
   'Sports',
@@ -68,8 +69,10 @@ class _SellerState extends State<Seller> {
                 SizedBox(height: 30.0 * H),
                 TextFormField(
                   controller: ctrl.item_name,
+                  cursorColor: Color.fromARGB(255, 216, 97, 29),
                   decoration: const InputDecoration(
                     labelText: 'Item name',
+                    labelStyle: TextStyle(color: Colors.black),
                     focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(
                             color: Color.fromARGB(255, 216, 97, 29))),
@@ -81,8 +84,10 @@ class _SellerState extends State<Seller> {
                   minLines: 1,
                   maxLines: 10,
                   maxLength: 2000,
+                  cursorColor: Color.fromARGB(255, 216, 97, 29),
                   decoration: const InputDecoration(
                     labelText: 'Item description',
+                    labelStyle: TextStyle(color: Colors.black),
                     focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(
                             color: Color.fromARGB(255, 216, 97, 29))),
@@ -90,12 +95,15 @@ class _SellerState extends State<Seller> {
                 ),
                 TextFormField(
                   controller: ctrl.base_price,
-                  keyboardType: TextInputType.number,
+                  cursorColor: Color.fromARGB(255, 216, 97, 29),
+                  keyboardType: TextInputType.numberWithOptions(),
+                  textInputAction: TextInputAction.done,
                   inputFormatters: <TextInputFormatter>[
                     FilteringTextInputFormatter.digitsOnly
                   ],
                   decoration: const InputDecoration(
                     labelText: 'base price',
+                    labelStyle: TextStyle(color: Colors.black),
                     focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(
                             color: Color.fromARGB(255, 216, 97, 29))),
@@ -106,8 +114,10 @@ class _SellerState extends State<Seller> {
                 ),
                 TextFormField(
                   controller: ctrl.locationchosen,
+                  cursorColor: Color.fromARGB(255, 216, 97, 29),
                   decoration: const InputDecoration(
                     labelText: 'Location',
+                    labelStyle: TextStyle(color: Colors.black),
                     focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(
                             color: Color.fromARGB(255, 216, 97, 29))),
@@ -118,8 +128,10 @@ class _SellerState extends State<Seller> {
                 ),
                 TextFormField(
                   controller: ctrl.item_image,
+                  cursorColor: Color.fromARGB(255, 216, 97, 29),
                   decoration: const InputDecoration(
                     labelText: 'Image Url',
+                    labelStyle: TextStyle(color: Colors.black),
                     focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(
                             color: Color.fromARGB(255, 216, 97, 29))),
@@ -160,24 +172,7 @@ class _SellerState extends State<Seller> {
                     style: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
                   ),
                 ),
-
                 SizedBox(height: 16.0 * H),
-
-                // Show the chosen date if it's not null
-
-                // Row(
-                //   children: [
-                //     ElevatedButton.icon(
-                //       onPressed: () => _showCalendar(),
-                //       icon: const Icon(Icons.calendar_today_rounded),
-                //       label: Text('Select Date: $_selectedDay'),
-                //     ),
-                //     const SizedBox(
-                //       width: 10.0,
-                //     ),
-                //     // Text(' $_selectedDay'),
-                //   ],
-                // ),
                 Center(
                   child: DropdownMenu<String>(
                     inputDecorationTheme: InputDecorationTheme(
@@ -204,7 +199,6 @@ class _SellerState extends State<Seller> {
                     },
                   ),
                 ),
-
                 SizedBox(
                   height: 10.0 * H,
                 ),

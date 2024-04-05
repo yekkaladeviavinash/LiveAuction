@@ -71,8 +71,8 @@ class _biddingState extends State<bidding> {
         print(timer);
         setState(() {
           countdown = timer;
-          countinmin=(countdown!/60).toInt();
-          countinsec=countdown!%60;
+          countinmin = (countdown! / 60).toInt();
+          countinsec = countdown! % 60;
         });
       });
       socket!.on("sendMsgServer", (message) {
@@ -137,6 +137,9 @@ class _biddingState extends State<bidding> {
 
   @override
   Widget build(BuildContext context) {
+    var screenSize = MediaQuery.of(context).size;
+    double W = screenSize.width / 448.0;
+    double H = screenSize.height / 973.33;
     return Scaffold(
       appBar: AppBar(),
       body: SingleChildScrollView(
@@ -145,55 +148,48 @@ class _biddingState extends State<bidding> {
           child: Column(
             children: [
               SizedBox(
-                height: 400.0,
-                width: 560.0,
+                height: 300.0 * H,
+                width: 560.0 * W,
                 child: Image.network(
                   widget.selectimage!,
                   fit: BoxFit.cover,
                   scale: 1,
-                  height: 400,
-                  width: 500,
+                  height: 400 * H,
+                  width: 500 * W,
                 ),
               ),
               SizedBox(
-                height: 30.0,
+                height: 30.0 * H,
               ),
               Card(
                 child: SizedBox(
-                  height: 125.0,
-                  width: 350.0,
+                  height: 125.0 * H,
+                  width: 350.0 * W,
                   child: Column(
                     children: [
                       Row(
                         children: [
-                          const SizedBox(
-                            width: 10.0,
-                            height: 50.0,
+                          SizedBox(
+                            width: 10.0 * W,
+                            height: 50.0 * H,
                           ),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              const SizedBox(
-                                height: 40.0,
+                              SizedBox(
+                                height: 40.0 * H,
                               ),
                               Text(
                                 'Rs.' + num.toString(),
                                 style: TextStyle(fontSize: 16.0),
                               ),
-                              const SizedBox(
-                                height: 5.0,
+                              SizedBox(
+                                height: 5.0 * H,
                               )
                             ],
                           ),
-                          const SizedBox(
-                            width: 40.0,
-                          ),
-                          const Divider(
-                            height: 20,
-                            thickness: 2,
-                            color: Colors.grey,
-                            indent: 20,
-                            endIndent: 20,
+                          SizedBox(
+                            width: 40.0 * W,
                           ),
                           const SizedBox(
                             width: 10.0,
@@ -220,7 +216,10 @@ class _biddingState extends State<bidding> {
                       const SizedBox(
                         height: 10.0,
                       ),
-                      Text('Ends in: ${countinmin ?? ''}'+'min,'+'${countinsec}'+'sec'),
+                      Text('Ends in: ${countinmin ?? ''}' +
+                          'min,' +
+                          '${countinsec}' +
+                          'sec'),
                     ],
                   ),
                 ),
