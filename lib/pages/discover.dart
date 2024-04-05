@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
@@ -48,15 +47,6 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
   }
 
 //
-
-
-
-
-
-
-
-
-
 
 //
 
@@ -227,7 +217,7 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
                 ),
               ),
               SizedBox(
-                height: 5,
+                height: 5*(H/936),
               ),
               Expanded(
                 // Use Expanded to fill remaining space
@@ -241,8 +231,8 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
                         backgroundColor: Colors.white,
                         color: Colors.black,
                         onRefresh: () async {
-              await ctrl.refreshPage();
-            },
+                          await ctrl.refreshPage();
+                        },
                         child: ListView(
                           children: ctrl.productsshowinui1.map((cardData) {
                             return InkWell(
@@ -265,60 +255,157 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
                                 );
                               },
                               child: Padding(
-                                padding: const EdgeInsets.fromLTRB(8, 4, 8, 4),
+                                padding:  EdgeInsets.fromLTRB(8*(W/432), 4*(H/936), 8*(W/432), 4*(H/936)),
                                 child: Container(
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(40), // Border radius
+                                    borderRadius: BorderRadius.circular(
+                                        20*(W/432)), // Border radius
                                     boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.1), // Shadow color
-                  spreadRadius: 0, // Spread radius
-                  blurRadius: 5, // Blur radius
-                  offset: Offset(0, 5), // Offset in x and y axes
-                ),
-              ],
+                                      BoxShadow(
+                                        color: Colors.grey
+                                            .withOpacity(0.1), // Shadow color
+                                        spreadRadius: 0, // Spread radius
+                                        blurRadius: 1, // Blur radius
+                                        offset: Offset(
+                                            0, 5), // Offset in x and y axes
+                                      ),
+                                    ],
                                   ),
-                                  
                                   child: Card(
-                                    color: Color.fromARGB(255, 237, 235, 235),
-                                    // color: Colors.white  ,
-                                    // surfaceTintColor: Colors.transparent,   
+                                    // color: Color.fromARGB(255, 237, 235, 235),
+                                    color: Colors.white,
+                                    // surfaceTintColor: Colors.transparent,
                                     shadowColor: Colors.black,
                                     elevation: 0,
                                     child: Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
                                       children: [
-                                        Container(
-                                          width: 125,
-                                          height: 125,
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(
-                                                20.0), // Set border radius here
-                                            image: DecorationImage(
-                                              image: NetworkImage(cardData
-                                                  .pimage), // Replace with your image URL
-                                              fit: BoxFit
-                                                  .cover, // Adjust image fit as needed
+                                        Padding(
+                                          padding:  EdgeInsets.all(8*(W/432)),
+                                          child: Container(
+                                            width: 130*(W/432),
+                                            height: 130*(W/432),
+                                            decoration: BoxDecoration(
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  color: Colors.grey
+                                                      .withOpacity(
+                                                          0.5), // Shadow color
+                                                  spreadRadius:
+                                                      1, // Spread radius
+                                                  blurRadius: 5, // Blur radius
+                                                  offset: Offset(5,
+                                                      -3), // Offset in x and y axes
+                                                ),
+                                              ],
+                                              borderRadius: BorderRadius.circular(
+                                                  10*(W/432)), // Set border radius here
+                                              image: DecorationImage(
+                                                image: NetworkImage(cardData
+                                                    .pimage), // Replace with your image URL
+                                                fit: BoxFit
+                                                    .cover, // Adjust image fit as needed
+                                              ),
                                             ),
                                           ),
                                         ),
-                                        SizedBox(width: 10),
+                                        SizedBox(width: 20*(W/432)),
                                         Expanded(
                                           child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
                                                 cardData.pname,
                                                 style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 18,
-                                                ),
+                                                    fontSize: 17 * (W / 432),
+                                                    fontFamily: 'roboto',
+                                                    fontWeight:
+                                                        FontWeight.w100),
                                               ),
-                                              SizedBox(height: 5),
-                                              Text('Rs.' + cardData.pprice),
-                                              SizedBox(height: 5),      
-                                              Text('Auction Date:' +
-                                                  cardData.dateAdded),
+                                              SizedBox(height: 3*(H/936)),
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    'Base Price: ',
+                                                    style: TextStyle(
+                                                    
+                                                        fontSize:
+                                                            14 * (W / 432),
+                                                        fontFamily: 'roboto',
+                                                        fontWeight:
+                                                            FontWeight.w900),
+                                                  ),
+                                                  Text(
+                                                    'Rs.' + cardData.pprice,
+                                                    style: TextStyle(
+                                                        fontSize:
+                                                            15 * (W / 432),
+                                                        
+                                                        color: Color.fromARGB(
+                                                    255, 13, 159, 18),
+                                                        fontFamily: 'robotol',
+                                                        fontWeight:
+                                                            FontWeight.bold
+                                                        
+                                                        ),
+                                                  )
+                                                ],
+                                              ),
+                                              
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    'Auction Date: ',
+                                                    style: TextStyle(
+                                                        fontSize:
+                                                            14 * (W / 432),
+                                                        fontFamily: 'roboto',
+                                                        fontWeight:
+                                                            FontWeight.w900),
+                                                  ),
+                                                  Text(
+                                                    cardData.dateAdded,
+                                                    style: TextStyle(
+                                                        fontSize:
+                                                            15 * (W / 432),
+                                                        color: Colors.grey[600],
+                                                        fontFamily: 'robotol',
+                                                        fontWeight:
+                                                            FontWeight.bold
+                                                        // ,letterSpacing: 1
+                                                        ),
+                                                  )
+                                                ],
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    'Location: ',
+                                                    style: TextStyle(
+                                                        fontSize:
+                                                            14 * (W / 432),
+                                                        fontFamily: 'roboto',
+                                                        fontWeight:
+                                                            FontWeight.w900),
+                                                  ),
+                                                  Text(
+                                                    "Roorkee",
+                                                    style: TextStyle(
+                                                        fontSize:
+                                                            15 * (W / 432),
+                                                        color: Colors.grey[600],
+                                                        fontFamily: 'robotol',
+                                                        fontWeight:
+                                                            FontWeight.bold
+                                                        // ,letterSpacing: 1
+                                                        ),
+                                                  )
+                                                ],
+                                              ),
                                             ],
                                           ),
                                         ),
@@ -331,458 +418,1160 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
                           }).toList(),
                         ),
                       ),
-                      ListView(
-                        children: ctrl.productsshowinui2.map((cardData) {
-                          return InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => itempage(
-                                    selectpid: cardData.pid,
-                                    selectimage: cardData.pimage,
-                                    selectcategory: cardData.pcategory,
-                                    selectname: cardData.pname,
-                                    selectprice: cardData.pprice,
-                                    selectdate: cardData.dateAdded,
-                                    selectdesc: cardData.pdesc,
-                                    selectptime: cardData.ptime,
-                                    selectlocation: cardData.location,
+
+
+                      RefreshIndicator(
+                        backgroundColor: Colors.white,
+                        color: Colors.black,
+                        onRefresh: () async {
+                          await ctrl.refreshPage();
+                        },
+                        child: ListView(
+                          children: ctrl.productsshowinui2.map((cardData) {
+                            return InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => itempage(
+                                      selectpid: cardData.pid,
+                                      selectimage: cardData.pimage,
+                                      selectcategory: cardData.pcategory,
+                                      selectname: cardData.pname,
+                                      selectprice: cardData.pprice,
+                                      selectdate: cardData.dateAdded,
+                                      selectdesc: cardData.pdesc,
+                                      selectptime: cardData.ptime,
+                                      selectlocation: cardData.location,
+                                    ),
                                   ),
-                                ),
-                              );
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.fromLTRB(8, 4, 8, 4),
-                              child: Card(
-                                color: Colors.white,
-                                surfaceTintColor: Colors.transparent,
-                                shadowColor: Colors.white,
-                                elevation: 0,
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      width: 125,
-                                      height: 125,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(
-                                            10.0), // Set border radius here
-                                        image: DecorationImage(
-                                          image: NetworkImage(cardData
-                                              .pimage), // Replace with your image URL
-                                          fit: BoxFit
-                                              .cover, // Adjust image fit as needed
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(width: 10),
-                                    Expanded(
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            cardData.pname,
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 18,
-                                            ),
-                                          ),
-                                          SizedBox(height: 5),
-                                          Text('Rs.' + cardData.pprice),
-                                          SizedBox(height: 5),
-                                          Text('Auction Date:' +
-                                              cardData.dateAdded),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          );
-                        }).toList(),
-                      ),
-                      ListView(
-                        children: ctrl.productsshowinui3.map((cardData) {
-                          return InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => itempage(
-                                    selectpid: cardData.pid,
-                                    selectimage: cardData.pimage,
-                                    selectcategory: cardData.pcategory,
-                                    selectname: cardData.pname,
-                                    selectprice: cardData.pprice,
-                                    selectdate: cardData.dateAdded,
-                                    selectdesc: cardData.pdesc,
-                                    selectptime: cardData.ptime,
-                                    selectlocation: cardData.location,
-                                  ),
-                                ),
-                              );
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.fromLTRB(8, 4, 8, 4),
-                              child: Card(
-                                color: Colors.white,
-                                surfaceTintColor: Colors.transparent,
-                                shadowColor: Colors.white,
-                                elevation: 0,
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      width: 125,
-                                      height: 125,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(
-                                            10.0), // Set border radius here
-                                        image: DecorationImage(
-                                          image: NetworkImage(cardData
-                                              .pimage), // Replace with your image URL
-                                          fit: BoxFit
-                                              .cover, // Adjust image fit as needed
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(width: 10),
-                                    Expanded(
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            cardData.pname,
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 18,
-                                            ),
-                                          ),
-                                          SizedBox(height: 5),
-                                          Text('Rs.' + cardData.pprice),
-                                          SizedBox(height: 5),
-                                          Text('Auction Date:' +
-                                              cardData.dateAdded),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          );
-                        }).toList(),
-                      ),
-                      ListView(
-                        children: ctrl.productsshowinui4.map((cardData) {
-                          return InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => itempage(
-                                    selectpid: cardData.pid,
-                                    selectimage: cardData.pimage,
-                                    selectcategory: cardData.pcategory,
-                                    selectname: cardData.pname,
-                                    selectprice: cardData.pprice,
-                                    selectdate: cardData.dateAdded,
-                                    selectdesc: cardData.pdesc,
-                                    selectptime: cardData.ptime,
-                                    selectlocation: cardData.location,
-                                  ),
-                                ),
-                              );
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.fromLTRB(8, 4, 8, 4),
-                              child: Card(
-                                color: Colors.white,
-                                surfaceTintColor: Colors.transparent,
-                                shadowColor: Colors.white,
-                                elevation: 0,
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      width: 125,
-                                      height: 125,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(
-                                            10.0), // Set border radius here
-                                        image: DecorationImage(
-                                          image: NetworkImage(cardData
-                                              .pimage), // Replace with your image URL
-                                          fit: BoxFit
-                                              .cover, // Adjust image fit as needed
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(width: 10),
-                                    Expanded(
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            cardData.pname,
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 18,
-                                            ),
-                                          ),
-                                          SizedBox(height: 5),
-                                          Text('Rs.' + cardData.pprice),
-                                          SizedBox(height: 5),
-                                          Text('Auction Date:' +
-                                              cardData.dateAdded),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          );
-                        }).toList(),
-                      ),
-                  
-                  
-                  
-                      
-                      ListView(
-                        children: ctrl.productsshowinui5.map((cardData) {
-                          return InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => itempage(
-                                    selectpid: cardData.pid,
-                                    selectimage: cardData.pimage,
-                                    selectcategory: cardData.pcategory,
-                                    selectname: cardData.pname,
-                                    selectprice: cardData.pprice,
-                                    selectdate: cardData.dateAdded,
-                                    selectdesc: cardData.pdesc,
-                                    selectptime: cardData.ptime,
-                                    selectlocation: cardData.location,
-                                  ),
-                                ),
-                              );
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.fromLTRB(8, 4, 8, 4),
-                              child: Card(
-                                color: Colors.white,
-                                surfaceTintColor: Colors.transparent,
-                                shadowColor: Colors.white,
-                                elevation: 0,
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      width: 125,
-                                      height: 125,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(
-                                            10.0), // Set border radius here
-                                        image: DecorationImage(
-                                          image: NetworkImage(cardData
-                                              .pimage), // Replace with your image URL
-                                          fit: BoxFit
-                                              .cover, // Adjust image fit as needed
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(width: 10),
-                                    Expanded(
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            cardData.pname,
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 18,
-                                            ),
-                                          ),
-                                          SizedBox(height: 5),
-                                          Text('Rs.' + cardData.pprice),
-                                          SizedBox(height: 5),
-                                          Text('Auction Date:' +
-                                              cardData.dateAdded),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          );
-                        }).toList(),
-                      ),
-                      ListView(
-                        physics: BouncingScrollPhysics(),
-                        children: ctrl.productsshowinui6.map((cardData) {
-                          return InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => itempage(
-                                    selectpid: cardData.pid,
-                                    selectimage: cardData.pimage,
-                                    selectcategory: cardData.pcategory,
-                                    selectname: cardData.pname,
-                                    selectprice: cardData.pprice,
-                                    selectdate: cardData.dateAdded,
-                                    selectdesc: cardData.pdesc,
-                                    selectptime: cardData.ptime,
-                                    selectlocation: cardData.location,
-                                  ),
-                                ),
-                              );
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.fromLTRB(8, 4, 8, 4),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(40),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey.withOpacity(0.5),
-                                      spreadRadius: 5,
-                                      blurRadius: 7,
-                                      offset: Offset(
-                                          0, 3), // changes position of shadow
-                                    ),
-                                  ],
-                                ),
-                                child: Card(
-                                  color: Colors.white,
-                                  surfaceTintColor: Colors.transparent,
-                                  shadowColor: Colors.black,
-                                  // elevation: 2,
-                                  child: Row(
-                                    children: [
-                                      Container(
-                                        width: 125,
-                                        height: 125,
-                                        decoration: BoxDecoration(
-                                          color: Colors.black,
-                                          borderRadius: BorderRadius.circular(
-                                              10.0), // Set border radius here
-                                          image: DecorationImage(
-                                            image: NetworkImage(cardData
-                                                .pimage), // Replace with your image URL
-                                            fit: BoxFit
-                                                .cover, // Adjust image fit as needed
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(width: 10),
-                                      Expanded(
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              cardData.pname,
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 18,
-                                              ),
-                                            ),
-                                            SizedBox(height: 5),
-                                            Text('Rs.' + cardData.pprice),
-                                            SizedBox(height: 5),
-                                            Text('Auction Date:' +
-                                                cardData.dateAdded),
-                                          ],
-                                        ),
+                                );
+                              },
+                              child: Padding(
+                                padding:  EdgeInsets.fromLTRB(8*(W/432), 4*(H/936), 8*(W/432), 4*(H/936)),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(
+                                        20*(W/432)), // Border radius
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey
+                                            .withOpacity(0.1), // Shadow color
+                                        spreadRadius: 0, // Spread radius
+                                        blurRadius: 1, // Blur radius
+                                        offset: Offset(
+                                            0, 5), // Offset in x and y axes
                                       ),
                                     ],
                                   ),
-                                ),
-                              ),
-                            ),
-                          );
-                        }).toList(),
-                      ),
-                      ListView(
-                        children: ctrl.productsshowinui7.map((cardData) {
-                          return InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => itempage(
-                                    selectpid: cardData.pid,
-                                    selectimage: cardData.pimage,
-                                    selectcategory: cardData.pcategory,
-                                    selectname: cardData.pname,
-                                    selectprice: cardData.pprice,
-                                    selectdate: cardData.dateAdded,
-                                    selectdesc: cardData.pdesc,
-                                    selectptime: cardData.ptime,
-                                    selectlocation: cardData.location,
-                                  ),
-                                ),
-                              );
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.fromLTRB(8, 4, 8, 4),
-                              child: Card(
-                                color: Colors.white,
-                                surfaceTintColor: Colors.transparent,
-                                shadowColor: Colors.white,
-                                elevation: 0,
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      width: 125,
-                                      height: 125,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(
-                                            10.0), // Set border radius here
-                                        image: DecorationImage(
-                                          image: NetworkImage(cardData
-                                              .pimage), // Replace with your image URL
-                                          fit: BoxFit
-                                              .cover, // Adjust image fit as needed
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(width: 10),
-                                    Expanded(
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            cardData.pname,
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 18,
+                                  child: Card(
+                                    // color: Color.fromARGB(255, 237, 235, 235),
+                                    color: Colors.white,
+                                    // surfaceTintColor: Colors.transparent,
+                                    shadowColor: Colors.black,
+                                    elevation: 0,
+                                    child: Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Padding(
+                                          padding:  EdgeInsets.all(8*(W/432)),
+                                          child: Container(
+                                            width: 130*(W/432),
+                                            height: 130*(W/432),
+                                            decoration: BoxDecoration(
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  color: Colors.grey
+                                                      .withOpacity(
+                                                          0.5), // Shadow color
+                                                  spreadRadius:
+                                                      1, // Spread radius
+                                                  blurRadius: 5, // Blur radius
+                                                  offset: Offset(5,
+                                                      -3), // Offset in x and y axes
+                                                ),
+                                              ],
+                                              borderRadius: BorderRadius.circular(
+                                                  10*(W/432)), // Set border radius here
+                                              image: DecorationImage(
+                                                image: NetworkImage(cardData
+                                                    .pimage), // Replace with your image URL
+                                                fit: BoxFit
+                                                    .cover, // Adjust image fit as needed
+                                              ),
                                             ),
                                           ),
-                                          SizedBox(height: 5),
-                                          Text('Rs.' + cardData.pprice),
-                                          SizedBox(height: 5),
-                                          Text('Auction Date:' +
-                                              cardData.dateAdded),
-                                        ],
-                                      ),
+                                        ),
+                                        SizedBox(width: 20*(W/432)),
+                                        Expanded(
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                cardData.pname,
+                                                style: TextStyle(
+                                                    fontSize: 17 * (W / 432),
+                                                    fontFamily: 'roboto',
+                                                    fontWeight:
+                                                        FontWeight.w100),
+                                              ),
+                                              SizedBox(height: 3*(H/936)),
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    'Base Price: ',
+                                                    style: TextStyle(
+                                                    
+                                                        fontSize:
+                                                            14 * (W / 432),
+                                                        fontFamily: 'roboto',
+                                                        fontWeight:
+                                                            FontWeight.w900),
+                                                  ),
+                                                  Text(
+                                                    'Rs.' + cardData.pprice,
+                                                    style: TextStyle(
+                                                        fontSize:
+                                                            15 * (W / 432),
+                                                        
+                                                        color: Color.fromARGB(
+                                                    255, 13, 159, 18),
+                                                        fontFamily: 'robotol',
+                                                        fontWeight:
+                                                            FontWeight.bold
+                                                        
+                                                        ),
+                                                  )
+                                                ],
+                                              ),
+                                              
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    'Auction Date: ',
+                                                    style: TextStyle(
+                                                        fontSize:
+                                                            14 * (W / 432),
+                                                        fontFamily: 'roboto',
+                                                        fontWeight:
+                                                            FontWeight.w900),
+                                                  ),
+                                                  Text(
+                                                    cardData.dateAdded,
+                                                    style: TextStyle(
+                                                        fontSize:
+                                                            15 * (W / 432),
+                                                        color: Colors.grey[600],
+                                                        fontFamily: 'robotol',
+                                                        fontWeight:
+                                                            FontWeight.bold
+                                                        // ,letterSpacing: 1
+                                                        ),
+                                                  )
+                                                ],
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    'Location: ',
+                                                    style: TextStyle(
+                                                        fontSize:
+                                                            14 * (W / 432),
+                                                        fontFamily: 'roboto',
+                                                        fontWeight:
+                                                            FontWeight.w900),
+                                                  ),
+                                                  Text(
+                                                    "Roorkee",
+                                                    style: TextStyle(
+                                                        fontSize:
+                                                            15 * (W / 432),
+                                                        color: Colors.grey[600],
+                                                        fontFamily: 'robotol',
+                                                        fontWeight:
+                                                            FontWeight.bold
+                                                        // ,letterSpacing: 1
+                                                        ),
+                                                  )
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                  ],
+                                  ),
                                 ),
                               ),
-                            ),
-                          );
-                        }).toList(),
-                      )
+                            );
+                          }).toList(),
+                        ),
+                      ),
+                      RefreshIndicator(
+                        backgroundColor: Colors.white,
+                        color: Colors.black,
+                        onRefresh: () async {
+                          await ctrl.refreshPage();
+                        },
+                        child: ListView(
+                          children: ctrl.productsshowinui3.map((cardData) {
+                            return InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => itempage(
+                                      selectpid: cardData.pid,
+                                      selectimage: cardData.pimage,
+                                      selectcategory: cardData.pcategory,
+                                      selectname: cardData.pname,
+                                      selectprice: cardData.pprice,
+                                      selectdate: cardData.dateAdded,
+                                      selectdesc: cardData.pdesc,
+                                      selectptime: cardData.ptime,
+                                      selectlocation: cardData.location,
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: Padding(
+                                padding:  EdgeInsets.fromLTRB(8*(W/432), 4*(H/936), 8*(W/432), 4*(H/936)),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(
+                                        20*(W/432)), // Border radius
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey
+                                            .withOpacity(0.1), // Shadow color
+                                        spreadRadius: 0, // Spread radius
+                                        blurRadius: 1, // Blur radius
+                                        offset: Offset(
+                                            0, 5), // Offset in x and y axes
+                                      ),
+                                    ],
+                                  ),
+                                  child: Card(
+                                    // color: Color.fromARGB(255, 237, 235, 235),
+                                    color: Colors.white,
+                                    // surfaceTintColor: Colors.transparent,
+                                    shadowColor: Colors.black,
+                                    elevation: 0,
+                                    child: Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Padding(
+                                          padding:  EdgeInsets.all(8*(W/432)),
+                                          child: Container(
+                                            width: 130*(W/432),
+                                            height: 130*(W/432),
+                                            decoration: BoxDecoration(
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  color: Colors.grey
+                                                      .withOpacity(
+                                                          0.5), // Shadow color
+                                                  spreadRadius:
+                                                      1, // Spread radius
+                                                  blurRadius: 5, // Blur radius
+                                                  offset: Offset(5,
+                                                      -3), // Offset in x and y axes
+                                                ),
+                                              ],
+                                              borderRadius: BorderRadius.circular(
+                                                  10*(W/432)), // Set border radius here
+                                              image: DecorationImage(
+                                                image: NetworkImage(cardData
+                                                    .pimage), // Replace with your image URL
+                                                fit: BoxFit
+                                                    .cover, // Adjust image fit as needed
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(width: 20*(W/432)),
+                                        Expanded(
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                cardData.pname,
+                                                style: TextStyle(
+                                                    fontSize: 17 * (W / 432),
+                                                    fontFamily: 'roboto',
+                                                    fontWeight:
+                                                        FontWeight.w100),
+                                              ),
+                                              SizedBox(height: 3*(H/936)),
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    'Base Price: ',
+                                                    style: TextStyle(
+                                                    
+                                                        fontSize:
+                                                            14 * (W / 432),
+                                                        fontFamily: 'roboto',
+                                                        fontWeight:
+                                                            FontWeight.w900),
+                                                  ),
+                                                  Text(
+                                                    'Rs.' + cardData.pprice,
+                                                    style: TextStyle(
+                                                        fontSize:
+                                                            15 * (W / 432),
+                                                        
+                                                        color: Color.fromARGB(
+                                                    255, 13, 159, 18),
+                                                        fontFamily: 'robotol',
+                                                        fontWeight:
+                                                            FontWeight.bold
+                                                        
+                                                        ),
+                                                  )
+                                                ],
+                                              ),
+                                              
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    'Auction Date: ',
+                                                    style: TextStyle(
+                                                        fontSize:
+                                                            14 * (W / 432),
+                                                        fontFamily: 'roboto',
+                                                        fontWeight:
+                                                            FontWeight.w900),
+                                                  ),
+                                                  Text(
+                                                    cardData.dateAdded,
+                                                    style: TextStyle(
+                                                        fontSize:
+                                                            15 * (W / 432),
+                                                        color: Colors.grey[600],
+                                                        fontFamily: 'robotol',
+                                                        fontWeight:
+                                                            FontWeight.bold
+                                                        // ,letterSpacing: 1
+                                                        ),
+                                                  )
+                                                ],
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    'Location: ',
+                                                    style: TextStyle(
+                                                        fontSize:
+                                                            14 * (W / 432),
+                                                        fontFamily: 'roboto',
+                                                        fontWeight:
+                                                            FontWeight.w900),
+                                                  ),
+                                                  Text(
+                                                    "Roorkee",
+                                                    style: TextStyle(
+                                                        fontSize:
+                                                            15 * (W / 432),
+                                                        color: Colors.grey[600],
+                                                        fontFamily: 'robotol',
+                                                        fontWeight:
+                                                            FontWeight.bold
+                                                        // ,letterSpacing: 1
+                                                        ),
+                                                  )
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                      ),
+                      RefreshIndicator(
+                        backgroundColor: Colors.white,
+                        color: Colors.black,
+                        onRefresh: () async {
+                          await ctrl.refreshPage();
+                        },
+                        child: ListView(
+                          children: ctrl.productsshowinui4.map((cardData) {
+                            return InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => itempage(
+                                      selectpid: cardData.pid,
+                                      selectimage: cardData.pimage,
+                                      selectcategory: cardData.pcategory,
+                                      selectname: cardData.pname,
+                                      selectprice: cardData.pprice,
+                                      selectdate: cardData.dateAdded,
+                                      selectdesc: cardData.pdesc,
+                                      selectptime: cardData.ptime,
+                                      selectlocation: cardData.location,
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: Padding(
+                                padding:  EdgeInsets.fromLTRB(8*(W/432), 4*(H/936), 8*(W/432), 4*(H/936)),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(
+                                        20*(W/432)), // Border radius
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey
+                                            .withOpacity(0.1), // Shadow color
+                                        spreadRadius: 0, // Spread radius
+                                        blurRadius: 1, // Blur radius
+                                        offset: Offset(
+                                            0, 5), // Offset in x and y axes
+                                      ),
+                                    ],
+                                  ),
+                                  child: Card(
+                                    // color: Color.fromARGB(255, 237, 235, 235),
+                                    color: Colors.white,
+                                    // surfaceTintColor: Colors.transparent,
+                                    shadowColor: Colors.black,
+                                    elevation: 0,
+                                    child: Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Padding(
+                                          padding:  EdgeInsets.all(8*(W/432)),
+                                          child: Container(
+                                            width: 130*(W/432),
+                                            height: 130*(W/432),
+                                            decoration: BoxDecoration(
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  color: Colors.grey
+                                                      .withOpacity(
+                                                          0.5), // Shadow color
+                                                  spreadRadius:
+                                                      1, // Spread radius
+                                                  blurRadius: 5, // Blur radius
+                                                  offset: Offset(5,
+                                                      -3), // Offset in x and y axes
+                                                ),
+                                              ],
+                                              borderRadius: BorderRadius.circular(
+                                                  10*(W/432)), // Set border radius here
+                                              image: DecorationImage(
+                                                image: NetworkImage(cardData
+                                                    .pimage), // Replace with your image URL
+                                                fit: BoxFit
+                                                    .cover, // Adjust image fit as needed
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(width: 20*(W/432)),
+                                        Expanded(
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                cardData.pname,
+                                                style: TextStyle(
+                                                    fontSize: 17 * (W / 432),
+                                                    fontFamily: 'roboto',
+                                                    fontWeight:
+                                                        FontWeight.w100),
+                                              ),
+                                              SizedBox(height: 3*(H/936)),
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    'Base Price: ',
+                                                    style: TextStyle(
+                                                    
+                                                        fontSize:
+                                                            14 * (W / 432),
+                                                        fontFamily: 'roboto',
+                                                        fontWeight:
+                                                            FontWeight.w900),
+                                                  ),
+                                                  Text(
+                                                    'Rs.' + cardData.pprice,
+                                                    style: TextStyle(
+                                                        fontSize:
+                                                            15 * (W / 432),
+                                                        
+                                                        color: Color.fromARGB(
+                                                    255, 13, 159, 18),
+                                                        fontFamily: 'robotol',
+                                                        fontWeight:
+                                                            FontWeight.bold
+                                                        
+                                                        ),
+                                                  )
+                                                ],
+                                              ),
+                                              
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    'Auction Date: ',
+                                                    style: TextStyle(
+                                                        fontSize:
+                                                            14 * (W / 432),
+                                                        fontFamily: 'roboto',
+                                                        fontWeight:
+                                                            FontWeight.w900),
+                                                  ),
+                                                  Text(
+                                                    cardData.dateAdded,
+                                                    style: TextStyle(
+                                                        fontSize:
+                                                            15 * (W / 432),
+                                                        color: Colors.grey[600],
+                                                        fontFamily: 'robotol',
+                                                        fontWeight:
+                                                            FontWeight.bold
+                                                        // ,letterSpacing: 1
+                                                        ),
+                                                  )
+                                                ],
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    'Location: ',
+                                                    style: TextStyle(
+                                                        fontSize:
+                                                            14 * (W / 432),
+                                                        fontFamily: 'roboto',
+                                                        fontWeight:
+                                                            FontWeight.w900),
+                                                  ),
+                                                  Text(
+                                                    "Roorkee",
+                                                    style: TextStyle(
+                                                        fontSize:
+                                                            15 * (W / 432),
+                                                        color: Colors.grey[600],
+                                                        fontFamily: 'robotol',
+                                                        fontWeight:
+                                                            FontWeight.bold
+                                                        // ,letterSpacing: 1
+                                                        ),
+                                                  )
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                      ),
+                      RefreshIndicator(
+                        backgroundColor: Colors.white,
+                        color: Colors.black,
+                        onRefresh: () async {
+                          await ctrl.refreshPage();
+                        },
+                        child: ListView(
+                          children: ctrl.productsshowinui5.map((cardData) {
+                            return InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => itempage(
+                                      selectpid: cardData.pid,
+                                      selectimage: cardData.pimage,
+                                      selectcategory: cardData.pcategory,
+                                      selectname: cardData.pname,
+                                      selectprice: cardData.pprice,
+                                      selectdate: cardData.dateAdded,
+                                      selectdesc: cardData.pdesc,
+                                      selectptime: cardData.ptime,
+                                      selectlocation: cardData.location,
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: Padding(
+                                padding:  EdgeInsets.fromLTRB(8*(W/432), 4*(H/936), 8*(W/432), 4*(H/936)),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(
+                                        20*(W/432)), // Border radius
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey
+                                            .withOpacity(0.1), // Shadow color
+                                        spreadRadius: 0, // Spread radius
+                                        blurRadius: 1, // Blur radius
+                                        offset: Offset(
+                                            0, 5), // Offset in x and y axes
+                                      ),
+                                    ],
+                                  ),
+                                  child: Card(
+                                    // color: Color.fromARGB(255, 237, 235, 235),
+                                    color: Colors.white,
+                                    // surfaceTintColor: Colors.transparent,
+                                    shadowColor: Colors.black,
+                                    elevation: 0,
+                                    child: Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Padding(
+                                          padding:  EdgeInsets.all(8*(W/432)),
+                                          child: Container(
+                                            width: 130*(W/432),
+                                            height: 130*(W/432),
+                                            decoration: BoxDecoration(
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  color: Colors.grey
+                                                      .withOpacity(
+                                                          0.5), // Shadow color
+                                                  spreadRadius:
+                                                      1, // Spread radius
+                                                  blurRadius: 5, // Blur radius
+                                                  offset: Offset(5,
+                                                      -3), // Offset in x and y axes
+                                                ),
+                                              ],
+                                              borderRadius: BorderRadius.circular(
+                                                  10*(W/432)), // Set border radius here
+                                              image: DecorationImage(
+                                                image: NetworkImage(cardData
+                                                    .pimage), // Replace with your image URL
+                                                fit: BoxFit
+                                                    .cover, // Adjust image fit as needed
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(width: 20*(W/432)),
+                                        Expanded(
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                cardData.pname,
+                                                style: TextStyle(
+                                                    fontSize: 17 * (W / 432),
+                                                    fontFamily: 'roboto',
+                                                    fontWeight:
+                                                        FontWeight.w100),
+                                              ),
+                                              SizedBox(height: 3*(H/936)),
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    'Base Price: ',
+                                                    style: TextStyle(
+                                                    
+                                                        fontSize:
+                                                            14 * (W / 432),
+                                                        fontFamily: 'roboto',
+                                                        fontWeight:
+                                                            FontWeight.w900),
+                                                  ),
+                                                  Text(
+                                                    'Rs.' + cardData.pprice,
+                                                    style: TextStyle(
+                                                        fontSize:
+                                                            15 * (W / 432),
+                                                        
+                                                        color: Color.fromARGB(
+                                                    255, 13, 159, 18),
+                                                        fontFamily: 'robotol',
+                                                        fontWeight:
+                                                            FontWeight.bold
+                                                        
+                                                        ),
+                                                  )
+                                                ],
+                                              ),
+                                              
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    'Auction Date: ',
+                                                    style: TextStyle(
+                                                        fontSize:
+                                                            14 * (W / 432),
+                                                        fontFamily: 'roboto',
+                                                        fontWeight:
+                                                            FontWeight.w900),
+                                                  ),
+                                                  Text(
+                                                    cardData.dateAdded,
+                                                    style: TextStyle(
+                                                        fontSize:
+                                                            15 * (W / 432),
+                                                        color: Colors.grey[600],
+                                                        fontFamily: 'robotol',
+                                                        fontWeight:
+                                                            FontWeight.bold
+                                                        // ,letterSpacing: 1
+                                                        ),
+                                                  )
+                                                ],
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    'Location: ',
+                                                    style: TextStyle(
+                                                        fontSize:
+                                                            14 * (W / 432),
+                                                        fontFamily: 'roboto',
+                                                        fontWeight:
+                                                            FontWeight.w900),
+                                                  ),
+                                                  Text(
+                                                    "Roorkee",
+                                                    style: TextStyle(
+                                                        fontSize:
+                                                            15 * (W / 432),
+                                                        color: Colors.grey[600],
+                                                        fontFamily: 'robotol',
+                                                        fontWeight:
+                                                            FontWeight.bold
+                                                        // ,letterSpacing: 1
+                                                        ),
+                                                  )
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                      ),
+                      RefreshIndicator(
+                        backgroundColor: Colors.white,
+                        color: Colors.black,
+                        onRefresh: () async {
+                          await ctrl.refreshPage();
+                        },
+                        child: ListView(
+                          children: ctrl.productsshowinui6.map((cardData) {
+                            return InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => itempage(
+                                      selectpid: cardData.pid,
+                                      selectimage: cardData.pimage,
+                                      selectcategory: cardData.pcategory,
+                                      selectname: cardData.pname,
+                                      selectprice: cardData.pprice,
+                                      selectdate: cardData.dateAdded,
+                                      selectdesc: cardData.pdesc,
+                                      selectptime: cardData.ptime,
+                                      selectlocation: cardData.location,
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: Padding(
+                                padding:  EdgeInsets.fromLTRB(8*(W/432), 4*(H/936), 8*(W/432), 4*(H/936)),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(
+                                        20*(W/432)), // Border radius
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey
+                                            .withOpacity(0.1), // Shadow color
+                                        spreadRadius: 0, // Spread radius
+                                        blurRadius: 1, // Blur radius
+                                        offset: Offset(
+                                            0, 5), // Offset in x and y axes
+                                      ),
+                                    ],
+                                  ),
+                                  child: Card(
+                                    // color: Color.fromARGB(255, 237, 235, 235),
+                                    color: Colors.white,
+                                    // surfaceTintColor: Colors.transparent,
+                                    shadowColor: Colors.black,
+                                    elevation: 0,
+                                    child: Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Padding(
+                                          padding:  EdgeInsets.all(8*(W/432)),
+                                          child: Container(
+                                            width: 130*(W/432),
+                                            height: 130*(W/432),
+                                            decoration: BoxDecoration(
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  color: Colors.grey
+                                                      .withOpacity(
+                                                          0.5), // Shadow color
+                                                  spreadRadius:
+                                                      1, // Spread radius
+                                                  blurRadius: 5, // Blur radius
+                                                  offset: Offset(5,
+                                                      -3), // Offset in x and y axes
+                                                ),
+                                              ],
+                                              borderRadius: BorderRadius.circular(
+                                                  10*(W/432)), // Set border radius here
+                                              image: DecorationImage(
+                                                image: NetworkImage(cardData
+                                                    .pimage), // Replace with your image URL
+                                                fit: BoxFit
+                                                    .cover, // Adjust image fit as needed
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(width: 20*(W/432)),
+                                        Expanded(
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                cardData.pname,
+                                                style: TextStyle(
+                                                    fontSize: 17 * (W / 432),
+                                                    fontFamily: 'roboto',
+                                                    fontWeight:
+                                                        FontWeight.w100),
+                                              ),
+                                              SizedBox(height: 3*(H/936)),
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    'Base Price: ',
+                                                    style: TextStyle(
+                                                    
+                                                        fontSize:
+                                                            14 * (W / 432),
+                                                        fontFamily: 'roboto',
+                                                        fontWeight:
+                                                            FontWeight.w900),
+                                                  ),
+                                                  Text(
+                                                    'Rs.' + cardData.pprice,
+                                                    style: TextStyle(
+                                                        fontSize:
+                                                            15 * (W / 432),
+                                                        
+                                                        color: Color.fromARGB(
+                                                    255, 13, 159, 18),
+                                                        fontFamily: 'robotol',
+                                                        fontWeight:
+                                                            FontWeight.bold
+                                                        
+                                                        ),
+                                                  )
+                                                ],
+                                              ),
+                                              
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    'Auction Date: ',
+                                                    style: TextStyle(
+                                                        fontSize:
+                                                            14 * (W / 432),
+                                                        fontFamily: 'roboto',
+                                                        fontWeight:
+                                                            FontWeight.w900),
+                                                  ),
+                                                  Text(
+                                                    cardData.dateAdded,
+                                                    style: TextStyle(
+                                                        fontSize:
+                                                            15 * (W / 432),
+                                                        color: Colors.grey[600],
+                                                        fontFamily: 'robotol',
+                                                        fontWeight:
+                                                            FontWeight.bold
+                                                        // ,letterSpacing: 1
+                                                        ),
+                                                  )
+                                                ],
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    'Location: ',
+                                                    style: TextStyle(
+                                                        fontSize:
+                                                            14 * (W / 432),
+                                                        fontFamily: 'roboto',
+                                                        fontWeight:
+                                                            FontWeight.w900),
+                                                  ),
+                                                  Text(
+                                                    "Roorkee",
+                                                    style: TextStyle(
+                                                        fontSize:
+                                                            15 * (W / 432),
+                                                        color: Colors.grey[600],
+                                                        fontFamily: 'robotol',
+                                                        fontWeight:
+                                                            FontWeight.bold
+                                                        // ,letterSpacing: 1
+                                                        ),
+                                                  )
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                      ),
+                      RefreshIndicator(
+                        backgroundColor: Colors.white,
+                        color: Colors.black,
+                        onRefresh: () async {
+                          await ctrl.refreshPage();
+                        },
+                        child: ListView(
+                          children: ctrl.productsshowinui7.map((cardData) {
+                            return InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => itempage(
+                                      selectpid: cardData.pid,
+                                      selectimage: cardData.pimage,
+                                      selectcategory: cardData.pcategory,
+                                      selectname: cardData.pname,
+                                      selectprice: cardData.pprice,
+                                      selectdate: cardData.dateAdded,
+                                      selectdesc: cardData.pdesc,
+                                      selectptime: cardData.ptime,
+                                      selectlocation: cardData.location,
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: Padding(
+                                padding:  EdgeInsets.fromLTRB(8*(W/432), 4*(H/936), 8*(W/432), 4*(H/936)),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(
+                                        20*(W/432)), // Border radius
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey
+                                            .withOpacity(0.1), // Shadow color
+                                        spreadRadius: 0, // Spread radius
+                                        blurRadius: 1, // Blur radius
+                                        offset: Offset(
+                                            0, 5), // Offset in x and y axes
+                                      ),
+                                    ],
+                                  ),
+                                  child: Card(
+                                    // color: Color.fromARGB(255, 237, 235, 235),
+                                    color: Colors.white,
+                                    // surfaceTintColor: Colors.transparent,
+                                    shadowColor: Colors.black,
+                                    elevation: 0,
+                                    child: Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Padding(
+                                          padding:  EdgeInsets.all(8*(W/432)),
+                                          child: Container(
+                                            width: 130*(W/432),
+                                            height: 130*(W/432),
+                                            decoration: BoxDecoration(
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  color: Colors.grey
+                                                      .withOpacity(
+                                                          0.5), // Shadow color
+                                                  spreadRadius:
+                                                      1, // Spread radius
+                                                  blurRadius: 5, // Blur radius
+                                                  offset: Offset(5,
+                                                      -3), // Offset in x and y axes
+                                                ),
+                                              ],
+                                              borderRadius: BorderRadius.circular(
+                                                  10*(W/432)), // Set border radius here
+                                              image: DecorationImage(
+                                                image: NetworkImage(cardData
+                                                    .pimage), // Replace with your image URL
+                                                fit: BoxFit
+                                                    .cover, // Adjust image fit as needed
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(width: 20*(W/432)),
+                                        Expanded(
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                cardData.pname,
+                                                style: TextStyle(
+                                                    fontSize: 17 * (W / 432),
+                                                    fontFamily: 'roboto',
+                                                    fontWeight:
+                                                        FontWeight.w100),
+                                              ),
+                                              SizedBox(height: 3*(H/936)),
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    'Base Price: ',
+                                                    style: TextStyle(
+                                                    
+                                                        fontSize:
+                                                            14 * (W / 432),
+                                                        fontFamily: 'roboto',
+                                                        fontWeight:
+                                                            FontWeight.w900),
+                                                  ),
+                                                  Text(
+                                                    'Rs.' + cardData.pprice,
+                                                    style: TextStyle(
+                                                        fontSize:
+                                                            15 * (W / 432),
+                                                        
+                                                        color: Color.fromARGB(
+                                                    255, 13, 159, 18),
+                                                        fontFamily: 'robotol',
+                                                        fontWeight:
+                                                            FontWeight.bold
+                                                        
+                                                        ),
+                                                  )
+                                                ],
+                                              ),
+                                              
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    'Auction Date: ',
+                                                    style: TextStyle(
+                                                        fontSize:
+                                                            14 * (W / 432),
+                                                        fontFamily: 'roboto',
+                                                        fontWeight:
+                                                            FontWeight.w900),
+                                                  ),
+                                                  Text(
+                                                    cardData.dateAdded,
+                                                    style: TextStyle(
+                                                        fontSize:
+                                                            15 * (W / 432),
+                                                        color: Colors.grey[600],
+                                                        fontFamily: 'robotol',
+                                                        fontWeight:
+                                                            FontWeight.bold
+                                                        // ,letterSpacing: 1
+                                                        ),
+                                                  )
+                                                ],
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    'Location: ',
+                                                    style: TextStyle(
+                                                        fontSize:
+                                                            14 * (W / 432),
+                                                        fontFamily: 'roboto',
+                                                        fontWeight:
+                                                            FontWeight.w900),
+                                                  ),
+                                                  Text(
+                                                    "Roorkee",
+                                                    style: TextStyle(
+                                                        fontSize:
+                                                            15 * (W / 432),
+                                                        color: Colors.grey[600],
+                                                        fontFamily: 'robotol',
+                                                        fontWeight:
+                                                            FontWeight.bold
+                                                        // ,letterSpacing: 1
+                                                        ),
+                                                  )
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                      ),
+
+
+
+
+
+                      
                     ],
                   ),
                 ),
