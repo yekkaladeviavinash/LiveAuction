@@ -15,6 +15,8 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await FirebaseAppCheck.instance.activate(
+  );
+  await FirebaseAppCheck.instance.activate(
     // webProvider: ReCaptchaV3Provider('recaptcha-v3-site-key'),
     androidProvider: AndroidProvider.debug,
     // appleProvider: AppleProvider.appAttest,
@@ -24,6 +26,7 @@ void main() async {
   Get.put(Todayauctioncontroller());
   Get.put(Profilecontroller());
   runApp(const MyApp());
+  // runApp(const Bidding());
 }
 
 class MyApp extends StatelessWidget {
@@ -31,20 +34,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-<<<<<<< Updated upstream
-    color: Color.fromARGB(255, 254, 254, 255),
-    theme: ThemeData(
-      textTheme: TextTheme(
-        bodyText1: TextStyle(fontFamily: 'Roboto'),
-
-=======
       color: Color.fromARGB(255, 254, 254, 255),
       theme: ThemeData(
         textTheme: TextTheme(
           bodyText1: TextStyle(fontFamily: 'Roboto'),
           // Add more text styles as needed
         ),
->>>>>>> Stashed changes
       ),
       debugShowCheckedModeBanner: false,
       home: Loading(),

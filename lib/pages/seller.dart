@@ -9,11 +9,7 @@ const List<String> list = [
   'Category',
   'Collectibles',
   'Antiques',
-<<<<<<< Updated upstream
   'Articrafts',
-=======
-  'ArtiCrafts',
->>>>>>> Stashed changes
   'Electronics',
   'Books',
   'Sports',

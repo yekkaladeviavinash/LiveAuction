@@ -221,4 +221,12 @@ class Sellercontroller extends GetxController {
     datechosen = DateTime.tryParse(formattedDate);
     update();
   }
+  refreshPage() async {
+    await getproduct();
+    update();
+  }
 }
+
+
+
+//refresh 

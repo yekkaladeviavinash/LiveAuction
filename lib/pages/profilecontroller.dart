@@ -98,4 +98,18 @@ class Profilecontroller extends GetxController {
     // Iterable<usermodel> curruser = userslist
     //     .where((user) => user.uid == FirebaseAuth.instance.currentUser!.uid);
   }
+
+
+Future<void> deleteProductfromwishlist(String id) async {
+    // await productCollection.doc(id).delete();
+    print("hellooooooooo");
+  }
+
+  refreshPage() async {
+    await getsellerproducts();
+    update();
+  }
+
+
+
 }

@@ -264,12 +264,12 @@ class _TodayauctionState extends State<Todayauction> {
                         ElevatedButton(
                           onPressed: () {
                             // Handle button p
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => bidding(selectpid:cardData.pid,selectimage: cardData.pimage, selectcategory: cardData.pcategory, selectname: cardData.pname, selectprice: cardData.pprice, selectdate: cardData.dateAdded, selectdesc: cardData.pdesc,),
-                              ),
-                            );
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //     builder: (context) => bidding(selectpid:cardData.pid,selectimage: cardData.pimage, selectcategory: cardData.pcategory, selectname: cardData.pname, selectprice: cardData.pprice, selectdate: cardData.dateAdded, selectdesc: cardData.pdesc,),
+                            //   ),
+                            // );
                           },
                           child: Text('Enter'),
                         ),
