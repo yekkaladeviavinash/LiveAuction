@@ -229,11 +229,11 @@ class itempage extends StatefulWidget {
   State<itempage> createState() => _itempageState();
 }
 
-class StringComparer {
-  static bool lessThan(String s1, String s2) {
-    return s1.compareTo(s2) < 0;
-  }
-}
+// class StringComparer {
+//   static bool lessThan(String s1, String s2) {
+//     return s1.compareTo(s2) < 0;
+//   }
+// }
 
 class _itempageState extends State<itempage> {
   String? todaydate = DateFormat("yyyy-MM-dd").format(DateTime.now());
@@ -243,12 +243,45 @@ class _itempageState extends State<itempage> {
 
   @override
   Widget build(BuildContext context) {
+    String showingyear=widget.selectdate!.substring(0,4);
+    String showingdate = widget.selectdate!.substring(widget.selectdate!.length - 2);
+    String month = widget.selectdate!.substring(5, 7);
+    String showingmonth='';
+    if(month=='01'){
+      showingmonth="Jan";
+    }else if(month=='02'){
+      showingmonth="Feb";
+    }else if(month=='03'){
+      showingmonth="Mar";
+    }else if(month=='04'){
+      showingmonth="Apr";
+    }else if(month=='05'){
+      showingmonth="May";
+    }else if(month=='06'){
+      showingmonth="Jun";
+    }else if(month=='07'){
+      showingmonth="July";
+    }else if(month=='08'){
+      showingmonth="Aug";
+    }else if(month=='09'){
+      showingmonth="Sep";
+    }else if(month=='10'){
+      showingmonth="Oct";
+    }else if(month=='11'){
+      showingmonth="Nov";
+    }else if(month=='12'){
+      showingmonth="Dec";
+    }
+    
+
+
+
     Size screenSize = MediaQuery.of(context).size;
     double W = screenSize.width;
     double H = screenSize.height;
     print(W);
     print(H);
-    return GetBuilder<ItemController>(builder: (ctrl) {
+    return GetBuilder<ItemController>(builder: (ctrl){
       int result = todaydate!.compareTo(widget.selectdate!);
       return Scaffold(
         resizeToAvoidBottomInset: false,
@@ -289,14 +322,14 @@ class _itempageState extends State<itempage> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "Dattu's Beautiful painting ",
+                                    widget.selectname??'',
                                     style: TextStyle(
                                       fontFamily: 'robotom',
                                       fontSize: 24*(W/432),
                                     ),
                                   ),
                                   Text(
-                                    'which Category',
+                                    widget.selectcategory??'',
                                     style: TextStyle(
                                       fontFamily: 'robotol',
                                       fontSize: 14*(W/432),
@@ -372,7 +405,7 @@ class _itempageState extends State<itempage> {
                                                 fontWeight: FontWeight.w900),
                                           ), //in Aug,12,2023 form
                                           Text(
-                                            'Aug, 12, 2023',
+                                            showingmonth+" "+showingdate+", "+showingyear,
                                             style: TextStyle(
                                                 fontSize: 16*(W/432),
                                                 color: Colors.grey[600],
@@ -412,7 +445,7 @@ class _itempageState extends State<itempage> {
                                                 fontWeight: FontWeight.w900),
                                           ), //in 8d:20hrs form
                                           Text(
-                                            '8d:20hrs',
+                                            widget.selectptime.toString()+":00 to "+(widget.selectptime!+1).toString()+":00 (IST)",
                                             style: TextStyle(
                                                 fontSize: 16*(W/432),
                                                 color: Colors.grey[600],
@@ -457,7 +490,7 @@ class _itempageState extends State<itempage> {
                                                 fontWeight: FontWeight.w900),
                                           ), //in  form
                                           Text(
-                                            '2,000 Rupees',
+                                            widget.selectprice!+' Rupees',
                                             style: TextStyle(
                                                 fontSize: 16*(W/432),
                                                 color: Color.fromARGB(
@@ -498,7 +531,7 @@ class _itempageState extends State<itempage> {
                                                 fontWeight: FontWeight.w900),
                                           ), //in  form
                                           Text(
-                                            'Roorkee',
+                                            widget.selectlocation??'',
                                             style: TextStyle(
                                                 fontSize: 16*(W/432),
                                                 color: Colors.grey[600],
@@ -616,7 +649,7 @@ class _itempageState extends State<itempage> {
                           ],
                         ),
                         Text(
-                            'The artwork is signed on the back and on the front. The certificate of authenticity will include the name of the owner who purchased the piece of artwork. The certificate is signed by Leonid Afremov Studio. If you are buying this painting as a gift, please provide us the name of the gift recipient for the certificate. We can also ship to the address of the recipient of your gift.',
+                            widget.selectdesc!,
                             style: TextStyle(
                                 fontSize: 15*(W/432),
                                 color: Colors.grey[600],
@@ -630,6 +663,8 @@ class _itempageState extends State<itempage> {
             ),
           ),
         ),
+
+
         bottomNavigationBar: BottomAppBar(
           height: 60 * (H / 974.3),
           padding: EdgeInsets.fromLTRB(
@@ -672,36 +707,37 @@ class _itempageState extends State<itempage> {
                 ),
               ),
               SizedBox(width: 19 * (W / 448)),
-              TextButton(
-                style: ButtonStyle(
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(7.0),
-                      side: BorderSide(width: 2.0),
+
+                TextButton(
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(7.0),
+                        side: BorderSide(width: 2.0),
+                      ),
+                    ),
+                    backgroundColor: MaterialStateColor.resolveWith(
+                        (states) => Color.fromARGB(255, 32, 32, 32)),
+                  ),
+                  onPressed: () {
+                    ctrl.registerUser(widget.selectpid!);
+                    print('Second Button Pressed');
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.all(4 * (W / 448)),
+                    child: Row(
+                      children: [
+                        Icon(Icons.account_circle_outlined, color: Colors.white),
+                        SizedBox(width: 5 * (W / 448)),
+                        Text(
+                          'Register for auction',
+                          style: TextStyle(
+                              fontSize: 16 * (W / 448), color: Colors.white),
+                        ),
+                      ],
                     ),
                   ),
-                  backgroundColor: MaterialStateColor.resolveWith(
-                      (states) => Color.fromARGB(255, 32, 32, 32)),
                 ),
-                onPressed: () {
-                  ctrl.registerUser(widget.selectpid!);
-                  print('Second Button Pressed');
-                },
-                child: Padding(
-                  padding: EdgeInsets.all(4 * (W / 448)),
-                  child: Row(
-                    children: [
-                      Icon(Icons.account_circle_outlined, color: Colors.white),
-                      SizedBox(width: 5 * (W / 448)),
-                      Text(
-                        'Register for auction',
-                        style: TextStyle(
-                            fontSize: 16 * (W / 448), color: Colors.white),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
             ],
           ),
         ),
