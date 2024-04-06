@@ -13,7 +13,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:liveauction/models/productmodel.dart';
 import 'package:intl/intl.dart';
-
+import 'package:liveauction/models/usermodel.dart';
 // import '../models/datemodel.dart';
 
 class Sellercontroller extends GetxController {
@@ -38,6 +38,11 @@ class Sellercontroller extends GetxController {
   List<productmodel> productsshowinui5 = [];
   List<productmodel> productsshowinui6 = [];
   List<productmodel> productsshowinui7 = [];
+  bool userreg=false;
+  bool userwish=false;
+List<usermodel> userslist = [];
+  List<dynamic> aucthis = [];
+  List<dynamic> wishthis=[];
 
   Future<void> onInit() async {
     // if(selectedcategory!=''){
@@ -225,8 +230,134 @@ class Sellercontroller extends GetxController {
     await getproduct();
     update();
   }
+
+
+
+
+
+
+
+  Future<void> registerUser(String? pid) async {
+    try {
+      if (pid != null) {
+        await productcollection.doc(pid).update({
+          'registeredusers': FieldValue.arrayUnion([FirebaseAuth.instance.currentUser!.uid]),
+        });
+        await usercollection.doc(FirebaseAuth.instance.currentUser!.uid).update({
+          'auctionhistory': FieldValue.arrayUnion([pid]),
+        });
+        Get.snackbar('Success', 'Registered successfully', colorText: Colors.green);
+      } else {
+        throw Exception("Product ID is null");
+      }
+
+    } catch (e) {
+      print("Error in ItemController registerUser: $e");
+      Get.snackbar('Error', 'Failed to register', colorText: Colors.red);
+    }
+  }
+
+
+  Future<void> addtowishlist(String? pid) async {
+    try {
+      if (pid != null) {
+        await usercollection.doc(FirebaseAuth.instance.currentUser!.uid).update({
+          'wishlist': FieldValue.arrayUnion([pid]),
+        });
+        Get.snackbar('Success', 'Added to wishlist successfully', colorText: Colors.green);
+      } else {
+        throw Exception("Product ID is null");
+      }
+      update();
+
+    } catch (e) {
+      print("Error in ItemController2 registerUser: $e");
+      Get.snackbar('Error', 'Failed to register', colorText: Colors.red);
+    }
+  }
+
+
+
+  Future<void> checkregstatus(String? pid)async{
+    print("Iam called in controller");
+QuerySnapshot usersnapshot = await usercollection.get();
+      final List<usermodel> retrievedusers = usersnapshot.docs.map((doc) {
+        final userData = doc.data();
+        if (userData != null) {
+          // print(userData as Map<String, dynamic>);
+          return usermodel.fromJson(userData as Map<String, dynamic>);
+        } else {
+          throw Exception('Document data is null');
+        }
+      }).toList();
+
+      userslist.clear();
+      userslist.assignAll(retrievedusers);
+       if (FirebaseAuth.instance.currentUser != null) {
+      print(FirebaseAuth.instance.currentUser.toString());
+      Iterable<usermodel> curruser = userslist
+          .where((user) => user.uid == FirebaseAuth.instance.currentUser!.uid);
+      
+
+      aucthis = curruser.firstOrNull?.auctionhistory ?? [];
+
+    
+  
+      List<String> auctionHistory = aucthis.cast<String>();
+
+     if(auctionHistory.contains(pid)!=false){
+      userreg=true;
+     }
+     print(userreg.toString()+"in controller");
+    } else {
+      // Handle the case when the user is not logged in
+      print("User is not logged in2222222222222222");
+    }
+    update();
+}
+
+
+  Future<void> checkwishliststatus(String? pid)async{
+    print("Iam called in controller");
+QuerySnapshot usersnapshot = await usercollection.get();
+      final List<usermodel> retrievedusers = usersnapshot.docs.map((doc) {
+        final userData = doc.data();
+        if (userData != null) {
+          // print(userData as Map<String, dynamic>);
+          return usermodel.fromJson(userData as Map<String, dynamic>);
+        } else {
+          throw Exception('Document data is null');
+        }
+      }).toList();
+
+      userslist.clear();
+      userslist.assignAll(retrievedusers);
+       if (FirebaseAuth.instance.currentUser != null) {
+      print(FirebaseAuth.instance.currentUser.toString());
+      Iterable<usermodel> curruser = userslist
+          .where((user) => user.uid == FirebaseAuth.instance.currentUser!.uid);
+      
+
+      wishthis = curruser.firstOrNull?.wishlist ?? [];
+
+    
+  
+      List<String> wishlist = wishthis.cast<String>();
+
+     if(wishlist.contains(pid)!=false){
+      userwish=true;
+     }
+     print(userwish.toString()+"in controller");
+    } else {
+      // Handle the case when the user is not logged in
+      print("User is not logged in111111111111111111");
+    }
+      update();
 }
 
 
 
-//refresh 
+
+
+
+}

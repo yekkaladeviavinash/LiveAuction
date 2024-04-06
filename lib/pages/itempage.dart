@@ -199,7 +199,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import '../models/datemodel.dart';
-import 'package:liveauction/pages/itempage_controller.dart';
+import 'package:liveauction/pages/seller_controller.dart';
 
 class itempage extends StatefulWidget {
   final String? selectpid;
@@ -211,7 +211,7 @@ class itempage extends StatefulWidget {
   final String? selectdesc;
   final int? selectptime;
   final String? selectlocation;
-
+  final List? selectregisteredusers;
   const itempage({
     Key? key,
     required this.selectpid,
@@ -223,6 +223,7 @@ class itempage extends StatefulWidget {
     required this.selectdesc,
     required this.selectptime,
     required this.selectlocation,
+    required this.selectregisteredusers,
   }) : super(key: key);
 
   @override
@@ -281,7 +282,7 @@ class _itempageState extends State<itempage> {
     double H = screenSize.height;
     print(W);
     print(H);
-    return GetBuilder<ItemController>(builder: (ctrl){
+    return GetBuilder<Sellercontroller>(builder: (ctrl){
       int result = todaydate!.compareTo(widget.selectdate!);
       return Scaffold(
         resizeToAvoidBottomInset: false,
@@ -575,7 +576,7 @@ class _itempageState extends State<itempage> {
                               width: 5*(W/432),
                             ),
                             Text(
-                              '20 Users only',
+                              widget.selectregisteredusers!.length.toString()+" Users",
                               style: TextStyle(
                                   fontSize: 16*(W/432),
                                   color: Color.fromARGB(
@@ -602,7 +603,7 @@ class _itempageState extends State<itempage> {
                             SizedBox(
                               width: 5*(W/432),
                             ),
-                            (1<0)? Text(   //here registered condition
+                            (ctrl.userreg)? Text(   //here registered condition
                               'Registered',
                               style: TextStyle(
                                   fontSize: 16*(W/432),
@@ -676,6 +677,7 @@ class _itempageState extends State<itempage> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
+            if(ctrl.userwish!=true)  
               TextButton(
                 style: ButtonStyle(
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -689,6 +691,7 @@ class _itempageState extends State<itempage> {
                 ),
                 onPressed: () {
                   ctrl.addtowishlist(widget.selectpid!);
+                  ctrl.checkwishliststatus(widget.selectpid!);
                   print('First Button Pressed');
                 },
                 child: Padding(
@@ -706,8 +709,40 @@ class _itempageState extends State<itempage> {
                   ),
                 ),
               ),
-              SizedBox(width: 19 * (W / 448)),
 
+            if(ctrl.userwish==true)
+              TextButton(
+                style: ButtonStyle(
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(7),
+                      side: BorderSide(width: 2.0),
+                    ),
+                  ),
+                  backgroundColor: MaterialStateColor.resolveWith(
+                      (states) => Color.fromARGB(255, 247, 245, 245)),
+                ),
+                onPressed: () {
+                },
+                child: Padding(
+                  padding: EdgeInsets.all(4 * (H / 974.3)),
+                  child: Row(
+                    children: [
+                      Icon(Icons.bookmark_add_outlined, color: Colors.green),
+                      SizedBox(width: 5 * (W / 448)),
+                      Text(
+                        'Added to Wishlist',
+                        style: TextStyle(
+                            fontSize: 16 * (W / 448), color: Colors.green),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+
+              SizedBox(width: 19 * (W / 448)),
+              
+              if(ctrl.userreg!=true)
                 TextButton(
                   style: ButtonStyle(
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -721,6 +756,7 @@ class _itempageState extends State<itempage> {
                   ),
                   onPressed: () {
                     ctrl.registerUser(widget.selectpid!);
+                    ctrl.checkregstatus(widget.selectpid!);
                     print('Second Button Pressed');
                   },
                   child: Padding(
@@ -738,6 +774,39 @@ class _itempageState extends State<itempage> {
                     ),
                   ),
                 ),
+
+
+
+            if(ctrl.userreg==true)
+                TextButton(
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(7.0),
+                        side: BorderSide(width: 2.0),
+                      ),
+                    ),
+                    backgroundColor: MaterialStateColor.resolveWith(
+                        (states) => Color.fromARGB(255, 247, 245, 245)),
+                  ),
+                  onPressed: () {
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.all(4 * (W / 448)),
+                    child: Row(
+                      children: [
+                        Icon(Icons.account_circle_outlined, color: Colors.green),
+                        SizedBox(width: 5 * (W / 448)),
+                        Text(
+                          'Already Registered',
+                          style: TextStyle(
+                              fontSize: 16 * (W / 448), color: Colors.green),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+
             ],
           ),
         ),

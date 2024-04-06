@@ -40,7 +40,7 @@ class Todayauctioncontroller extends GetxController {
       cameproducts.assignAll(retrievedproducts);
       update();
     } catch (e) {
-      print("Error shown in todayauction controller ${e}");
+      print("Error shown in todayauction controller2222222222222 ${e}");
     }
     todayproduct = cameproducts
         .where((product) =>
@@ -54,11 +54,11 @@ class Todayauctioncontroller extends GetxController {
 
   int getProducttime(int n) {
     if (n == 0) return 9;
-    if (n == 1) return 18;
-    if (n == 2) return 11;
-    if (n == 3) return 20;
+    if (n == 1) return 11;
+    if (n == 2) return 14;
+    if (n == 3) return 16;
     if (n == 4) {
-      return 17;
+      return 18;
     } else {
       return 0;
     }
@@ -76,7 +76,7 @@ class Todayauctioncontroller extends GetxController {
       dateli.assignAll(retrieveddates);
       update();
     } catch (e) {
-      print("Error shown in todayauction controller ${e}");
+      print("Error shown in todayauction controller1111111111111111111 ${e}");
     }
     Iterable<datemodel> today =
         dateli.where((datess) => datess.date == todaydate);

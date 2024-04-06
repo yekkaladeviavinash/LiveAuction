@@ -236,7 +236,11 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
                         child: ListView(
                           children: ctrl.productsshowinui1.map((cardData) {
                             return InkWell(
-                              onTap: () {
+                              onTap: (){
+                                ctrl.userreg=false;
+                                ctrl.userwish=false;
+                                ctrl.checkwishliststatus(cardData.pid);
+                                ctrl.checkregstatus(cardData.pid);
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -250,6 +254,7 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
                                       selectdesc: cardData.pdesc,
                                       selectptime: cardData.ptime,
                                       selectlocation: cardData.location,
+                                      selectregisteredusers: cardData.registeredusers,
                                     ),
                                   ),
                                 );
@@ -427,9 +432,13 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
                           await ctrl.refreshPage();
                         },
                         child: ListView(
-                          children: ctrl.productsshowinui2.map((cardData) {
+                          children: ctrl.productsshowinui2.map((cardData){
                             return InkWell(
                               onTap: () {
+                                ctrl.userreg=false;
+                                ctrl.userwish=false;
+                                ctrl.checkwishliststatus(cardData.pid);
+                                ctrl.checkregstatus(cardData.pid);
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -443,6 +452,7 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
                                       selectdesc: cardData.pdesc,
                                       selectptime: cardData.ptime,
                                       selectlocation: cardData.location,
+                                      selectregisteredusers: cardData.registeredusers,
                                     ),
                                   ),
                                 );
@@ -621,6 +631,10 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
                           children: ctrl.productsshowinui3.map((cardData) {
                             return InkWell(
                               onTap: () {
+                                ctrl.userreg=false;
+                                ctrl.userwish=false;
+                                ctrl.checkwishliststatus(cardData.pid);
+                                ctrl.checkregstatus(cardData.pid);
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -634,6 +648,7 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
                                       selectdesc: cardData.pdesc,
                                       selectptime: cardData.ptime,
                                       selectlocation: cardData.location,
+                                      selectregisteredusers: cardData.registeredusers,
                                     ),
                                   ),
                                 );
@@ -812,6 +827,10 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
                           children: ctrl.productsshowinui4.map((cardData) {
                             return InkWell(
                               onTap: () {
+                                ctrl.userreg=false;
+                                ctrl.userwish=false;
+                                ctrl.checkwishliststatus(cardData.pid);
+                                ctrl.checkregstatus(cardData.pid);
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -825,6 +844,7 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
                                       selectdesc: cardData.pdesc,
                                       selectptime: cardData.ptime,
                                       selectlocation: cardData.location,
+                                      selectregisteredusers: cardData.registeredusers,
                                     ),
                                   ),
                                 );
@@ -1003,6 +1023,10 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
                           children: ctrl.productsshowinui5.map((cardData) {
                             return InkWell(
                               onTap: () {
+                                ctrl.userreg=false;
+                                ctrl.userwish=false;
+                                ctrl.checkwishliststatus(cardData.pid);
+                                ctrl.checkregstatus(cardData.pid);
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -1016,6 +1040,7 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
                                       selectdesc: cardData.pdesc,
                                       selectptime: cardData.ptime,
                                       selectlocation: cardData.location,
+                                      selectregisteredusers: cardData.registeredusers,
                                     ),
                                   ),
                                 );
@@ -1194,6 +1219,10 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
                           children: ctrl.productsshowinui6.map((cardData) {
                             return InkWell(
                               onTap: () {
+                                ctrl.userreg=false;
+                                ctrl.userwish=false;
+                                ctrl.checkwishliststatus(cardData.pid);
+                                ctrl.checkregstatus(cardData.pid);
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -1207,6 +1236,7 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
                                       selectdesc: cardData.pdesc,
                                       selectptime: cardData.ptime,
                                       selectlocation: cardData.location,
+                                      selectregisteredusers: cardData.registeredusers,
                                     ),
                                   ),
                                 );
@@ -1385,6 +1415,10 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
                           children: ctrl.productsshowinui7.map((cardData) {
                             return InkWell(
                               onTap: () {
+                                ctrl.userreg=false;
+                                ctrl.userwish=false;
+                                ctrl.checkwishliststatus(cardData.pid);
+                                ctrl.checkregstatus(cardData.pid);
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -1398,6 +1432,7 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
                                       selectdesc: cardData.pdesc,
                                       selectptime: cardData.ptime,
                                       selectlocation: cardData.location,
+                                      selectregisteredusers: cardData.registeredusers,
                                     ),
                                   ),
                                 );

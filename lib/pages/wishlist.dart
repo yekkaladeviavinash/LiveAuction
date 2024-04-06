@@ -56,6 +56,7 @@ class _WishlistPageState extends State<WishlistPage> {
                           selectdesc: item.pdesc,
                           selectptime: item.ptime,
                           selectlocation: item.location,
+                          selectregisteredusers: item.registeredusers,
                         ),
                       ),
                     );
