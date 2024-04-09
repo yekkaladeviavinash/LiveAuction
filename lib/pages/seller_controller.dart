@@ -307,6 +307,8 @@ QuerySnapshot usersnapshot = await usercollection.get();
 
      if(auctionHistory.contains(pid)!=false){
       userreg=true;
+     }else{
+      userreg=false;
      }
      print(userreg.toString()+"in controller");
     } else {
@@ -346,6 +348,8 @@ QuerySnapshot usersnapshot = await usercollection.get();
 
      if(wishlist.contains(pid)!=false){
       userwish=true;
+     }else{
+      userwish=false;
      }
      print(userwish.toString()+"in controller");
     } else {
@@ -357,6 +361,50 @@ QuerySnapshot usersnapshot = await usercollection.get();
 
 
 
+
+  Future<void> deleteProductfromwishlist(String pid) async {
+    try {
+      // Query for the document with the specified uid
+      QuerySnapshot usersSnapshot = await usercollection
+          .where('uid', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+          .limit(1)
+          .get();
+
+      // Check if document exists
+      if (usersSnapshot.docs.isNotEmpty) {
+        // Get the reference to the document
+        DocumentReference docRef = usersSnapshot.docs.first.reference;
+
+        // Get the current data of the document
+        Map<String, dynamic>? data =
+            usersSnapshot.docs.first.data() as Map<String, dynamic>?;
+
+        if (data != null) {
+          // Check if the 'slots' field exists and is a list
+          if (data.containsKey('wishlist') && data['wishlist'] is List) {
+            // Remove the string pid from the 'slots' list
+            List<dynamic> wlts = List.from(data['wishlist']);
+            wlts.remove(pid);
+            refreshPage();
+            // Update the document with the modified 'slots' list
+            await docRef.update({'wishlist': wlts});
+          } else {
+            // Handle if 'slots' field doesn't exist or is not a list
+            print('Error: No slots field or slots is not a list');
+          }
+        } else {
+          print('Error: Document data is null');
+        }
+        
+      } else {
+        // Handle if document with given date doesn't exist
+        print('Document not found');
+      }
+    } catch (e) {
+      // Handle any errors that occur during the process
+      print('Error deleting string from date: $e');
+    }
+  }
 
 
 

@@ -22,7 +22,7 @@ void main() async {
     // appleProvider: AppleProvider.appAttest,
   );
   Get.put(Sellercontroller());
-  Get.put(ItemController());
+  // Get.put(ItemController());
   Get.put(Todayauctioncontroller());
   Get.put(Profilecontroller());
   runApp(const MyApp());

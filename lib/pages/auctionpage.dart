@@ -4,6 +4,11 @@ import 'package:flutter/rendering.dart';
 import 'dart:math';
 import 'package:flutter/widgets.dart';
 import 'dart:async';
+import 'package:get/get.dart';
+import 'package:socket_io_client/socket_io_client.dart' as IO;
+import 'package:uuid/uuid.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class auctionpage extends StatefulWidget {
   final String? selectpid;
@@ -31,36 +36,157 @@ class auctionpage extends StatefulWidget {
 
 class _auctionpageState extends State<auctionpage> {
   final int yourBid = 23623478;
-  int highestBid = 25678776;
+  // int highestBid = 25678776;
   double _progressValue = 0.0;
-  String highestBidder = 'Gojo Satoru';
-  final int _totalTime = 120;
+  // String highestBidder = 'Gojo Satoru';
+  int _totalTime = 120;
   final TextEditingController bid = TextEditingController();
-  String timer = '45 min :00 sec';
-  // String itemName = 'Oil Painting';
-  // TextEditingController placeBid = TextEditingController();
+  // String timer = '45 min :00 sec';
   bool _isButtonVisible = true;
-  // String description =
-  //     'The Six Eyes (六 (りく) 眼 (がん) , Rikugan?) is a rare ocular jujutsu inherited within the Gojo Family. It grants the user extraordinary perception and the ability to utilize the Limitless to its fullest potential. Satoru Gojo is the first sorcerer to be born with both the Limitless and the Six Eyes in the last hundred years. The Six Eyes were always bound to Master Tengen and the Star Plasma Vessel by fate';
   bool _showGif = false;
+
+
+
+
+
+
+
+  IO.Socket? socket;
+  int? num;
+  int? mynum;
+  String? user;
+  int? countdown;
+  int? countinmin;
+  int? countinsec;
+  int? endingtimer;
+  int? endingtimermin;
+  int? endingtimersec;
+  var uuidofuser = Uuid().v1();
+
+  String? nameofuser;
+  String winner = "";
+  String highestprice = "";
+
+
+
+
+
+
+
 
   @override
   void initState() {
     super.initState();
-    _startTimer();
+    connect();
+    getUserdetail();
   }
 
-  void _startTimer() {
-    Timer.periodic(Duration(seconds: 1), (timer) {
-      setState(() {
-        _progressValue = timer.tick / _totalTime;
-        if (_progressValue >= 1.0) {
-          _progressValue = 0.0;
-          _startTimer();
+
+
+
+
+  @override
+  void connect() {
+    // socket = IO.io('http://10.0.2.2:3000', <String, dynamic>{
+    socket = IO.io('http://10.74.10.229:3000', <String, dynamic>{
+      "transports": ["websocket"],
+      "autoconnect": false,
+    });
+    socket!.connect();
+    socket!.onConnect((_) {
+      print('connected with frontend');
+      socket!.on("timer", (timer) {
+        print(timer);
+        setState(() {
+          countdown = timer;
+          countinmin = (countdown! / 60).toInt();
+          countinsec = countdown! % 60;
+        });
+      });
+      socket!.on("endingtimer", (endingtimersent) {
+        print(endingtimersent);
+        setState(() {
+          endingtimer = endingtimersent;
+          // _totalTime=endingtimersent;
+          endingtimermin = (endingtimersent! / 60).toInt();
+          endingtimersec = endingtimersent! % 60;
+          _progressValue=(120-endingtimer!)/_totalTime;
+        });
+      });
+      socket!.on("sendMsgServer", (message) {
+        print(message);
+        setState(() {
+          num = message['value'];
+          user = message['user'];
+          print(user);
+        });
+        if(message['userid'] == uuidofuser){
+          setState(() {
+          mynum=message['value'];
+        });
+        }
+      });
+      socket!.on("auctionover", (message) {
+        winner = message['user'];
+        highestprice = message['value'].toString();
+        if (message['userid'] == uuidofuser) {
+          Navigator.pop(context);
+          showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: Text("Congratulations..."),
+                  content: Text(
+                      "You are the winner of the Auction and the details fo the item seller will be sent to you shortly."),
+                );
+              });
+        } else {
+          Navigator.pop(context);
+          showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: Text("Auction Completed!!!"),
+                  content: Text("Auction winner is " +
+                      winner.toString() +
+                      " and the highest bid is Rs." +
+                      highestprice +
+                      "."),
+                );
+              });
         }
       });
     });
   }
+
+
+
+
+  void sendMessage(int message) {
+    socket!.emit('sendMessage', {
+      'value': message,
+      'user': nameofuser!,
+      'userid': uuidofuser,
+    });
+  }
+
+  void getUserdetail() async {
+    DocumentSnapshot snap = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .get();
+
+    setState(() {
+      nameofuser = (snap.data() as Map<String, dynamic>)['username'];
+    });
+  }
+
+
+
+
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -136,7 +262,7 @@ class _auctionpageState extends State<auctionpage> {
                                               height: 5.0 * (H / 936),
                                             ),
                                             Text(
-                                              'Rs.' + '$yourBid',
+                                              'Rs.' + mynum.toString(),
                                               style: TextStyle(
                                                   fontSize: 20.0 * (W / 432),
                                                   color: Color.fromARGB(
@@ -173,7 +299,7 @@ class _auctionpageState extends State<auctionpage> {
                                               height: 5.0 * (H / 932),
                                             ),
                                             Text(
-                                              'Rs.$highestBid',
+                                              'Rs.' + num.toString(),
                                               style: TextStyle(
                                                   fontSize: 20.0 * (H / 936)),
                                             ),
@@ -207,7 +333,7 @@ class _auctionpageState extends State<auctionpage> {
                                     padding: EdgeInsets.fromLTRB(
                                         10.0 * (W / 432), 0.0, 0.0, 0.0),
                                     child: Text(
-                                      '$highestBidder wins in ${((((1 - _progressValue) * 120) ~/ 60)).toString().padLeft(2, '0')}:${((((1 - _progressValue) * 120) % 60).toInt()).toString().padLeft(2, '0')} ',
+                                      user.toString()+' wins in ${endingtimermin}:${endingtimersec} ',
                                       style: TextStyle(
                                           fontSize:
                                               20.0 * min(W / 432, H / 936)),
@@ -216,10 +342,10 @@ class _auctionpageState extends State<auctionpage> {
                                   SizedBox(
                                     height: 10.0 * (H / 932),
                                   ),
-                                  Text('Ends in: ${timer.substring(0, 2)}' +
-                                      ' min:' +
-                                      timer.substring(0, 2) +
-                                      ' sec'),
+                                  Text('Ends in: ${countinmin ?? ''}' +
+                                    'min,' +
+                                    '${countinsec}' +
+                                    'sec'),
                                 ],
                               ),
                             ),
@@ -263,6 +389,7 @@ class _auctionpageState extends State<auctionpage> {
                                       textInputAction: TextInputAction.done,
                                       onSubmitted: (value) {
                                         // Handle submitted bid value here
+                                        sendMessage(int.parse(bid.text));
                                         _showGif = true;
                                         setState(() {
                                           _isButtonVisible = true;

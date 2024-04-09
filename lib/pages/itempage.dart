@@ -710,7 +710,7 @@ class _itempageState extends State<itempage> {
                 ),
               ),
 
-            if(ctrl.userwish==true)
+            if(ctrl.userwish==true) 
               TextButton(
                 style: ButtonStyle(
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -722,7 +722,9 @@ class _itempageState extends State<itempage> {
                   backgroundColor: MaterialStateColor.resolveWith(
                       (states) => Color.fromARGB(255, 247, 245, 245)),
                 ),
-                onPressed: () {
+                onPressed: () async{
+                  await ctrl.deleteProductfromwishlist(widget.selectpid!);
+                  await ctrl.checkwishliststatus(widget.selectpid!);
                 },
                 child: Padding(
                   padding: EdgeInsets.all(4 * (H / 974.3)),
@@ -754,9 +756,9 @@ class _itempageState extends State<itempage> {
                     backgroundColor: MaterialStateColor.resolveWith(
                         (states) => Color.fromARGB(255, 32, 32, 32)),
                   ),
-                  onPressed: () {
-                    ctrl.registerUser(widget.selectpid!);
-                    ctrl.checkregstatus(widget.selectpid!);
+                  onPressed: () async {
+                    await ctrl.registerUser(widget.selectpid!);
+                    await ctrl.checkregstatus(widget.selectpid!);
                     print('Second Button Pressed');
                   },
                   child: Padding(
