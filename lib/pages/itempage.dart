@@ -707,7 +707,7 @@ class _itempageState extends State<itempage> {
                   print('First Button Pressed');
                 },
                 child: Padding(
-                  padding: EdgeInsets.all(4 * (H / 974.3)),
+                  padding: EdgeInsets.fromLTRB(9 * (H / 974.3),4 * (H / 974.3), 9 * (H / 974.3),4 * (H / 974.3)),
                   child: Row(
                     children: [
                       Icon(Icons.bookmark_add_outlined, color: Colors.white),
@@ -748,7 +748,7 @@ class _itempageState extends State<itempage> {
                       Text(
                         'Delete from wishlist',
                         style: TextStyle(
-                            fontSize: 17 * (W / 448), color: Colors.white,),
+                            fontSize: 16 * (W / 448), color: Colors.white,),
                       ),
                     ],
                   ),
@@ -810,12 +810,12 @@ class _itempageState extends State<itempage> {
                     padding: EdgeInsets.all(4 * (W / 448)),
                     child: Row(
                       children: [
-                        Icon(Icons.account_circle_outlined, color: Colors.green),
+                        Icon(Icons.account_circle_outlined, color: Colors.black),
                         SizedBox(width: 5 * (W / 448)),
                         Text(
                           'Already Registered',
                           style: TextStyle(
-                              fontSize: 16 * (W / 448), color: Colors.green),
+                              fontSize: 16 * (W / 448), color: Colors.black),
                         ),
                       ],
                     ),
