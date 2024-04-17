@@ -565,6 +565,8 @@ class _itempageState extends State<itempage> {
                       children: [
                         Row(
                           children: [
+
+
                             Text(
                               'Users Registered:',
                               style: TextStyle(
@@ -572,6 +574,8 @@ class _itempageState extends State<itempage> {
                                   fontFamily: 'roboto',
                                   fontWeight: FontWeight.w900),
                             ),
+
+
                             SizedBox(
                               width: 5*(W/432),
                             ),
@@ -593,13 +597,21 @@ class _itempageState extends State<itempage> {
                         ),
                         Row(
                           children: [
+
+
+
+
                             Text(
                               'Registration Status:',
                               style: TextStyle(
                                 fontSize: 17*(W/432),
                                 fontFamily: 'roboto',
+                                fontWeight: FontWeight.w900
                               ),
                             ),
+
+
+
                             SizedBox(
                               width: 5*(W/432),
                             ),
@@ -720,7 +732,7 @@ class _itempageState extends State<itempage> {
                     ),
                   ),
                   backgroundColor: MaterialStateColor.resolveWith(
-                      (states) => Color.fromARGB(255, 247, 245, 245)),
+                      (states) =>  Color.fromARGB(255, 32, 32, 32)),
                 ),
                 onPressed: () async{
                   await ctrl.deleteProductfromwishlist(widget.selectpid!);
@@ -730,12 +742,13 @@ class _itempageState extends State<itempage> {
                   padding: EdgeInsets.all(4 * (H / 974.3)),
                   child: Row(
                     children: [
-                      Icon(Icons.bookmark_add_outlined, color: Colors.green),
-                      SizedBox(width: 5 * (W / 448)),
+                      // Icon(Icons.bookmark_add_outlined, color: Color.fromARGB(
+                      //                               255, 13, 159, 18),),
+                      // SizedBox(width: 5 * (W / 448)),
                       Text(
-                        'Added to Wishlist',
+                        'Delete from wishlist',
                         style: TextStyle(
-                            fontSize: 16 * (W / 448), color: Colors.green),
+                            fontSize: 17 * (W / 448), color: Colors.white,),
                       ),
                     ],
                   ),
