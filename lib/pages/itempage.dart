@@ -373,12 +373,13 @@ class _itempageState extends State<itempage> {
                         ),
 
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Expanded(
                               flex: 12,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Row(
                                     children: [
@@ -463,7 +464,7 @@ class _itempageState extends State<itempage> {
                               ),
                             ),
                             Expanded(
-                              flex: 8,
+                              flex: 9,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -681,7 +682,7 @@ class _itempageState extends State<itempage> {
         bottomNavigationBar: BottomAppBar(
           height: 60 * (H / 974.3),
           padding: EdgeInsets.fromLTRB(
-              16 * (W / 448), 1 * (H / 974.3), 16 * (W / 448), 1 * (H / 974.3)),
+              12 * (W / 448), 1 * (H / 974.3), 12 * (W / 448), 1 * (H / 974.3)),
           surfaceTintColor: Colors.transparent,
           elevation: 0,
           color: Colors.white,
@@ -707,7 +708,7 @@ class _itempageState extends State<itempage> {
                   print('First Button Pressed');
                 },
                 child: Padding(
-                  padding: EdgeInsets.fromLTRB(9 * (H / 974.3),4 * (H / 974.3), 9 * (H / 974.3),4 * (H / 974.3)),
+                  padding: EdgeInsets.fromLTRB( 7* (H / 974.3),4 * (H / 974.3), 7* (H / 974.3),4 * (H / 974.3)),
                   child: Row(
                     children: [
                       Icon(Icons.bookmark_add_outlined, color: Colors.white),
@@ -739,7 +740,7 @@ class _itempageState extends State<itempage> {
                   await ctrl.checkwishliststatus(widget.selectpid!);
                 },
                 child: Padding(
-                  padding: EdgeInsets.all(4 * (H / 974.3)),
+                  padding: EdgeInsets.all(4.9 * (H / 974.3)),
                   child: Row(
                     children: [
                       // Icon(Icons.bookmark_add_outlined, color: Color.fromARGB(
@@ -755,7 +756,7 @@ class _itempageState extends State<itempage> {
                 ),
               ),
 
-              SizedBox(width: 19 * (W / 448)),
+              SizedBox(width: 10 * (W / 448)),
               
               if(ctrl.userreg!=true)
                 TextButton(
@@ -775,7 +776,7 @@ class _itempageState extends State<itempage> {
                     print('Second Button Pressed');
                   },
                   child: Padding(
-                    padding: EdgeInsets.all(4 * (W / 448)),
+                    padding: EdgeInsets.fromLTRB(1 * (W / 448), 4 * (W / 448), 1 * (W / 448), 4 * (W / 448)),
                     child: Row(
                       children: [
                         Icon(Icons.account_circle_outlined, color: Colors.white),
