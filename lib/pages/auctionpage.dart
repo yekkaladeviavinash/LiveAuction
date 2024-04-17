@@ -271,9 +271,9 @@ class _auctionpageState extends State<auctionpage> {
                                           ],
                                         ),
                                       ),
-                                      SizedBox(
-                                        width: 20.0 * (W / 432),
-                                      ),
+                                      // SizedBox(
+                                      //   width: 20.0 * (W / 432),
+                                      // ),
                                       SizedBox(
                                         width: 10.0 * (W / 432),
                                         height: 10.0 * (H / 936),
@@ -333,7 +333,7 @@ class _auctionpageState extends State<auctionpage> {
                                     padding: EdgeInsets.fromLTRB(
                                         10.0 * (W / 432), 0.0, 0.0, 0.0),
                                     child: Text(
-                                      user.toString()+' wins in ${endingtimermin}:${endingtimersec} ',
+                                      user.toString()+' wins in ${countinmin}'+":"+'${countinsec}' ,
                                       style: TextStyle(
                                           fontSize:
                                               20.0 * min(W / 432, H / 936)),
@@ -342,10 +342,10 @@ class _auctionpageState extends State<auctionpage> {
                                   SizedBox(
                                     height: 10.0 * (H / 932),
                                   ),
-                                  Text('Ends in: ${countinmin ?? ''}' +
-                                    'min,' +
-                                    '${countinsec}' +
-                                    'sec'),
+                                  // Text('Ends in: ${countinmin ?? ''}' +
+                                  //   'min,' +
+                                  //   '${countinsec}' +
+                                  //   'sec'),
                                 ],
                               ),
                             ),
