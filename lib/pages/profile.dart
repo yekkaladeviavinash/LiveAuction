@@ -343,7 +343,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               fontWeight: FontWeight.w500),
                         ),
                         Text(
-                          'Participated',
+                          'Registered Auctions',
                           style: TextStyle(
                               fontSize: 13 * (W / 411.5),
                               fontWeight: FontWeight.w400),
@@ -360,7 +360,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               fontWeight: FontWeight.w500),
                         ),
                         Text(
-                          'Items Auctioned ',
+                          'Items in Auction ',
                           style: TextStyle(
                               fontSize: 13 * (W / 411.5),
                               fontWeight: FontWeight.w400),
