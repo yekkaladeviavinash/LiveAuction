@@ -22,6 +22,7 @@ class Profilecontroller extends GetxController {
   List<productmodel> sellerProducts = [];
   List<productmodel> sellerwishlist = [];
   List<productmodel> sellerAuctionHistory = [];
+  int? x;
 
   List<usermodel> userslist = [];
 
@@ -70,7 +71,7 @@ class Profilecontroller extends GetxController {
       wishlt = curruser.firstOrNull?.wishlist ?? [];
 
       // aucthis = curruser.first.auctionhistory!;
-
+      x = curruser.firstOrNull?.aWon ?? 0;
       aucthis = curruser.firstOrNull?.auctionhistory ?? [];
 
       sellerproductslist = cameproducts
@@ -122,6 +123,12 @@ class Profilecontroller extends GetxController {
             // Remove the string pid from the 'slots' list
             List<dynamic> wlts = List.from(data['wishlist']);
             wlts.remove(pid);
+            Get.snackbar(
+              'Success',
+              'Removed from Wishlist',
+              colorText: Colors.white,
+              backgroundColor: Colors.black87,
+            );
             refreshPage();
             // Update the document with the modified 'slots' list
             await docRef.update({'wishlist': wlts});
@@ -132,7 +139,6 @@ class Profilecontroller extends GetxController {
         } else {
           print('Error: Document data is null');
         }
-        
       } else {
         // Handle if document with given date doesn't exist
         print('Document not found');

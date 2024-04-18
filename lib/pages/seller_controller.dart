@@ -38,11 +38,11 @@ class Sellercontroller extends GetxController {
   List<productmodel> productsshowinui5 = [];
   List<productmodel> productsshowinui6 = [];
   List<productmodel> productsshowinui7 = [];
-  bool userreg=false;
-  bool userwish=false;
-List<usermodel> userslist = [];
+  bool userreg = false;
+  bool userwish = false;
+  List<usermodel> userslist = [];
   List<dynamic> aucthis = [];
-  List<dynamic> wishthis=[];
+  List<dynamic> wishthis = [];
 
   Future<void> onInit() async {
     // if(selectedcategory!=''){
@@ -61,19 +61,20 @@ List<usermodel> userslist = [];
       DocumentReference doc = productcollection.doc();
       // DocumentReference date=productcollection.doc();
       productmodel myproduct = productmodel(
-          pname: item_name.text.trim(),
-          pdesc: description.text.trim(),
-          pprice: base_price.text.trim(),
-          sid: FirebaseAuth.instance.currentUser!.uid,
-          pid: doc.id,
-          pimage: item_image.text.trim(),
-          pcategory: item_category,
-          status: false,
-          registeredusers: [],
-          dateAdded: datechosen.toString().substring(0, 10),
-          location: locationchosen.text.trim(),
-          ptime: 0,
-          );
+        pname: item_name.text.trim(),
+        pdesc: description.text.trim(),
+        pprice: base_price.text.trim(),
+        sid: FirebaseAuth.instance.currentUser!.uid,
+        pid: doc.id,
+        pimage: item_image.text.trim(),
+        pcategory: item_category,
+        status: false,
+        registeredusers: [],
+        dateAdded: datechosen.toString().substring(0, 10),
+        location: locationchosen.text.trim(),
+        ptime: 0,
+        pwinner: "--",
+      );
 
       final myproductjson = myproduct.toJson();
       doc.set(myproductjson);
@@ -90,7 +91,12 @@ List<usermodel> userslist = [];
         setValuesDefault();
       }
 
-      Get.snackbar('Success', 'added succesfully', colorText: Colors.green);
+      Get.snackbar(
+        'Success',
+        'Added succesfully',
+        colorText: Colors.white,
+        backgroundColor: Colors.black87,
+      );
     } else {
       print('this is null given by sellercontroller add product');
     }
@@ -126,12 +132,12 @@ List<usermodel> userslist = [];
             product.pcategory == 'Collectibles' && product.status == true)
         .toList();
     productsshowinui5 = cameproducts
-        .where(
-            (product) => product.pcategory == 'Electronics' && product.status == true)
+        .where((product) =>
+            product.pcategory == 'Electronics' && product.status == true)
         .toList();
     productsshowinui6 = cameproducts
-        .where(
-            (product) => product.pcategory == 'Sports' && product.status == true)
+        .where((product) =>
+            product.pcategory == 'Sports' && product.status == true)
         .toList();
     productsshowinui7 = cameproducts
         .where((product) =>
@@ -171,7 +177,11 @@ List<usermodel> userslist = [];
       if (alldates[existingDateIndex].slots.length == 5) {
         // Show snackbar indicating no slots available
         Get.snackbar(
-            'No Slots Available', 'All slots for this date are filled.');
+          'No Slots Available',
+          'All slots for this date are filled.',
+          colorText: Colors.white,
+          backgroundColor: Colors.black87,
+        );
       } else {
         // Slots are available
         // Call function to add the seller's id to slots for this date
@@ -226,141 +236,136 @@ List<usermodel> userslist = [];
     datechosen = DateTime.tryParse(formattedDate);
     update();
   }
+
   refreshPage() async {
     await getproduct();
     update();
   }
 
-
-
-
-
-
-
   Future<void> registerUser(String? pid) async {
     try {
       if (pid != null) {
         await productcollection.doc(pid).update({
-          'registeredusers': FieldValue.arrayUnion([FirebaseAuth.instance.currentUser!.uid]),
+          'registeredusers':
+              FieldValue.arrayUnion([FirebaseAuth.instance.currentUser!.uid]),
         });
-        await usercollection.doc(FirebaseAuth.instance.currentUser!.uid).update({
+        await usercollection
+            .doc(FirebaseAuth.instance.currentUser!.uid)
+            .update({
           'auctionhistory': FieldValue.arrayUnion([pid]),
         });
-        Get.snackbar('Success', 'Registered successfully', colorText: Colors.green);
+        Get.snackbar(
+          'Success',
+          'Registered for Auction',
+          colorText: Colors.white,
+          backgroundColor: Colors.black87,
+        );
       } else {
         throw Exception("Product ID is null");
       }
-
     } catch (e) {
       print("Error in ItemController registerUser: $e");
       Get.snackbar('Error', 'Failed to register', colorText: Colors.red);
     }
   }
 
-
   Future<void> addtowishlist(String? pid) async {
     try {
       if (pid != null) {
-        await usercollection.doc(FirebaseAuth.instance.currentUser!.uid).update({
+        await usercollection
+            .doc(FirebaseAuth.instance.currentUser!.uid)
+            .update({
           'wishlist': FieldValue.arrayUnion([pid]),
         });
-        Get.snackbar('Success', 'Added to wishlist successfully', colorText: Colors.green);
+        Get.snackbar(
+          'Success',
+          'Added to wishlist successfully',
+          colorText: Colors.white,
+          backgroundColor: Colors.black87,
+        );
       } else {
         throw Exception("Product ID is null");
       }
       update();
-
     } catch (e) {
       print("Error in ItemController2 registerUser: $e");
       Get.snackbar('Error', 'Failed to register', colorText: Colors.red);
     }
   }
 
-
-
-  Future<void> checkregstatus(String? pid)async{
+  Future<void> checkregstatus(String? pid) async {
     print("Iam called in controller");
-QuerySnapshot usersnapshot = await usercollection.get();
-      final List<usermodel> retrievedusers = usersnapshot.docs.map((doc) {
-        final userData = doc.data();
-        if (userData != null) {
-          // print(userData as Map<String, dynamic>);
-          return usermodel.fromJson(userData as Map<String, dynamic>);
-        } else {
-          throw Exception('Document data is null');
-        }
-      }).toList();
+    QuerySnapshot usersnapshot = await usercollection.get();
+    final List<usermodel> retrievedusers = usersnapshot.docs.map((doc) {
+      final userData = doc.data();
+      if (userData != null) {
+        // print(userData as Map<String, dynamic>);
+        return usermodel.fromJson(userData as Map<String, dynamic>);
+      } else {
+        throw Exception('Document data is null');
+      }
+    }).toList();
 
-      userslist.clear();
-      userslist.assignAll(retrievedusers);
-       if (FirebaseAuth.instance.currentUser != null) {
+    userslist.clear();
+    userslist.assignAll(retrievedusers);
+    if (FirebaseAuth.instance.currentUser != null) {
       print(FirebaseAuth.instance.currentUser.toString());
       Iterable<usermodel> curruser = userslist
           .where((user) => user.uid == FirebaseAuth.instance.currentUser!.uid);
-      
 
       aucthis = curruser.firstOrNull?.auctionhistory ?? [];
 
-    
-  
       List<String> auctionHistory = aucthis.cast<String>();
 
-     if(auctionHistory.contains(pid)!=false){
-      userreg=true;
-     }else{
-      userreg=false;
-     }
-     print(userreg.toString()+"in controller");
+      if (auctionHistory.contains(pid) != false) {
+        userreg = true;
+      } else {
+        userreg = false;
+      }
+      print(userreg.toString() + "in controller");
     } else {
       // Handle the case when the user is not logged in
       print("User is not logged in2222222222222222");
     }
     update();
-}
+  }
 
-
-  Future<void> checkwishliststatus(String? pid)async{
+  Future<void> checkwishliststatus(String? pid) async {
     print("Iam called in controller");
-QuerySnapshot usersnapshot = await usercollection.get();
-      final List<usermodel> retrievedusers = usersnapshot.docs.map((doc) {
-        final userData = doc.data();
-        if (userData != null) {
-          // print(userData as Map<String, dynamic>);
-          return usermodel.fromJson(userData as Map<String, dynamic>);
-        } else {
-          throw Exception('Document data is null');
-        }
-      }).toList();
+    QuerySnapshot usersnapshot = await usercollection.get();
+    final List<usermodel> retrievedusers = usersnapshot.docs.map((doc) {
+      final userData = doc.data();
+      if (userData != null) {
+        // print(userData as Map<String, dynamic>);
+        return usermodel.fromJson(userData as Map<String, dynamic>);
+      } else {
+        throw Exception('Document data is null');
+      }
+    }).toList();
 
-      userslist.clear();
-      userslist.assignAll(retrievedusers);
-       if (FirebaseAuth.instance.currentUser != null) {
+    userslist.clear();
+    userslist.assignAll(retrievedusers);
+    if (FirebaseAuth.instance.currentUser != null) {
       print(FirebaseAuth.instance.currentUser.toString());
       Iterable<usermodel> curruser = userslist
           .where((user) => user.uid == FirebaseAuth.instance.currentUser!.uid);
-      
 
       wishthis = curruser.firstOrNull?.wishlist ?? [];
 
-    
-  
       List<String> wishlist = wishthis.cast<String>();
 
-     if(wishlist.contains(pid)!=false){
-      userwish=true;
-     }else{
-      userwish=false;
-     }
-     print(userwish.toString()+"in controller");
+      if (wishlist.contains(pid) != false) {
+        userwish = true;
+      } else {
+        userwish = false;
+      }
+      print(userwish.toString() + "in controller");
     } else {
       // Handle the case when the user is not logged in
       print("User is not logged in111111111111111111");
     }
-      update();
-}
-
-
-
+    update();
+  }
 
   Future<void> deleteProductfromwishlist(String pid) async {
     try {
@@ -385,6 +390,12 @@ QuerySnapshot usersnapshot = await usercollection.get();
             // Remove the string pid from the 'slots' list
             List<dynamic> wlts = List.from(data['wishlist']);
             wlts.remove(pid);
+            Get.snackbar(
+              'Success',
+              'Removed from Wishlist',
+              colorText: Colors.white,
+              backgroundColor: Colors.black87,
+            );
             refreshPage();
             // Update the document with the modified 'slots' list
             await docRef.update({'wishlist': wlts});
@@ -395,7 +406,6 @@ QuerySnapshot usersnapshot = await usercollection.get();
         } else {
           print('Error: Document data is null');
         }
-        
       } else {
         // Handle if document with given date doesn't exist
         print('Document not found');
@@ -405,7 +415,4 @@ QuerySnapshot usersnapshot = await usercollection.get();
       print('Error deleting string from date: $e');
     }
   }
-
-
-
 }

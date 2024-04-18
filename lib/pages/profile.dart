@@ -230,7 +230,6 @@ class _ProfilePageState extends State<ProfilePage> {
             style: TextStyle(
               color: Colors.black,
               fontSize: 24 * (W / 448),
-              
             ),
           ),
         ),
@@ -300,13 +299,13 @@ class _ProfilePageState extends State<ProfilePage> {
                 height: H / 15,
                 decoration: BoxDecoration(
                   boxShadow: [
-              BoxShadow(
-        color: Colors.grey.withOpacity(0.5),
-        spreadRadius:2,
-        blurRadius: 2,
-        offset: Offset(0, 3), // Adjust the shadow position
-      ),
-            ],
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 2,
+                      blurRadius: 2,
+                      offset: Offset(0, 3), // Adjust the shadow position
+                    ),
+                  ],
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(
                     color: Colors.black, // You can specify border color here
@@ -320,7 +319,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          '3',
+                          ctrl.x.toString(),
                           style: TextStyle(
                               fontSize: 20 * (W / 411.5),
                               fontWeight: FontWeight.w500),
@@ -370,7 +369,9 @@ class _ProfilePageState extends State<ProfilePage> {
                   ],
                 ),
               ),
-              SizedBox(height: 15*(H/974.3),),
+              SizedBox(
+                height: 15 * (H / 974.3),
+              ),
               Divider(
                 height: 1 * (H / 973.4),
                 color: Colors.grey.shade700,
@@ -396,7 +397,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             color: const Color.fromARGB(255, 183, 182, 182),
                             // color: Colors.grey,
                             child: ListTile(
-                              contentPadding:EdgeInsets.fromLTRB(16, 0, 16, 0),
+                              contentPadding: EdgeInsets.fromLTRB(16, 0, 16, 0),
                               iconColor: Colors.black,
                               leading: Icon(Icons.history),
                               title: Text(
@@ -410,7 +411,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => AuctionHistoryPage()),
+                                      builder: (context) =>
+                                          AuctionHistoryPage()),
                                 );
                               },
                             ),
@@ -424,10 +426,10 @@ class _ProfilePageState extends State<ProfilePage> {
                           width: W * (9 / 10),
                           child: Card(
                             // color: Colors.white,
-                                  surfaceTintColor: Colors.transparent,
-                                  shadowColor: Colors.white,
-                                  elevation: 0,
-          
+                            surfaceTintColor: Colors.transparent,
+                            shadowColor: Colors.white,
+                            elevation: 0,
+
                             color: const Color.fromARGB(255, 183, 182, 182),
                             // color: Colors.grey,
                             child: ListTile(
@@ -446,7 +448,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => SellerHistoryPage()),
+                                      builder: (context) =>
+                                          SellerHistoryPage()),
                                 );
                               },
                             ),
@@ -459,10 +462,10 @@ class _ProfilePageState extends State<ProfilePage> {
                         child: SizedBox(
                           width: 2 * (W / 5),
                           child: Card(
-                          //  color: Colors.white,
-                                  surfaceTintColor: Colors.transparent,
-                                  shadowColor: Colors.white,
-                                  elevation: 0,
+                            //  color: Colors.white,
+                            surfaceTintColor: Colors.transparent,
+                            shadowColor: Colors.white,
+                            elevation: 0,
                             color: const Color.fromARGB(255, 183, 182, 182),
                             child: ListTile(
                               iconColor: Colors.black,
@@ -517,13 +520,13 @@ class _ProfilePageState extends State<ProfilePage> {
                         Text(
                           'Logout',
                           style: TextStyle(
-                              fontSize: 16 * (W / 440), color: Colors.white,),
+                            fontSize: 16 * (W / 440),
+                            color: Colors.white,
+                          ),
                         )
                       ],
                     ),
-                    onPressed: () => {
-                      FirebaseAuth.instance.signOut()
-                    },
+                    onPressed: () => {FirebaseAuth.instance.signOut()},
                   )),
             ],
           ),

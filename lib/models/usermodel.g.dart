@@ -21,6 +21,7 @@ usermodel _$usermodelFromJson(Map<String, dynamic> json) => usermodel(
       wishlist: json['wishlist'] != null
           ? List<dynamic>.from(json['wishlist'] as List<dynamic>)
           : [],
+      aWon: json['aWon'] as int,
     );
 
 Map<String, dynamic> _$usermodelToJson(usermodel instance) => <String, dynamic>{
@@ -32,4 +33,5 @@ Map<String, dynamic> _$usermodelToJson(usermodel instance) => <String, dynamic>{
       'auctionhistory': instance.auctionhistory,
       'sellerhistory': instance.sellerhistory,
       'wishlist': instance.wishlist,
+      'aWon': instance.aWon,
     };

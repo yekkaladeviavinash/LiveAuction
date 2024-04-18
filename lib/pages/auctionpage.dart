@@ -19,23 +19,25 @@ class auctionpage extends StatefulWidget {
   final String? selectdate;
   final String? selectdesc;
   final List? selectregisteredusers;
-  const auctionpage({super.key,
-      required this.selectpid,
-      required this.selectimage,
-      required this.selectcategory,
-      required this.selectname,
-      required this.selectprice,
-      required this.selectdate,
-      required this.selectdesc,
-      required this.selectregisteredusers,
-      });
+  const auctionpage({
+    super.key,
+    required this.selectpid,
+    required this.selectimage,
+    required this.selectcategory,
+    required this.selectname,
+    required this.selectprice,
+    required this.selectdate,
+    required this.selectdesc,
+    required this.selectregisteredusers,
+  });
 
   @override
   State<auctionpage> createState() => _auctionpageState();
 }
 
 class _auctionpageState extends State<auctionpage> {
-  final int yourBid = 23623478;
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  // final int yourBid = 23623478;
   // int highestBid = 25678776;
   double _progressValue = 0.0;
   // String highestBidder = 'Gojo Satoru';
@@ -44,12 +46,6 @@ class _auctionpageState extends State<auctionpage> {
   // String timer = '45 min :00 sec';
   bool _isButtonVisible = true;
   bool _showGif = false;
-
-
-
-
-
-
 
   IO.Socket? socket;
   int? num;
@@ -64,15 +60,9 @@ class _auctionpageState extends State<auctionpage> {
   var uuidofuser = Uuid().v1();
 
   String? nameofuser;
+  String? databaseId;
   String winner = "";
   String highestprice = "";
-
-
-
-
-
-
-
 
   @override
   void initState() {
@@ -80,10 +70,6 @@ class _auctionpageState extends State<auctionpage> {
     connect();
     getUserdetail();
   }
-
-
-
-
 
   @override
   void connect() {
@@ -110,7 +96,7 @@ class _auctionpageState extends State<auctionpage> {
           // _totalTime=endingtimersent;
           endingtimermin = (endingtimersent! / 60).toInt();
           endingtimersec = endingtimersent! % 60;
-          _progressValue=(120-endingtimer!)/_totalTime;
+          _progressValue = (120 - endingtimer!) / _totalTime;
         });
       });
       socket!.on("sendMsgServer", (message) {
@@ -120,13 +106,15 @@ class _auctionpageState extends State<auctionpage> {
           user = message['user'];
           print(user);
         });
-        if(message['userid'] == uuidofuser){
+        if (message['userid'] == uuidofuser) {
           setState(() {
-          mynum=message['value'];
-        });
+            mynum = message['value'];
+          });
         }
       });
       socket!.on("auctionover", (message) {
+        winnerupdate(widget.selectpid!, message['user']);
+        awonupdate(message['databaseidofuser']);
         winner = message['user'];
         highestprice = message['value'].toString();
         if (message['userid'] == uuidofuser) {
@@ -159,13 +147,45 @@ class _auctionpageState extends State<auctionpage> {
     });
   }
 
+  void winnerupdate(String docId, String auctionwinner) async {
+    try {
+      await firestore.collection('products').doc(docId).update({
+        'pwinner': auctionwinner,
+      });
+      Get.snackbar('Acceped', "Accepted".toString(), colorText: Colors.green);
+    } catch (e) {
+      print("Error updating document: $e");
+    } finally {}
+  }
 
 
+
+
+
+
+
+
+  void awonupdate(String docId) async {
+    try {
+       DocumentSnapshot snap = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .get();
+      int x = await (snap.data() as Map<String, dynamic>)['aWon'];
+      await firestore.collection('users').doc(docId).update({
+        'aWon': x+1,
+      });
+      Get.snackbar('Acceped', "Accepted".toString(), colorText: Colors.green);
+    } catch (e) {
+      print("Error updating document: $e");
+    } finally {}
+  }
 
   void sendMessage(int message) {
     socket!.emit('sendMessage', {
       'value': message,
       'user': nameofuser!,
+      'databaseid': databaseId!,
       'userid': uuidofuser,
     });
   }
@@ -178,15 +198,9 @@ class _auctionpageState extends State<auctionpage> {
 
     setState(() {
       nameofuser = (snap.data() as Map<String, dynamic>)['username'];
+      databaseId = (snap.data() as Map<String, dynamic>)['uid'];
     });
   }
-
-
-
-
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -333,7 +347,10 @@ class _auctionpageState extends State<auctionpage> {
                                     padding: EdgeInsets.fromLTRB(
                                         10.0 * (W / 432), 0.0, 0.0, 0.0),
                                     child: Text(
-                                      user.toString()+' wins in ${countinmin}'+":"+'${countinsec}' ,
+                                      user.toString() +
+                                          ' wins in ${countinmin}' +
+                                          ":" +
+                                          '${countinsec}',
                                       style: TextStyle(
                                           fontSize:
                                               20.0 * min(W / 432, H / 936)),
@@ -436,7 +453,9 @@ class _auctionpageState extends State<auctionpage> {
                                 width: 5 * (W / 432),
                               ),
                               Text(
-                                widget.selectregisteredusers!.length.toString()+' Users only',
+                                widget.selectregisteredusers!.length
+                                        .toString() +
+                                    ' Users only',
                                 style: TextStyle(
                                     fontSize: 16 * (W / 432),
                                     color: Color.fromARGB(255, 13, 159, 18),
@@ -464,7 +483,7 @@ class _auctionpageState extends State<auctionpage> {
                               ),
                               Text(
                                 //here registered condition
-                                widget.selectprice!+" Rupees",
+                                widget.selectprice! + " Rupees",
                                 style: TextStyle(
                                     fontSize: 16 * (W / 432),
                                     color: Color.fromARGB(255, 13, 159, 18),
@@ -558,8 +577,7 @@ class _auctionpageState extends State<auctionpage> {
                               ),
                             ],
                           ),
-                          Text(
-                            widget.selectdesc!,
+                          Text(widget.selectdesc!,
                               style: TextStyle(
                                   fontSize: 15 * (W / 432),
                                   color: Colors.grey[600],

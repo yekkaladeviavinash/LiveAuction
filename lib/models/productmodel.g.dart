@@ -19,6 +19,7 @@ productmodel _$productmodelFromJson(Map<String, dynamic> json) => productmodel(
       dateAdded: json['dateAdded'] as String,
       location: json['location'] as String,
       ptime: json['ptime'] as int,
+      pwinner: json['pwinner'] as String,
     );
 
 Map<String, dynamic> _$productmodelToJson(productmodel instance) =>
@@ -35,4 +36,5 @@ Map<String, dynamic> _$productmodelToJson(productmodel instance) =>
       'dateAdded': instance.dateAdded,
       'location': instance.location,
       'ptime': instance.ptime,
+      'pwinner': instance.pwinner,
     };

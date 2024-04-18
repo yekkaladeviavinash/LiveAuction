@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:liveauction/pages/forgot_pw_page.dart';
 class login extends StatefulWidget {
   final VoidCallback showregisterpage;
@@ -20,9 +21,23 @@ class _loginState extends State<login> {
   //     return Center(child: CircularProgressIndicator());
   //   },
   // );
-    
+    try{
     await FirebaseAuth.instance.signInWithEmailAndPassword(email: _emailController.text.trim(), password: _passwordController.text.trim());
-  
+    Get.snackbar(
+        'Welcome',
+        'Logged in Successfully',
+        colorText: Colors.white,
+        backgroundColor: Colors.black87,
+      );
+    }
+    catch(e){
+       Get.snackbar(
+        'Error',
+        'Invalid Credentials',
+        colorText: Colors.white,
+        backgroundColor: Colors.black87,
+      );
+    }
     // Navigator.of(context).pop(); //popping the loading circle
   }
 
@@ -113,6 +128,12 @@ class _loginState extends State<login> {
                   children: [
                     GestureDetector(
                       onTap: () {
+      //                   Get.snackbar(
+      //   'Success',
+      //   'You are successfully registered',
+      //   colorText: Colors.white,
+      //   backgroundColor: Colors.black87,
+      // );
                         // Add your button onPressed logic here
                         Navigator.push(
                             context,

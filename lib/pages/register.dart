@@ -7,6 +7,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:liveauction/models/usermodel.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -86,11 +87,19 @@ class _RegisterPageState extends State<RegisterPage> {
           auctionhistory: [],
           sellerhistory: [],
           profileimagelink: '',
-          wishlist: []);
+          wishlist: [],
+          aWon:0,
+          );
       await FirebaseFirestore.instance
           .collection('users')
           .doc(cred.user!.uid)
           .set(myuser.toJson());
+      Get.snackbar(
+        'Success',
+        'You are successfully registered',
+        colorText: Colors.white,
+        backgroundColor: Colors.black87,
+      );
     } else {
       // ScaffoldMessenger.of(context).showSnackBar(passwordnotmatching);
     }

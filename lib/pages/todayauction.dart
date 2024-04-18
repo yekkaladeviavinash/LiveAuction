@@ -48,7 +48,7 @@ class _TodayauctionState extends State<Todayauction> {
               child: Container(
                 // color: Colors.black,
                 width: W,
-                height: ((4.16) * H) / 5,
+                height: ((4) * H) / 5,
                 child: ListView.builder(
                   itemCount: ctrl.todayproduct.length,
                   itemBuilder: (context, index) {

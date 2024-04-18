@@ -18,6 +18,7 @@ class productmodel {
   final String dateAdded;
   final String location;
   final int ptime;
+  final String pwinner;
 
   const productmodel({
     required this.pname,
@@ -32,6 +33,7 @@ class productmodel {
     required this.dateAdded,
     required this.location,
     required this.ptime,
+    required this.pwinner,
   });
 
   factory productmodel.fromJson(Map<String, dynamic> json) =>
@@ -49,5 +51,6 @@ class productmodel {
         'dateAdded': dateAdded,
         'location': location,
         'ptime': ptime,
+        'pwinner': pwinner,
       };
 }
