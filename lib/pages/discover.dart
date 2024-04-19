@@ -59,11 +59,37 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
       TabController _tabcontroller = TabController(length: 7, vsync: this);
       return Scaffold(
         resizeToAvoidBottomInset: false,
+        appBar: AppBar(
+          // backgroundColor: Colors.grey.shade600,
+          title: Padding(
+            padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
+            child: Text('Live Auction',
+            style: TextStyle(color: Colors.black),
+            ),
+          ),
+          leading: Padding(
+            padding: const EdgeInsets.fromLTRB(20, 8, 0, 8),
+            child: CircleAvatar(
+              radius: 1,
+              backgroundImage: AssetImage('assets/hammer.jpeg'),
+            ),
+          ),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  showSearch(
+                    context: context,
+                    delegate: CustomSearchDelegate(),
+                  );
+                },
+                icon: const Icon(Icons.search)),
+          ],
+        ),
         body: SafeArea(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SearchBar(),
+             
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
@@ -1650,38 +1676,85 @@ class NextScreen extends StatelessWidget {
   }
 }
 
-class SearchBar extends StatefulWidget {
+class CustomSearchDelegate extends SearchDelegate {
+  List<String> searchTerms = [
+    'Apple',
+    'Banana',
+    'Cherry',
+    'Date',
+    'Elderberry',
+    'Fig',
+    'Grapes',
+    'Honeydew',
+    'Kiwi',
+    'Lemon',
+  ];
   @override
-  _SearchBarState createState() => _SearchBarState();
-}
-
-class _SearchBarState extends State<SearchBar> {
-  String query = '';
-
-  void onQueryChanged(String newQuery) {
-    setState(() {
-      query = newQuery;
-    });
+  List<Widget> buildActions(BuildContext context) {
+    return [
+      IconButton(
+          onPressed: () {
+            query = '';
+          },
+          icon: const Icon(Icons.clear))
+    ];
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.fromLTRB(16, 16, 16, 8),
-      child: TextField(
-        onChanged: onQueryChanged,
-        cursorColor: Colors.black,
-        decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(vertical: 10.0),
-          labelText: 'Search',
-          labelStyle: TextStyle(color: Color.fromARGB(255, 30, 28, 27)),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.black),
-          ),
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(50)),
-          prefixIcon: Icon(Icons.search),
-        ),
-      ),
-    );
+  Widget buildLeading(BuildContext context) {
+    return IconButton(
+        onPressed: () {
+          close(context, null);
+        },
+        icon: const Icon(Icons.arrow_back));
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    List<String> matchQuery = [];
+    for (var item in searchTerms) {
+      if (item.toLowerCase().contains(query.toLowerCase())) {
+        matchQuery.add(item);
+      }
+    }
+    return ListView.builder(
+        itemCount: matchQuery.length,
+        itemBuilder: (context, index) {
+          var result = matchQuery[index];
+          return ListTile(title: Text(result));
+        });
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    List<String> matchQuery = [];
+    for (var item in searchTerms) {
+      if (item.toLowerCase().contains(query.toLowerCase())) {
+        matchQuery.add(item);
+      }
+    }
+    return ListView.builder(
+        itemCount: matchQuery.length,
+        itemBuilder: (context, index) {
+          var result = matchQuery[index];
+          return ListTile(title: Text(result));
+        });
+  }
+
+  @override
+  void showResults(BuildContext context) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => itempage(
+                selectpid: '123456',
+                selectimage: '123456',
+                selectcategory: 'Sports',
+                selectname: query,
+                selectprice: '123456',
+                selectdate: '121212',
+                selectdesc: 'qwidjxasjxksxklsax',
+                selectptime: 1234,selectregisteredusers: [0],
+                selectlocation: 'Hyderabad')));
   }
 }
