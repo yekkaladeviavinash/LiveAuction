@@ -59,18 +59,21 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
       TabController _tabcontroller = TabController(length: 7, vsync: this);
       return Scaffold(
         resizeToAvoidBottomInset: false,
+
+
+
         appBar: AppBar(
           // backgroundColor: Colors.grey.shade600,
           title: Padding(
             padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
             child: Text('Live Auction',
-            style: TextStyle(color: Colors.black),
+            style: TextStyle(color: Colors.black,),
             ),
           ),
           leading: Padding(
-            padding: const EdgeInsets.fromLTRB(20, 8, 0, 8),
+            padding:  EdgeInsets.fromLTRB(20*(W/432), 8, 0, 8),
             child: CircleAvatar(
-              radius: 1,
+              radius: 1*(W/432),
               backgroundImage: AssetImage('assets/hammer.jpeg'),
             ),
           ),
@@ -85,6 +88,10 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
                 icon: const Icon(Icons.search)),
           ],
         ),
+
+
+
+
         body: SafeArea(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
