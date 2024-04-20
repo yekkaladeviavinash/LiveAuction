@@ -88,7 +88,6 @@ class _RegisterPageState extends State<RegisterPage> {
           sellerhistory: [],
           profileimagelink: '',
           wishlist: [],
-          aWon:0,
           );
       await FirebaseFirestore.instance
           .collection('users')

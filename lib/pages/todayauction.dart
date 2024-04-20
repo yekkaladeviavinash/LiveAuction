@@ -246,6 +246,8 @@ class _TodayauctionState extends State<Todayauction> {
                                                       selectregisteredusers:
                                                           cardData
                                                               .registeredusers,
+                                                      selectsid: cardData.sid,
+                                                      selectptime: cardData.ptime,
                                                     ),
                                                   ),
                                                 );

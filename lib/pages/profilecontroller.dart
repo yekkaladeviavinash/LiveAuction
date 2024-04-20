@@ -22,7 +22,7 @@ class Profilecontroller extends GetxController {
   List<productmodel> sellerProducts = [];
   List<productmodel> sellerwishlist = [];
   List<productmodel> sellerAuctionHistory = [];
-  int? x;
+  // int? x;
 
   List<usermodel> userslist = [];
 
@@ -71,7 +71,7 @@ class Profilecontroller extends GetxController {
       wishlt = curruser.firstOrNull?.wishlist ?? [];
 
       // aucthis = curruser.first.auctionhistory!;
-      x = curruser.firstOrNull?.aWon ?? 0;
+      // x = curruser.firstOrNull?.aWon ?? 0;
       aucthis = curruser.firstOrNull?.auctionhistory ?? [];
 
       sellerproductslist = cameproducts

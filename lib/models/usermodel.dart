@@ -12,7 +12,6 @@ class usermodel {
   final List? auctionhistory;
   final List? sellerhistory;
   final List? wishlist;
-  final int? aWon;
 
   const usermodel({
     required this.username,
@@ -23,7 +22,6 @@ class usermodel {
     required this.auctionhistory,
     required this.sellerhistory,
     required this.wishlist,
-    required this.aWon,
   });
 
   factory usermodel.fromJson(Map<String, dynamic> json) =>
@@ -37,6 +35,5 @@ class usermodel {
         'auctionhistory': auctionhistory,
         'sellerhistory': sellerhistory,
         'wishlist': wishlist,
-        'aWon': aWon,
       };
 }

@@ -19,6 +19,8 @@ class auctionpage extends StatefulWidget {
   final String? selectdate;
   final String? selectdesc;
   final List? selectregisteredusers;
+  final String? selectsid;
+  final int? selectptime;
   const auctionpage({
     super.key,
     required this.selectpid,
@@ -29,6 +31,8 @@ class auctionpage extends StatefulWidget {
     required this.selectdate,
     required this.selectdesc,
     required this.selectregisteredusers,
+    required this.selectsid,
+    required this.selectptime,
   });
 
   @override
@@ -61,6 +65,12 @@ class _auctionpageState extends State<auctionpage> {
 
   String? nameofuser;
   String? databaseId;
+  String? userdatabaseemail;
+  String? sellername;
+  String? sellernumber;
+  String? selleremail;
+
+
   String winner = "";
   String highestprice = "";
 
@@ -74,7 +84,7 @@ class _auctionpageState extends State<auctionpage> {
   @override
   void connect() {
     // socket = IO.io('http://10.0.2.2:3000', <String, dynamic>{
-    socket = IO.io('http://10.74.10.229:3000', <String, dynamic>{
+    socket = IO.io('http://10.81.66.192:3000', <String, dynamic>{
       "transports": ["websocket"],
       "autoconnect": false,
     });
@@ -114,7 +124,14 @@ class _auctionpageState extends State<auctionpage> {
       });
       socket!.on("auctionover", (message) {
         winnerupdate(widget.selectpid!, message['user']);
-        awonupdate(message['databaseidofuser']);
+        socket!.emit('sendemail', {
+          'sellername':sellername,
+          'sellernumber':sellernumber,
+          'selleremail':selleremail,
+          'dateofauction':widget.selectdate!,
+          'timeofauction':widget.selectptime!,
+        });
+        // awonupdate(message['databaseidofuser']);
         winner = message['user'];
         highestprice = message['value'].toString();
         if (message['userid'] == uuidofuser) {
@@ -165,21 +182,21 @@ class _auctionpageState extends State<auctionpage> {
 
 
 
-  void awonupdate(String docId) async {
-    try {
-       DocumentSnapshot snap = await FirebaseFirestore.instance
-        .collection('users')
-        .doc(FirebaseAuth.instance.currentUser!.uid)
-        .get();
-      int x = await (snap.data() as Map<String, dynamic>)['aWon'];
-      await firestore.collection('users').doc(docId).update({
-        'aWon': x+1,
-      });
-      Get.snackbar('Acceped', "Accepted".toString(), colorText: Colors.green);
-    } catch (e) {
-      print("Error updating document: $e");
-    } finally {}
-  }
+  // void awonupdate(String docId) async {
+  //   try {
+  //      DocumentSnapshot snap = await FirebaseFirestore.instance
+  //       .collection('users')
+  //       .doc(FirebaseAuth.instance.currentUser!.uid)
+  //       .get();
+  //     int x = await (snap.data() as Map<String, dynamic>)['aWon'];
+  //     await firestore.collection('users').doc(docId).update({
+  //       'aWon': x+1,
+  //     });
+  //     Get.snackbar('Acceped', "Accepted".toString(), colorText: Colors.green);
+  //   } catch (e) {
+  //     print("Error updating document: $e");
+  //   } finally {}
+  // }
 
   void sendMessage(int message) {
     socket!.emit('sendMessage', {
@@ -187,6 +204,7 @@ class _auctionpageState extends State<auctionpage> {
       'user': nameofuser!,
       'databaseid': databaseId!,
       'userid': uuidofuser,
+      'databaseemail':userdatabaseemail,
     });
   }
 
@@ -196,9 +214,20 @@ class _auctionpageState extends State<auctionpage> {
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .get();
 
+    DocumentSnapshot snap2 = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(widget.selectsid!)
+        .get();
+
+
     setState(() {
       nameofuser = (snap.data() as Map<String, dynamic>)['username'];
       databaseId = (snap.data() as Map<String, dynamic>)['uid'];
+      userdatabaseemail = (snap.data() as Map<String, dynamic>)['email'];
+
+      sellername = (snap2.data() as Map<String, dynamic>)['username'];
+      sellernumber = (snap2.data() as Map<String, dynamic>)['phone'];
+      selleremail = (snap2.data() as Map<String, dynamic>)['email'];
     });
   }
 
