@@ -1,9 +1,32 @@
+import 'dart:convert';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:liveauction/models/datemodel.dart';
+import 'package:liveauction/models/productmodel.dart';
+import 'package:liveauction/models/usermodel.dart';
 import 'package:liveauction/pages/itempage.dart';
 import 'package:liveauction/pages/seller_controller.dart';
+import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 class Discover extends StatefulWidget {
   const Discover({Key? key}) : super(key: key);
@@ -37,7 +60,20 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
   ];
 
   List<String> searchResults = [];
+final curruser = FirebaseAuth.instance.currentUser;
+final locationchosen = TextEditingController();
+FirebaseFirestore fstore = FirebaseFirestore.instance;
 
+
+
+List<datemodel> alldates = [];
+List<productmodel> cameproducts = [];
+
+
+List<usermodel> userslist = [];
+
+List<productmodel> tommproducts = [];
+List<String> tmmrousersmailids = [];
   void onQueryChanged(String query) {
     setState(() {
       searchResults = searchdata
@@ -46,9 +82,126 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
     });
   }
 
-//
+  void initState() {
+    super.initState();
+    tmmroproducts();
+  }
 
-//
+final List<int> dataList = [1, 2, 3, 4, 5];
+
+postData() async {
+  try {
+    final response = await http.post(
+      Uri.parse('http://10.81.66.192:3000/some'),
+      headers: <String, String>{
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode(<String, dynamic>{
+        'dataList': dataList,
+      }),
+    );
+
+    if (response.statusCode == 200) {
+      print('Data posted successfully');
+    } else {
+      print('Failed to post data: ${response.statusCode}');
+    }
+  } catch (e) {
+    print('Exception while posting data: $e');
+  }
+}
+
+
+
+
+
+
+
+void tmmroproducts() async {
+  DateTime now = DateTime.now();
+
+  // Get tomorrow's date by adding one day to the current date
+  DateTime tomorrow = now.add(Duration(days: 1));
+  // String tmmrodate = DateFormat("yyyy-MM-dd").format(now);
+
+  // Format tomorrow's date as "yyyy-MM-dd"
+  String tomorrowDateFormatted = DateFormat("yyyy-MM-dd").format(tomorrow);
+   try {
+      QuerySnapshot productsnapshot = await fstore.collection('products').get();
+      final List<productmodel> retrievedproducts = productsnapshot.docs
+          .map((doc) =>
+              productmodel.fromJson(doc.data() as Map<String, dynamic>))
+          .toList();
+      cameproducts.clear();
+      cameproducts.assignAll(retrievedproducts);
+      // update();
+    } catch (e) {
+      print("Error shown in todayauction controller2222222222222 ${e}");
+    }
+  tommproducts = cameproducts
+      .where((product) =>
+          product.dateAdded == tomorrowDateFormatted && product.status == true)
+      .toList();
+  List tmmrousersid = [];
+  print(tommproducts.length.toString()+"hiiiiiii");
+  if (tommproducts.length != 0) {
+    tommproducts.forEach((product) {
+      // Add the registeredUsers of the current product to tmmrousersid
+      tmmrousersid.addAll(product.registeredusers);
+    });
+
+    QuerySnapshot usersnapshot = await fstore.collection('users').get();
+    final List<usermodel> retrievedusers = usersnapshot.docs.map((doc) {
+      final userData = doc.data();
+      if (userData != null) {
+        // print(userData as Map<String, dynamic>);
+        return usermodel.fromJson(userData as Map<String, dynamic>);
+      } else {
+        throw Exception('Document data is null');
+      }
+    }).toList();
+    userslist.clear();
+    // userslist.assignAll(retrievedusers);
+    userslist.assignAll(
+    retrievedusers.where((user) => tmmrousersid.contains(user.uid)));
+    userslist.forEach((user) {
+      // Add the registeredUsers of the current product to tmmrousersid
+      tmmrousersmailids.add(user.email);
+    });
+  }
+  final response = await http.post(
+      Uri.parse('http://10.81.66.192:3000/some'),
+      headers: <String, String>{
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode(<String, dynamic>{
+        'dataList': tmmrousersmailids,
+      }),
+    );
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   @override
   Widget build(BuildContext context) {

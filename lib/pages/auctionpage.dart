@@ -45,27 +45,28 @@ class _auctionpageState extends State<auctionpage> {
   // int highestBid = 25678776;
   double _progressValue = 0.0;
   // String highestBidder = 'Gojo Satoru';
-  int _totalTime = 120;
+  int _totalTime = 3600;
   final TextEditingController bid = TextEditingController();
   // String timer = '45 min :00 sec';
   bool _isButtonVisible = true;
   bool _showGif = false;
 
   IO.Socket? socket;
-  int? num;
-  int? mynum;
+  int? num=0;
+  int? mynum=0;
   String? user;
   int? countdown;
   int? countinmin;
   int? countinsec;
-  int? endingtimer;
-  int? endingtimermin;
-  int? endingtimersec;
+  // int? endingtimer;
+  // int? endingtimermin;
+  // int? endingtimersec;
   var uuidofuser = Uuid().v1();
 
   String? nameofuser;
   String? databaseId;
   String? userdatabaseemail;
+  String? userdatabasenumber;
   String? sellername;
   String? sellernumber;
   String? selleremail;
@@ -90,6 +91,9 @@ class _auctionpageState extends State<auctionpage> {
     });
     socket!.connect();
     socket!.onConnect((_) {
+      socket!.emit('baseprice', {
+          'base':widget.selectprice!,
+        });
       print('connected with frontend');
       socket!.on("timer", (timer) {
         print(timer);
@@ -97,18 +101,19 @@ class _auctionpageState extends State<auctionpage> {
           countdown = timer;
           countinmin = (countdown! / 60).toInt();
           countinsec = countdown! % 60;
+          _progressValue = (3600 - countdown!) / _totalTime;
         });
       });
-      socket!.on("endingtimer", (endingtimersent) {
-        print(endingtimersent);
-        setState(() {
-          endingtimer = endingtimersent;
-          // _totalTime=endingtimersent;
-          endingtimermin = (endingtimersent! / 60).toInt();
-          endingtimersec = endingtimersent! % 60;
-          _progressValue = (120 - endingtimer!) / _totalTime;
-        });
-      });
+      // socket!.on("endingtimer", (endingtimersent) {
+      //   print(endingtimersent);
+      //   setState(() {
+      //     endingtimer = endingtimersent;
+      //     // _totalTime=endingtimersent;
+      //     endingtimermin = (endingtimersent! / 60).toInt();
+      //     endingtimersec = endingtimersent! % 60;
+      //     _progressValue = (120 - endingtimer!) / _totalTime;
+      //   });
+      // });
       socket!.on("sendMsgServer", (message) {
         print(message);
         setState(() {
@@ -205,6 +210,7 @@ class _auctionpageState extends State<auctionpage> {
       'databaseid': databaseId!,
       'userid': uuidofuser,
       'databaseemail':userdatabaseemail,
+      'databasenumber':userdatabasenumber,
     });
   }
 
@@ -224,6 +230,7 @@ class _auctionpageState extends State<auctionpage> {
       nameofuser = (snap.data() as Map<String, dynamic>)['username'];
       databaseId = (snap.data() as Map<String, dynamic>)['uid'];
       userdatabaseemail = (snap.data() as Map<String, dynamic>)['email'];
+      userdatabasenumber = (snap.data() as Map<String, dynamic>)['phone'];
 
       sellername = (snap2.data() as Map<String, dynamic>)['username'];
       sellernumber = (snap2.data() as Map<String, dynamic>)['phone'];

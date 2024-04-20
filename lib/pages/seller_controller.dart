@@ -56,7 +56,7 @@ class Sellercontroller extends GetxController {
     super.onInit();
   }
 
-  addproduct() async {
+  addproduct(String imagelink) async {
     if (item_category != '') {
       DocumentReference doc = productcollection.doc();
       // DocumentReference date=productcollection.doc();
@@ -66,7 +66,7 @@ class Sellercontroller extends GetxController {
         pprice: base_price.text.trim(),
         sid: FirebaseAuth.instance.currentUser!.uid,
         pid: doc.id,
-        pimage: item_image.text.trim(),
+        pimage: imagelink,
         pcategory: item_category,
         status: false,
         registeredusers: [],
