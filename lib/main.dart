@@ -2,12 +2,15 @@ import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
+import 'package:liveauction/pages/firstpage.dart';
 import 'package:liveauction/pages/itempage_controller.dart';
 import 'package:liveauction/pages/loading.dart';
 import 'package:liveauction/pages/profilecontroller.dart';
 import 'package:liveauction/pages/seller_controller.dart';
 import 'package:liveauction/pages/todayauction_controller.dart';
 import 'firebase_options.dart';
+import 'package:liveauction/pages/login.dart';
+import 'package:liveauction/pages/register.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,7 +41,6 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         textTheme: TextTheme(
           bodyText1: TextStyle(fontFamily: 'Roboto'),
-          // Add more text styles as needed
         ),
       ),
       debugShowCheckedModeBanner: false,

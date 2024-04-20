@@ -59,6 +59,7 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
       TabController _tabcontroller = TabController(length: 7, vsync: this);
       return Scaffold(
         resizeToAvoidBottomInset: false,
+<<<<<<< Updated upstream
 
 
 
@@ -77,6 +78,10 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
               backgroundImage: AssetImage('assets/hammer.jpeg'),
             ),
           ),
+=======
+        appBar: AppBar(
+          title: Text('Live Auction'),
+>>>>>>> Stashed changes
           actions: [
             IconButton(
                 onPressed: () {
@@ -88,15 +93,22 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
                 icon: const Icon(Icons.search)),
           ],
         ),
+<<<<<<< Updated upstream
 
 
 
 
+=======
+>>>>>>> Stashed changes
         body: SafeArea(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+<<<<<<< Updated upstream
              
+=======
+              // CustomSearchDelegate(),
+>>>>>>> Stashed changes
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
@@ -260,6 +272,7 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
                   child: TabBarView(
                     controller: _tabcontroller,
                     children: [
+<<<<<<< Updated upstream
                       RefreshIndicator(
                         backgroundColor: Colors.white,
                         color: Colors.black,
@@ -288,6 +301,51 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
                                       selectptime: cardData.ptime,
                                       selectlocation: cardData.location,
                                       selectregisteredusers: cardData.registeredusers,
+=======
+                      ListView(
+                        children: ctrl.productsshowinui1.map((cardData) {
+                          return InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => itempage(
+                                    selectpid: cardData.pid,
+                                    selectimage: cardData.pimage,
+                                    selectcategory: cardData.pcategory,
+                                    selectname: cardData.pname,
+                                    selectprice: cardData.pprice,
+                                    selectdate: cardData.dateAdded,
+                                    selectdesc: cardData.pdesc,
+                                    selectptime: cardData.ptime,
+                                    selectlocation: cardData.location,
+                                  ),
+                                ),
+                              );
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(8, 4, 8, 4),
+                              child: Card(
+                                color: Colors.white,
+                                surfaceTintColor: Colors.transparent,
+                                shadowColor: Colors.white,
+                                elevation: 0,
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      width: 125,
+                                      height: 125,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(
+                                            10.0), // Set border radius here
+                                        image: DecorationImage(
+                                          image: NetworkImage(cardData
+                                              .pimage), // Replace with your image URL
+                                          fit: BoxFit
+                                              .cover, // Adjust image fit as needed
+                                        ),
+                                      ),
+>>>>>>> Stashed changes
                                     ),
                                   ),
                                 );
@@ -456,6 +514,7 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
                           }).toList(),
                         ),
                       ),
+<<<<<<< Updated upstream
 
 
                       RefreshIndicator(
@@ -486,6 +545,51 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
                                       selectptime: cardData.ptime,
                                       selectlocation: cardData.location,
                                       selectregisteredusers: cardData.registeredusers,
+=======
+                      ListView(
+                        children: ctrl.productsshowinui2.map((cardData) {
+                          return InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => itempage(
+                                    selectpid: cardData.pid,
+                                    selectimage: cardData.pimage,
+                                    selectcategory: cardData.pcategory,
+                                    selectname: cardData.pname,
+                                    selectprice: cardData.pprice,
+                                    selectdate: cardData.dateAdded,
+                                    selectdesc: cardData.pdesc,
+                                    selectptime: cardData.ptime,
+                                    selectlocation: cardData.location,
+                                  ),
+                                ),
+                              );
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(8, 4, 8, 4),
+                              child: Card(
+                                color: Colors.white,
+                                surfaceTintColor: Colors.transparent,
+                                shadowColor: Colors.white,
+                                elevation: 0,
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      width: 125,
+                                      height: 125,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(
+                                            10.0), // Set border radius here
+                                        image: DecorationImage(
+                                          image: NetworkImage(cardData
+                                              .pimage), // Replace with your image URL
+                                          fit: BoxFit
+                                              .cover, // Adjust image fit as needed
+                                        ),
+                                      ),
+>>>>>>> Stashed changes
                                     ),
                                   ),
                                 );
@@ -1634,12 +1738,375 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
                           }).toList(),
                         ),
                       ),
+<<<<<<< Updated upstream
 
 
 
 
 
                       
+=======
+                      ListView(
+                        children: ctrl.productsshowinui3.map((cardData) {
+                          return InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => itempage(
+                                    selectpid: cardData.pid,
+                                    selectimage: cardData.pimage,
+                                    selectcategory: cardData.pcategory,
+                                    selectname: cardData.pname,
+                                    selectprice: cardData.pprice,
+                                    selectdate: cardData.dateAdded,
+                                    selectdesc: cardData.pdesc,
+                                    selectptime: cardData.ptime,
+                                    selectlocation: cardData.location,
+                                  ),
+                                ),
+                              );
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(8, 4, 8, 4),
+                              child: Card(
+                                color: Colors.white,
+                                surfaceTintColor: Colors.transparent,
+                                shadowColor: Colors.white,
+                                elevation: 0,
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      width: 125,
+                                      height: 125,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(
+                                            10.0), // Set border radius here
+                                        image: DecorationImage(
+                                          image: NetworkImage(cardData
+                                              .pimage), // Replace with your image URL
+                                          fit: BoxFit
+                                              .cover, // Adjust image fit as needed
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(width: 10),
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            cardData.pname,
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 18,
+                                            ),
+                                          ),
+                                          SizedBox(height: 5),
+                                          Text('Rs.' + cardData.pprice),
+                                          SizedBox(height: 5),
+                                          Text('Auction Date:' +
+                                              cardData.dateAdded),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          );
+                        }).toList(),
+                      ),
+                      ListView(
+                        children: ctrl.productsshowinui4.map((cardData) {
+                          return InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => itempage(
+                                    selectpid: cardData.pid,
+                                    selectimage: cardData.pimage,
+                                    selectcategory: cardData.pcategory,
+                                    selectname: cardData.pname,
+                                    selectprice: cardData.pprice,
+                                    selectdate: cardData.dateAdded,
+                                    selectdesc: cardData.pdesc,
+                                    selectptime: cardData.ptime,
+                                    selectlocation: cardData.location,
+                                  ),
+                                ),
+                              );
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(8, 4, 8, 4),
+                              child: Card(
+                                color: Colors.white,
+                                surfaceTintColor: Colors.transparent,
+                                shadowColor: Colors.white,
+                                elevation: 0,
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      width: 125,
+                                      height: 125,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(
+                                            10.0), // Set border radius here
+                                        image: DecorationImage(
+                                          image: NetworkImage(cardData
+                                              .pimage), // Replace with your image URL
+                                          fit: BoxFit
+                                              .cover, // Adjust image fit as needed
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(width: 10),
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            cardData.pname,
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 18,
+                                            ),
+                                          ),
+                                          SizedBox(height: 5),
+                                          Text('Rs.' + cardData.pprice),
+                                          SizedBox(height: 5),
+                                          Text('Auction Date:' +
+                                              cardData.dateAdded),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          );
+                        }).toList(),
+                      ),
+                      ListView(
+                        children: ctrl.productsshowinui5.map((cardData) {
+                          return InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => itempage(
+                                    selectpid: cardData.pid,
+                                    selectimage: cardData.pimage,
+                                    selectcategory: cardData.pcategory,
+                                    selectname: cardData.pname,
+                                    selectprice: cardData.pprice,
+                                    selectdate: cardData.dateAdded,
+                                    selectdesc: cardData.pdesc,
+                                    selectptime: cardData.ptime,
+                                    selectlocation: cardData.location,
+                                  ),
+                                ),
+                              );
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(8, 4, 8, 4),
+                              child: Card(
+                                color: Colors.white,
+                                surfaceTintColor: Colors.transparent,
+                                shadowColor: Colors.white,
+                                elevation: 0,
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      width: 125,
+                                      height: 125,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(
+                                            10.0), // Set border radius here
+                                        image: DecorationImage(
+                                          image: NetworkImage(cardData
+                                              .pimage), // Replace with your image URL
+                                          fit: BoxFit
+                                              .cover, // Adjust image fit as needed
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(width: 10),
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            cardData.pname,
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 18,
+                                            ),
+                                          ),
+                                          SizedBox(height: 5),
+                                          Text('Rs.' + cardData.pprice),
+                                          SizedBox(height: 5),
+                                          Text('Auction Date:' +
+                                              cardData.dateAdded),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          );
+                        }).toList(),
+                      ),
+                      ListView(
+                        children: ctrl.productsshowinui6.map((cardData) {
+                          return InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => itempage(
+                                    selectpid: cardData.pid,
+                                    selectimage: cardData.pimage,
+                                    selectcategory: cardData.pcategory,
+                                    selectname: cardData.pname,
+                                    selectprice: cardData.pprice,
+                                    selectdate: cardData.dateAdded,
+                                    selectdesc: cardData.pdesc,
+                                    selectptime: cardData.ptime,
+                                    selectlocation: cardData.location,
+                                  ),
+                                ),
+                              );
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(8, 4, 8, 4),
+                              child: Card(
+                                color: Colors.white,
+                                surfaceTintColor: Colors.transparent,
+                                shadowColor: Colors.white,
+                                elevation: 0,
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      width: 125,
+                                      height: 125,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(
+                                            10.0), // Set border radius here
+                                        image: DecorationImage(
+                                          image: NetworkImage(cardData
+                                              .pimage), // Replace with your image URL
+                                          fit: BoxFit
+                                              .cover, // Adjust image fit as needed
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(width: 10),
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            cardData.pname,
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 18,
+                                            ),
+                                          ),
+                                          SizedBox(height: 5),
+                                          Text('Rs.' + cardData.pprice),
+                                          SizedBox(height: 5),
+                                          Text('Auction Date:' +
+                                              cardData.dateAdded),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          );
+                        }).toList(),
+                      ),
+                      ListView(
+                        children: ctrl.productsshowinui7.map((cardData) {
+                          return InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => itempage(
+                                    selectpid: cardData.pid,
+                                    selectimage: cardData.pimage,
+                                    selectcategory: cardData.pcategory,
+                                    selectname: cardData.pname,
+                                    selectprice: cardData.pprice,
+                                    selectdate: cardData.dateAdded,
+                                    selectdesc: cardData.pdesc,
+                                    selectptime: cardData.ptime,
+                                    selectlocation: cardData.location,
+                                  ),
+                                ),
+                              );
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(8, 4, 8, 4),
+                              child: Card(
+                                color: Colors.white,
+                                surfaceTintColor: Colors.transparent,
+                                shadowColor: Colors.white,
+                                elevation: 0,
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      width: 125,
+                                      height: 125,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(
+                                            10.0), // Set border radius here
+                                        image: DecorationImage(
+                                          image: NetworkImage(cardData
+                                              .pimage), // Replace with your image URL
+                                          fit: BoxFit
+                                              .cover, // Adjust image fit as needed
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(width: 10),
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            cardData.pname,
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 18,
+                                            ),
+                                          ),
+                                          SizedBox(height: 5),
+                                          Text('Rs.' + cardData.pprice),
+                                          SizedBox(height: 5),
+                                          Text('Auction Date:' +
+                                              cardData.dateAdded),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          );
+                        }).toList(),
+                      )
+>>>>>>> Stashed changes
                     ],
                   ),
                 ),
@@ -1683,6 +2150,59 @@ class NextScreen extends StatelessWidget {
   }
 }
 
+<<<<<<< Updated upstream
+=======
+// class SearchBarWidget extends StatefulWidget {
+//   @override
+//   _SearchBarWidgetState createState() => _SearchBarWidgetState();
+// }
+
+// class _SearchBarWidgetState extends State<SearchBarWidget> {
+//   final TextEditingController _controller = TextEditingController();
+//   List<String> _suggestions = ['Apple', 'Banana', 'Orange', 'Pineapple'];
+//   String _selectedResult = '';
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       padding: EdgeInsets.fromLTRB(16, 16, 16, 8),
+//       child: TextField(
+//         controller: _controller,
+//         cursorColor: Colors.black,
+//         decoration: InputDecoration(
+//             contentPadding:
+//                 EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+//             hintText: 'Search...',
+//             labelStyle: TextStyle(color: Color.fromARGB(255, 30, 28, 27)),
+//             focusedBorder: OutlineInputBorder(
+//                 borderSide: BorderSide(color: Colors.black),
+//                 borderRadius: BorderRadius.circular(50)),
+//             border: OutlineInputBorder(borderRadius: BorderRadius.circular(50)),
+//             suffixIcon: IconButton(
+//                 onPressed: () {
+
+//                 },
+//                 icon: Icon(Icons.search))),
+//         onSubmitted: (value) {
+//           Navigator.push(
+//             context,
+//             MaterialPageRoute(
+//               builder: (context) => itempage(
+//                   selectpid: 'ahbshbs',
+//                   selectimage: 'aaaaa',
+//                   selectcategory: 'Sports',
+//                   selectname: 'Bat',
+//                   selectprice: '123344',
+//                   selectdate: '12345',
+//                   selectdesc: 'aaaaaaaaa',
+//                   selectptime: 12344,
+//                   selectlocation: 'asdfrety'),
+//             ),
+//           );
+//         },
+//       ),
+
+>>>>>>> Stashed changes
 class CustomSearchDelegate extends SearchDelegate {
   List<String> searchTerms = [
     'Apple',
@@ -1714,6 +2234,58 @@ class CustomSearchDelegate extends SearchDelegate {
           close(context, null);
         },
         icon: const Icon(Icons.arrow_back));
+<<<<<<< Updated upstream
+=======
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    List<String> matchQuery = [];
+    for (var item in searchTerms) {
+      if (item.toLowerCase().contains(query.toLowerCase())) {
+        matchQuery.add(item);
+      }
+    }
+    return ListView.builder(
+        itemCount: matchQuery.length,
+        itemBuilder: (context, index) {
+          var result = matchQuery[index];
+          return ListTile(title: Text(result));
+        });
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    List<String> matchQuery = [];
+    for (var item in searchTerms) {
+      if (item.toLowerCase().contains(query.toLowerCase())) {
+        matchQuery.add(item);
+      }
+    }
+    return ListView.builder(
+        itemCount: matchQuery.length,
+        itemBuilder: (context, index) {
+          var result = matchQuery[index];
+          return ListTile(title: Text(result));
+        });
+  }
+
+  @override
+  void showResults(BuildContext context) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => itempage(
+                selectpid: '123456',
+                selectimage: '123456',
+                selectcategory: 'Sports',
+                selectname: query,
+                selectprice: '123456',
+                selectdate: '121212',
+                selectdesc: 'qwidjxasjxksxklsax',
+                selectptime: 1234,
+                selectlocation: 'Hyderabad')));
+>>>>>>> Stashed changes
   }
 
   @override
