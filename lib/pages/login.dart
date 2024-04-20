@@ -1,8 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:liveauction/models/usermodel.dart';
 import 'package:liveauction/pages/forgot_pw_page.dart';
+
 
 class login extends StatefulWidget {
   final VoidCallback showregisterpage;
@@ -17,6 +20,10 @@ class _loginState extends State<login> {
   final _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   bool obscureText = true;
+  FirebaseFirestore fstore = FirebaseFirestore.instance;
+late CollectionReference usercollection = fstore.collection('users');
+List<usermodel> userslist = [];
+String? crrusnm = "";
   Future signIn() async {
     //loadingc circle
     //   showDialog(context: context, builder: (context){
@@ -27,8 +34,24 @@ class _loginState extends State<login> {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: _emailController.text.trim(),
           password: _passwordController.text.trim());
+          QuerySnapshot usersnapshot = await usercollection.get();
+      final List<usermodel> retrievedusers = usersnapshot.docs.map((doc) {
+        final userData = doc.data();
+        if (userData != null) {
+          // print(userData as Map<String, dynamic>);
+          return usermodel.fromJson(userData as Map<String, dynamic>);
+        } else {
+          throw Exception('Document data is null');
+        }
+      }).toList();
+
+      userslist.clear();
+      userslist.assignAll(retrievedusers);
+      Iterable<usermodel> curruser = userslist
+          .where((user) => user.uid == FirebaseAuth.instance.currentUser!.uid);
+      crrusnm = curruser.firstOrNull?.username;
       Get.snackbar(
-        'Welcome',
+        'Welcome '+crrusnm.toString()+",",
         'Logged in Successfully',
         colorText: Colors.white,
         backgroundColor: Colors.black87,

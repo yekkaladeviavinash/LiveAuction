@@ -89,27 +89,27 @@ List<String> tmmrousersmailids = [];
 
 final List<int> dataList = [1, 2, 3, 4, 5];
 
-postData() async {
-  try {
-    final response = await http.post(
-      Uri.parse('http://10.81.66.192:3000/some'),
-      headers: <String, String>{
-        'Content-Type': 'application/json',
-      },
-      body: jsonEncode(<String, dynamic>{
-        'dataList': dataList,
-      }),
-    );
+// postData() async {
+//   try {
+//     final response = await http.post(
+//       Uri.parse('http://10.81.66.192:3000/some'),
+//       headers: <String, String>{
+//         'Content-Type': 'application/json',
+//       },
+//       body: jsonEncode(<String, dynamic>{
+//         'dataList': dataList,
+//       }),
+//     );
 
-    if (response.statusCode == 200) {
-      print('Data posted successfully');
-    } else {
-      print('Failed to post data: ${response.statusCode}');
-    }
-  } catch (e) {
-    print('Exception while posting data: $e');
-  }
-}
+//     if (response.statusCode == 200) {
+//       print('Data posted successfully');
+//     } else {
+//       print('Failed to post data: ${response.statusCode}');
+//     }
+//   } catch (e) {
+//     print('Exception while posting data: $e');
+//   }
+// }
 
 
 
@@ -1905,7 +1905,23 @@ class CustomSearchDelegate extends SearchDelegate {
         itemCount: matchQuery.length,
         itemBuilder: (context, index) {
           var result = matchQuery[index];
-          return ListTile(title: Text(result));
+          return ListTile(title: Text(result),onTap: (){
+            Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => itempage(
+                selectpid: '123456',
+                selectimage: 'https://www.boredpanda.com/blog/wp-content/uploads/2022/12/2509735068_1adc5ab69a_k-63a17b3acddd5__700.jpg',
+                selectcategory: 'Sports',
+                selectname: "jndoi",
+                selectprice: '123456',
+                selectdate: '2024-04-21',
+                selectdesc: 'qwidjxasjxksxklsax',
+                selectptime: 12,
+                selectlocation: 'Hyderabad',
+                selectregisteredusers: ["8njnao","kjdboqndo"],
+                )));
+          },);
         });
   }
 
@@ -1916,14 +1932,15 @@ class CustomSearchDelegate extends SearchDelegate {
         MaterialPageRoute(
             builder: (context) => itempage(
                 selectpid: '123456',
-                selectimage: '123456',
+                selectimage: 'https://www.boredpanda.com/blog/wp-content/uploads/2022/12/Osebergskipet_2016-63a1a94eefbb2__700.jpg',
                 selectcategory: 'Sports',
-                selectname: query,
+                selectname: "jndoi",
                 selectprice: '123456',
-                selectdate: '121212',
+                selectdate: '2024-04-21',
                 selectdesc: 'qwidjxasjxksxklsax',
-                selectptime: 1234,
-                selectregisteredusers: [0],
-                selectlocation: 'Hyderabad')));
+                selectptime: 12,
+                selectlocation: 'Hyderabad',
+                selectregisteredusers: ["8njnao","kjdboqndo"],
+                )));
   }
 }

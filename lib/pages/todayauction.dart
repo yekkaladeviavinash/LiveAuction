@@ -265,74 +265,16 @@ class _TodayauctionState extends State<Todayauction> {
                                             ),
                                           if (auctionCompleted)
                                             
-                                          // Text('Completed',
-                                          // style: TextStyle(
-                                          //     fontSize: 15 * (W / 432),
-                                          //     color: Colors.red,
-                                          //     fontFamily: 'robotol',
-                                          //     fontWeight: FontWeight.bold
-                                          //     // ,letterSpacing: 1
-                                          //     ),
-                                          // ),
-                                          ElevatedButton(
-                                              style: ButtonStyle(
-                                                backgroundColor:
-                                                    MaterialStateProperty.all<
-                                                        Color>(Colors.black),
-                                                padding: MaterialStateProperty.all<
-                                                        EdgeInsets>(
-                                                    EdgeInsets.fromLTRB(12, 0, 12,
-                                                        0)), // Change color here
-                                                shape:
-                                                    MaterialStateProperty.all<
-                                                        RoundedRectangleBorder>(
-                                                  RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10.0), // Change border radius here
-                                                  ),
-                                                ),
+                                          Text('Completed',
+                                          style: TextStyle(
+                                              fontSize: 15 * (W / 432),
+                                              color: Colors.red,
+                                              fontFamily: 'robotol',
+                                              fontWeight: FontWeight.bold
+                                              // ,letterSpacing: 1
                                               ),
-                                              onPressed: () {
-                                                Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                    // builder: (context) =>Bidding(),
-                                                    builder: (context) =>
-                                                        auctionpage(
-                                                      selectpid: cardData.pid,
-                                                      selectimage:
-                                                          cardData.pimage,
-                                                      selectcategory:
-                                                          cardData.pcategory,
-                                                      selectname:
-                                                          cardData.pname,
-                                                      selectprice:
-                                                          cardData.pprice,
-                                                      selectdate:
-                                                          cardData.dateAdded,
-                                                      selectdesc:
-                                                          cardData.pdesc,
-                                                      selectregisteredusers:
-                                                          cardData
-                                                              .registeredusers,
-                                                      selectsid: cardData.sid,
-                                                      selectptime: cardData.ptime,
-                                                    ),
-                                                  ),
-                                                );
-                                              },
-                                              child: Text(
-                                                'Enter Auction',
-                                                style: TextStyle(
-                                                    fontSize: 14 * (W / 432),
-                                                    color: Colors.white,
-                                                    fontFamily: 'robotol',
-                                                    fontWeight: FontWeight.bold
-                                                    // ,letterSpacing: 1
-                                                    ),
-                                              ),
-                                            ),
+                                          ),
+                                          
 
                                           if (isTimeToShowButton &&
                                               !isCurrentUserRegistered)
