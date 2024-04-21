@@ -47,16 +47,16 @@ class _DiscoverState extends State<Discover> with TickerProviderStateMixin {
     'others',
   ];
   List<String> searchdata = [
-    'Apple',
-    'Banana',
-    'Cherry',
-    'Date',
-    'Elderberry',
-    'Fig',
-    'Grapes',
-    'Honeydew',
-    'Kiwi',
-    'Lemon',
+    'The Queen Nefertti II',
+    'Atlas Cycle',
+    'Greek Vase',
+    'Pearl Necklace',
+    'Royal Elephant',
+    'Earthen Lamp',
+    'Turn table',
+    'Pocket Clock',
+    'Kamot Jar',
+    'Falling Star',
   ];
 
   List<String> searchResults = [];
@@ -1846,16 +1846,16 @@ class NextScreen extends StatelessWidget {
 
 class CustomSearchDelegate extends SearchDelegate {
   List<String> searchTerms = [
-    'Apple',
-    'Banana',
-    'Cherry',
-    'Date',
-    'Elderberry',
-    'Fig',
-    'Grapes',
-    'Honeydew',
-    'Kiwi',
-    'Lemon',
+    'The Queen Nefertti II',
+    'Atlas Cycle',
+    'Greek Vase',
+    'Pearl Necklace',
+    'Royal Elephant',
+    'Earthen Lamp',
+    'Turn table',
+    'Pocket Clock',
+    'Kamot Jar',
+    'Falling Star',
   ];
   @override
   List<Widget> buildActions(BuildContext context) {
