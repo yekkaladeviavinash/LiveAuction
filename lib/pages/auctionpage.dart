@@ -54,7 +54,7 @@ class _auctionpageState extends State<auctionpage> {
   IO.Socket? socket;
   int? num=0;
   int? mynum=0;
-  String? user;
+  String user="--";
   int? countdown;
   int? countinmin;
   int? countinsec;
@@ -325,7 +325,7 @@ class _auctionpageState extends State<auctionpage> {
                                       //   width: 20.0 * (W / 432),
                                       // ),
                                       SizedBox(
-                                        width: 10.0 * (W / 432),
+                                        width: 37.0 * (W / 432),
                                         height: 10.0 * (H / 936),
                                       ),
                                       Padding(
@@ -384,9 +384,9 @@ class _auctionpageState extends State<auctionpage> {
                                         10.0 * (W / 432), 0.0, 0.0, 0.0),
                                     child: Text(
                                       user.toString() +
-                                          ' wins in ${countinmin}' +
+                                          ' wins in ${countinmin.toString().padLeft(2,'0')}' +
                                           ":" +
-                                          '${countinsec}',
+                                          '${countinsec.toString().padLeft(2,'0')}',
                                       style: TextStyle(
                                           fontSize:
                                               20.0 * min(W / 432, H / 936)),
@@ -540,7 +540,7 @@ class _auctionpageState extends State<auctionpage> {
 
                     Container(
                       padding: EdgeInsets.fromLTRB(16 * (W / 432),
-                          8 * (H / 936), 16 * (W / 432), 15 * (H / 936)),
+                          8 * (H / 936), 1 * (W / 432), 15 * (H / 936)),
                       color: Colors.white,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,

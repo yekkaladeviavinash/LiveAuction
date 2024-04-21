@@ -442,6 +442,70 @@ Future<void> _pickImageFromGallery() async {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
+
+
+
+
+
+
+
+          if(imagelink=="")
+            ClipRRect(
+              borderRadius: BorderRadius.circular(8.0),
+              child: Image.network(
+                "https://t3.ftcdn.net/jpg/03/45/05/92/360_F_345059232_CPieT8RIWOUk4JqBkkWkIETYAkmz2b75.webp",
+                width: 100.0,
+                height: 100.0,
+                fit: BoxFit.cover,
+              ),
+            ),
+
+if(imagelink!="")
+  ClipRRect(
+              borderRadius: BorderRadius.circular(8.0),
+              child: Image.network(
+                imagelink,
+                width: 100.0,
+                height: 100.0,
+                fit: BoxFit.cover,
+              ),
+            ),
+
+
+ElevatedButton(
+                          onPressed: () {
+                            _pickImageFromCamera();
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(7.0),
+                            child: Text(
+                              'Take Photo',
+                              style: TextStyle(
+                                color: Colors.blueAccent,
+                              ),
+                            ),
+                          ),
+                        ),
+ ElevatedButton(
+                          onPressed: () {
+                            _pickImageFromGallery();
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(7.0),
+                            child: Text(
+                              'Add Photo from Gallery',
+                              style: TextStyle(
+                                color: Colors.blueAccent,
+                              ),
+                            ),
+                          ),
+          ),
+
+
+
+
+
+
                 SizedBox(height: 30.0 * H),
                 TextFormField(
                   controller: ctrl.item_name,
@@ -504,59 +568,6 @@ Future<void> _pickImageFromGallery() async {
                 ),
                 
 
-          if(imagelink=="")
-            ClipRRect(
-              borderRadius: BorderRadius.circular(8.0),
-              child: Image.network(
-                "https://t3.ftcdn.net/jpg/03/45/05/92/360_F_345059232_CPieT8RIWOUk4JqBkkWkIETYAkmz2b75.webp",
-                width: 100.0,
-                height: 100.0,
-                fit: BoxFit.cover,
-              ),
-            ),
-
-if(imagelink!="")
-  ClipRRect(
-              borderRadius: BorderRadius.circular(8.0),
-              child: Image.network(
-                imagelink,
-                width: 100.0,
-                height: 100.0,
-                fit: BoxFit.cover,
-              ),
-            ),
-
-
-ElevatedButton(
-                          onPressed: () {
-                            _pickImageFromCamera();
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.all(7.0),
-                            child: Text(
-                              'Take Photo',
-                              style: TextStyle(
-                                color: Colors.blueAccent,
-                              ),
-                            ),
-                          ),
-                        ),
-
-
- ElevatedButton(
-                          onPressed: () {
-                            _pickImageFromGallery();
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.all(7.0),
-                            child: Text(
-                              'Add Photo from Gallery',
-                              style: TextStyle(
-                                color: Colors.blueAccent,
-                              ),
-                            ),
-                          ),
-          ),
 
 
 
