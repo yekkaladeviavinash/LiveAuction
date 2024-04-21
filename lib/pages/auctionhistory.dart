@@ -231,8 +231,12 @@ class _AuctionHistoryPageState extends State<AuctionHistoryPage> {
     return GetBuilder<Profilecontroller>(
       builder: (ctrl) {
         return Scaffold(
-          appBar: AppBar(
-            title: Text('Auction History'),
+          appBar: AppBar(iconTheme: IconThemeData(
+            color: Colors.white, // Change the back button color here
+          ),
+
+            title: Text('Auction History',style: TextStyle(color: Colors.white),),
+            backgroundColor: Colors.black,
           ),
           body: ctrl.sellerAuctionHistory.isEmpty
               ? _buildEmptyAuctionHistory(screenWidth, screenHeight)
@@ -249,7 +253,7 @@ class _AuctionHistoryPageState extends State<AuctionHistoryPage> {
         await ctrl.refreshPage();
       },
       child: Container(
-        color: Colors.grey[200],
+        // color: Colors.grey[200],
         padding: EdgeInsets.all(16.0),
         child: ListView.builder(
           itemCount: ctrl.sellerAuctionHistory.length,
@@ -280,7 +284,7 @@ class _AuctionHistoryPageState extends State<AuctionHistoryPage> {
             size: 100,
             color: Colors.grey,
           ),
-          SizedBox(height: 20),
+          // SizedBox(height: 10),
           Text(
             'No auction history found',
             style: TextStyle(fontSize: 20, color: Colors.grey),

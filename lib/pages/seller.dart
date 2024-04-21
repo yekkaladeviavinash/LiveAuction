@@ -465,11 +465,13 @@ Future<void> _pickImageFromGallery() async {
 if(imagelink!="")
   ClipRRect(
               borderRadius: BorderRadius.circular(8.0),
-              child: Image.network(
-                imagelink,
-                width: 250.0*W,
-                height: 250.0*W,
-                fit: BoxFit.cover,
+              child: Center(
+                child: Image.network(
+                  imagelink,
+                  width: 250.0*W,
+                  height: 250.0*W,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
 

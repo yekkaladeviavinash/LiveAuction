@@ -319,7 +319,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          '3',
+                          '0',
                           style: TextStyle(
                               fontSize: 20 * (W / 411.5),
                               fontWeight: FontWeight.w500),
