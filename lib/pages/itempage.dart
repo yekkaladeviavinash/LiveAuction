@@ -680,7 +680,7 @@ class _itempageState extends State<itempage> {
         ),
 
       
-        bottomNavigationBar: (result==0)?  BottomAppBar(
+        bottomNavigationBar: (result<=0)?  BottomAppBar(
           height: 60 * (H / 974.3),
           padding: EdgeInsets.fromLTRB(
               12 * (W / 448), 1 * (H / 974.3), 12 * (W / 448), 1 * (H / 974.3)),
