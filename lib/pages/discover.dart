@@ -1912,13 +1912,13 @@ class CustomSearchDelegate extends SearchDelegate {
             builder: (context) => itempage(
                 selectpid: '123456',
                 selectimage: 'https://www.boredpanda.com/blog/wp-content/uploads/2022/12/2509735068_1adc5ab69a_k-63a17b3acddd5__700.jpg',
-                selectcategory: 'Sports',
-                selectname: "jndoi",
-                selectprice: '123456',
+                selectcategory: 'Artifacts',
+                selectname: "The Queen Nefertiti II",
+                selectprice: '16000',
                 selectdate: '2024-04-21',
-                selectdesc: 'qwidjxasjxksxklsax',
-                selectptime: 12,
-                selectlocation: 'Hyderabad',
+                selectdesc: 'In the dimly lit chamber of the auction house, amidst an air thick with anticipation, the spotlight finds its mark on a captivating artifact—a striking Egyptian sculpture. Hewn from stone by ancient hands and bearing the weight of millennia, this sculpture exudes an aura of timelessness and mystery. Carved with meticulous detail, its form embodies the divine essence of the gods worshipped by the ancient Egyptians.',
+                selectptime: 11,
+                selectlocation: 'Rajasthan',
                 selectregisteredusers: ["8njnao","kjdboqndo"],
                 )));
           },);
@@ -1932,14 +1932,14 @@ class CustomSearchDelegate extends SearchDelegate {
         MaterialPageRoute(
             builder: (context) => itempage(
                 selectpid: '123456',
-                selectimage: 'https://www.boredpanda.com/blog/wp-content/uploads/2022/12/Osebergskipet_2016-63a1a94eefbb2__700.jpg',
+                selectimage: 'https://5.imimg.com/data5/SELLER/Default/2023/8/337072040/YY/MG/JG/180885991/features-cycle-21-shimano-gears-dual-disc-brake-500x500.jpeg',
                 selectcategory: 'Sports',
-                selectname: "jndoi",
-                selectprice: '123456',
-                selectdate: '2024-04-21',
-                selectdesc: 'qwidjxasjxksxklsax',
-                selectptime: 12,
-                selectlocation: 'Hyderabad',
+                selectname: "Atlas Cycle",
+                selectprice: '3000',
+                selectdate: '2024-04-30',
+                selectdesc: 'In the vibrant ambiance of the auction hall, amidst the hum of excitement, attention converges on a timeless symbol of freedom and mobility—a vintage bicycle. Gleaming under the spotlight, its steel frame bears the marks of age and adventure, each scratch and patina a testament to its storied past. With its elegant curves and classic design, this bicycle evokes a sense of nostalgia, transporting onlookers to an era of simpler pleasures and carefree rides through sun-dappled streets.',
+                selectptime: 9,
+                selectlocation: 'Kerala',
                 selectregisteredusers: ["8njnao","kjdboqndo"],
                 )));
   }
