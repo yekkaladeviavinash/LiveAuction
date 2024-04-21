@@ -452,11 +452,13 @@ Future<void> _pickImageFromGallery() async {
           if(imagelink=="")
             ClipRRect(
               borderRadius: BorderRadius.circular(8.0),
-              child: Image.network(
-                "https://t3.ftcdn.net/jpg/03/45/05/92/360_F_345059232_CPieT8RIWOUk4JqBkkWkIETYAkmz2b75.webp",
-                width: 100.0,
-                height: 100.0,
-                fit: BoxFit.cover,
+              child: Center(
+                child: Image.network(
+                  "https://t3.ftcdn.net/jpg/03/45/05/92/360_F_345059232_CPieT8RIWOUk4JqBkkWkIETYAkmz2b75.webp",
+                  width: 250.0*W,
+                  height: 250.0*W,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
 
@@ -465,48 +467,70 @@ if(imagelink!="")
               borderRadius: BorderRadius.circular(8.0),
               child: Image.network(
                 imagelink,
-                width: 100.0,
-                height: 100.0,
+                width: 250.0*W,
+                height: 250.0*W,
                 fit: BoxFit.cover,
               ),
             ),
 
-
-ElevatedButton(
+Row(
+  mainAxisAlignment: MainAxisAlignment.center,
+  children: [
+    ElevatedButton(
+      style: 
+      ElevatedButton.styleFrom(
+              backgroundColor: Colors.black // Change the background color here
+            ),
                           onPressed: () {
                             _pickImageFromCamera();
                           },
-                          child: Padding(
-                            padding: const EdgeInsets.all(7.0),
-                            child: Text(
-                              'Take Photo',
-                              style: TextStyle(
-                                color: Colors.blueAccent,
+                          child: Row(
+                            children: [
+                              Icon(Icons.camera_alt_outlined,color: Colors.white,)
+                              ,
+                              SizedBox(width: 5,),
+                              Text(
+                                'Camera',
+                                style: TextStyle(
+                                  color:  Colors.white,
+                                ),
                               ),
-                            ),
+                            ],
                           ),
                         ),
+                        SizedBox(width: 5,),
  ElevatedButton(
+  style: 
+      ElevatedButton.styleFrom(
+              backgroundColor: Colors.black // Change the background color here
+            ),
                           onPressed: () {
                             _pickImageFromGallery();
                           },
-                          child: Padding(
-                            padding: const EdgeInsets.all(7.0),
-                            child: Text(
-                              'Add Photo from Gallery',
-                              style: TextStyle(
-                                color: Colors.blueAccent,
+                          child: Row(
+                            children: [
+                              Icon(Icons.image_search_rounded,color: Colors.white,)
+                              ,
+                              SizedBox(width: 5,),
+                              Text(
+                                'Gallery',
+                                style: TextStyle(
+                                  color:  Colors.white,
+                                ),
                               ),
-                            ),
+                            ],
                           ),
           ),
+  ],
+),
 
 
 
 
 
 
-                SizedBox(height: 30.0 * H),
+
+                // SizedBox(height: 30.0 * H),
                 TextFormField(
                   controller: ctrl.item_name,
                   cursorColor: Color.fromARGB(255, 216, 97, 29),
@@ -642,6 +666,9 @@ ElevatedButton(
                     child: ElevatedButton(
                   onPressed: () {
                     ctrl.addproduct(imagelink!);
+                    setState(() {
+                      imagelink="";
+                    });
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color.fromARGB(255, 30, 28, 27),

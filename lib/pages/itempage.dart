@@ -827,7 +827,19 @@ class _itempageState extends State<itempage> {
             ],
           ),
         ) :
-        Text("gwdiq"),
+        Padding(
+          padding:  EdgeInsets.fromLTRB((W)/3.2, 8, W/4, 8),
+          // padding:  EdgeInsets.symmetric(horizontal: W/3),
+          child: Text("Auction Completed",
+          style: TextStyle(
+                                  fontSize: 18*(W/432),
+                                  // color: Colors.red,
+                                  fontFamily: 'roboto',
+                                  fontWeight: FontWeight.bold
+                                  // ,letterSpacing: 1
+                                  ),
+          ),
+        ),
       );
     });
   }

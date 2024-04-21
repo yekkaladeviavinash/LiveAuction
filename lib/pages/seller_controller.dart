@@ -231,6 +231,8 @@ class Sellercontroller extends GetxController {
     base_price.clear();
     item_image.clear();
     item_category = 'collectibles';
+    locationchosen.clear();
+    
     // datechosen = DateFormat("yyyy-MM-dd").format(DateTime.now()) as DateTime?;
     String formattedDate = DateFormat("yyyy-MM-dd").format(DateTime.now());
     datechosen = DateTime.tryParse(formattedDate);
