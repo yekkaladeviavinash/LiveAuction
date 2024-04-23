@@ -10,7 +10,7 @@ Welcome to our Live Auction App! This application provides a platform for users 
 - **Selling History**: Users can view information about items they have sold in the selling history section.
 - **Auction History**: Information about auctions participated in by the user is stored for reference.
 - **Registered Auctions**: Displays a list and information of auctions registered by the user that are not yet completed.
-- **Item Registration**: Users can register theier items for auction by filling in details such as name, images, category, base price, description, and choose a date for their auction.
+- **Item Registration**: Users can register their items for auction by filling in details such as name, images, category, base price, description, and choose a date for their auction.
 - **Auction working**: Our auction page lets users bid on items individually, with a countdown timer adding excitement. You can easily see the latest highest bid for each item, and winner information is 
     provided for smooth transactions between the seller and winning bidder through emails.
  
