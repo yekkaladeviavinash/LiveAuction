@@ -22,5 +22,34 @@ Welcome to our Live Auction App! This application provides a platform for users 
 - NodeJS for server.
 - Firestore for database.
 
+
+
+## dependencies:
+  animated_splash_screen: ^1.3.0
+  cloud_firestore: ^4.15.9
+  cupertino_icons: ^1.0.6
+  firebase_app_check: ^0.2.1+18
+  firebase_auth: ^4.17.9
+  firebase_core: ^2.27.1
+  firebase_storage: ^11.6.10
+  firebase_ui_firestore: ^1.6.2
+  flutter:
+    sdk: flutter
+  get: ^4.6.6
+  http: ^1.2.1
+  image_picker: ^1.0.7
+  socket_io_client: ^2.0.3+1
+  uuid: ^4.3.3
+
+## dev_dependencies:
+  build_runner: ^2.4.8
+  flutter_lints: ^3.0.0
+  flutter_test:
+    sdk: flutter
+  json_serializable: ^6.7.1
+  flutter_launcher_icons: "^0.13.1"
+
+
+
 ## Installation
 
