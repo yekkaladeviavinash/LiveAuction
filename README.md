@@ -52,4 +52,41 @@ Welcome to our Live Auction App! This application provides a platform for users 
 
 
 ## Installation
+Install Dart and Flutter Tools and SDK's:
 
+Dart SDK:
+
+If you don't already have Dart SDK installed on your system, you can download it from the official Dart website:
+
+Dart SDK
+Please follow the installation instructions provided on the website.
+
+Flutter Tools and SDK:
+
+If you don't already have Flutter tools and SDK installed on your system, you can download it from the official Flutter website:
+
+Flutter
+Please follow the installation instructions provided on the website.
+
+Firebase SDK:
+If you don't already have Firebase SDK installed on your system, you can download it from the official Firebase website:
+
+Firebase
+
+Please follow the installation instructions provided on the website.
+
+Once you have completed the installation steps above, follow the instructions in the Run Locally section for the complete setup required for installation.
+
+
+##Run Locally
+
+To run the LiveAuction project locally, follow these steps:
+
+1.Clone the Git repository:
+https://github.com/yekkaladeviavinash/LiveAuction.git
+
+2.Enter the following commands in your terminal in the root directory where the project is installed
+    1.)flutter clean
+    2.)flutter pub get
+    These two commands would resolve the errors and the dependencies
+Now you are ready to use LiveAuction!
