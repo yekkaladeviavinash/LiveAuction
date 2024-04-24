@@ -78,7 +78,7 @@ Please follow the installation instructions provided on the website.
 Once you have completed the installation steps above, follow the instructions in the Run Locally section for the complete setup required for installation.
 
 
-##Run Locally
+## Run Locally
 
 To run the LiveAuction project locally, follow these steps:
 
