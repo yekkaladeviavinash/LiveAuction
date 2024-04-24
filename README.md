@@ -13,7 +13,7 @@ Welcome to our Live Auction App! This application provides a platform for users 
 - **Item Registration**: Users can register their items for auction by filling in details such as name, images, category, base price, description, and choose a date for their auction.
 - **Auction working**: Our auction page lets users bid on items individually, with a countdown timer adding excitement. You can easily see the latest highest bid for each item, and winner information is 
     provided for smooth transactions between the seller and winning bidder through emails.
--**Admin Verification**:Items uploaded by the seller are verified by the admin.He can either accept or reject the product.If accepted then acceptance mail will be sent to the seller and the product gets uploaded,else if rejected then rejection mail will be sent to the seller and the product will be removed from database.
+- **Admin Verification**:Items uploaded by the seller are verified by the admin.He can either accept or reject the product.If accepted then acceptance mail will be sent to the seller and the product gets uploaded,else if rejected then rejection mail will be sent to the seller and the product will be removed from database.
   
  
 ## TechStack
