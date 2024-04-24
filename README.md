@@ -86,7 +86,7 @@ To run the LiveAuction project locally, follow these steps:
 https://github.com/yekkaladeviavinash/LiveAuction.git
 
 2.Enter the following commands in your terminal in the root directory where the project is installed
-    1.)flutter clean
-    2.)flutter pub get
-    These two commands would resolve the errors and the dependencies
+1.)flutter clean
+2.)flutter pub get
+These two commands would resolve the errors and the dependencies
 Now you are ready to use LiveAuction!
